@@ -1,16 +1,27 @@
 import { db } from "./firebase.js";
 
 import {
-    collection,
-    addDoc,
-    getDocs,
-    deleteDoc,
-    doc
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
+// =============================
+// CLOUDINARY
+// =============================
+
+const CLOUD_NAME = "emyi9k2e";
+const UPLOAD_PRESET = "itpinkclub";
+
+
+
+// =============================
 // ELEMENTOS
+// =============================
 
 const nomeInput = document.getElementById("nome");
 const categoriaInput = document.getElementById("categoria");
@@ -18,262 +29,58 @@ const precoInput = document.getElementById("preco");
 const imagemInput = document.getElementById("imagem");
 const linkInput = document.getElementById("link");
 
+const destaqueInput = document.getElementById("destaque");
+const ativoInput = document.getElementById("ativo");
+
 const btnSalvar = document.getElementById("salvar");
 
-const lista = document.getElementById("listaAdmin");
+const lista =
+document.getElementById("lista");
 
 
 
-// IMAGEM PADRÃO
+// =============================
+// UPLOAD CLOUDINARY
+// =============================
 
-const imagemPadrao = 
-"https://placehold.co/500x500/ffd6ea/ff3f9b?text=It+Pink";
+async function uploadImagem(arquivo){
 
+    if(!arquivo) return "";
 
+    const formData = new FormData();
 
-
-// TESTAR IMAGEM
-
-function imagemValida(url){
-
-    if(!url) return false;
-
-    return (
-        url.startsWith("http://") ||
-        url.startsWith("https://")
+    formData.append(
+        "file",
+        arquivo
     );
 
-}
+    formData.append(
+        "upload_preset",
+        UPLOAD_PRESET
+    );
 
+    const resposta = await fetch(
 
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
 
+        {
 
+            method:"POST",
 
-// CADASTRAR PRODUTO
+            body:formData
 
-if(btnSalvar){
+        }
 
+    );
 
-btnSalvar.addEventListener(
-"click",
-async ()=>{
+    const dados = await resposta.json();
 
+    if(!dados.secure_url){
 
-    const produto = {
-
-
-        nome:
-        nomeInput.value.trim(),
-
-
-        categoria:
-        categoriaInput.value.trim(),
-
-
-        preco:
-        Number(precoInput.value),
-
-
-        imagem:
-        imagemValida(imagemInput.value.trim())
-
-        ?
-
-        imagemInput.value.trim()
-
-        :
-
-        imagemPadrao,
-
-
-        link:
-        linkInput.value.trim(),
-
-
-        ativo:true,
-
-
-        criadoEm:
-        new Date()
-
-
-    };
-
-
-
-    if(!produto.nome){
-
-        alert(
-        "Digite o nome do produto"
-        );
-
-        return;
+        throw new Error("Erro ao enviar imagem.");
 
     }
 
-
-
-
-    try{
-
-
-        await addDoc(
-            collection(db,"produtos"),
-            produto
-        );
-
-
-
-        alert(
-        "Produto cadastrado 💗"
-        );
-
-
-
-        limparFormulario();
-
-
-        carregarProdutosAdmin();
-
-
-
-    }catch(error){
-
-
-        console.error(
-            error
-        );
-
-
-        alert(
-        "Erro ao salvar produto"
-        );
-
-
-    }
-
-
-
-});
-
+    return dados.secure_url;
 
 }
-
-
-
-
-// LIMPAR
-
-function limparFormulario(){
-
-    nomeInput.value="";
-    categoriaInput.value="";
-    precoInput.value="";
-    imagemInput.value="";
-    linkInput.value="";
-
-}
-
-
-
-
-// LISTAR ADMIN
-
-async function carregarProdutosAdmin(){
-
-
-    if(!lista) return;
-
-
-    lista.innerHTML="";
-
-
-    const snapshot =
-    await getDocs(
-        collection(db,"produtos")
-    );
-
-
-
-    snapshot.forEach(
-    (item)=>{
-
-
-        const produto =
-        item.data();
-
-
-
-        lista.innerHTML += `
-
-
-        <div class="admin-card">
-
-
-            <img 
-            src="${produto.imagem || imagemPadrao}"
-            width="100"
-            >
-
-
-            <h3>
-            ${produto.nome}
-            </h3>
-
-
-            <p>
-            ${produto.categoria}
-            </p>
-
-
-            <button 
-            onclick="removerProduto('${item.id}')"
-            >
-
-            Excluir
-
-            </button>
-
-
-        </div>
-
-
-        `;
-
-
-    });
-
-
-}
-
-
-
-
-// EXCLUIR
-
-window.removerProduto = async function(id){
-
-
-    if(
-        !confirm(
-        "Excluir produto?"
-        )
-    )
-    return;
-
-
-
-    await deleteDoc(
-        doc(db,"produtos",id)
-    );
-
-
-    carregarProdutosAdmin();
-
-
-}
-
-
-
-
-carregarProdutosAdmin();
