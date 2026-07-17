@@ -10,7 +10,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+// ================================
 // ELEMENTOS
+// ================================
 
 const container = document.getElementById("produtos");
 const pesquisa = document.getElementById("pesquisa");
@@ -20,9 +22,9 @@ const botoesCategoria = document.querySelectorAll("[data-categoria]");
 let produtos = [];
 
 
-// =====================================
+// ================================
 // CARREGAR PRODUTOS FIREBASE
-// =====================================
+// ================================
 
 async function carregarProdutos(){
 
@@ -50,7 +52,7 @@ async function carregarProdutos(){
 
                     categoria: dados.categoria || "Outros",
 
-                    preco: Number(dados.preco) || 0,
+                    preco: dados.preco || 0,
 
                     imagem: dados.imagem || "",
 
@@ -66,7 +68,6 @@ async function carregarProdutos(){
         });
 
 
-
         console.log("Produtos carregados:", produtos);
 
 
@@ -75,7 +76,7 @@ async function carregarProdutos(){
 
     }catch(error){
 
-        console.error("Erro Firebase:", error);
+        console.error("Erro Firebase:",error);
 
     }
 
@@ -84,64 +85,50 @@ async function carregarProdutos(){
 
 
 
-
-// =====================================
+// ================================
 // MOSTRAR PRODUTOS
-// =====================================
+// ================================
+
 
 function mostrarProdutos(lista = produtos){
 
 
     if(!container){
 
-        console.error("Container produtos não encontrado");
+        console.error("Elemento produtos não encontrado");
 
         return;
 
     }
 
 
-
-    container.innerHTML = "";
+    container.innerHTML="";
 
 
 
     lista.forEach(produto=>{
 
 
-        const card = document.createElement("div");
+        const card=document.createElement("div");
 
 
-        card.className = "produto-card";
-
-
-
-        const imagemFinal = produto.imagem && produto.imagem.trim() !== ""
-
-        ? produto.imagem
-
-        : "https://placehold.co/600x600/f8c8dc/ffffff?text=It+Pink+Club";
-
+        card.className="produto-card";
 
 
 
         card.innerHTML = `
 
 
-        <img
-
-        src="${imagemFinal}"
-
+        <img 
+        class="imagem-produto"
+        src="${produto.imagem}"
         alt="${produto.nome}"
-
         >
 
 
 
         <h3>
-
         ${produto.nome}
-
         </h3>
 
 
@@ -156,28 +143,38 @@ function mostrarProdutos(lista = produtos){
 
         <strong>
 
-        R$ ${produto.preco.toFixed(2).replace(".",",")}
+        R$ ${Number(produto.preco)
+        .toFixed(2)
+        .replace(".",",")}
 
         </strong>
 
 
 
-        <a
-
+        <a 
         href="${produto.link}"
-
         target="_blank"
-
-        class="comprar"
-
-        >
+        class="comprar">
 
         Comprar
 
         </a>
 
 
+
         `;
+
+
+
+        const img = card.querySelector("img");
+
+
+
+        img.onerror=function(){
+
+            this.style.display="none";
+
+        };
 
 
 
@@ -193,10 +190,9 @@ function mostrarProdutos(lista = produtos){
 
 
 
-
-// =====================================
+// ================================
 // PESQUISA
-// =====================================
+// ================================
 
 
 if(pesquisa){
@@ -205,96 +201,97 @@ if(pesquisa){
 pesquisa.addEventListener("input",()=>{
 
 
-    const texto = pesquisa.value
-    .toLowerCase()
-    .trim();
+const texto =
+pesquisa.value
+.toLowerCase()
+.trim();
 
 
 
-    const filtrados = produtos.filter(produto=>{
+const filtrados =
+produtos.filter(produto=>{
 
 
-        return (
+return (
 
-            produto.nome
-            .toLowerCase()
-            .includes(texto)
-
-
-            ||
-
-            produto.categoria
-            .toLowerCase()
-            .includes(texto)
+produto.nome
+.toLowerCase()
+.includes(texto)
 
 
-        );
+||
 
 
-    });
+produto.categoria
+.toLowerCase()
+.includes(texto)
 
-
-
-    mostrarProdutos(filtrados);
-
+);
 
 
 });
 
+
+
+mostrarProdutos(filtrados);
+
+
+
+});
 
 
 }
 
 
 
-
-// =====================================
+// ================================
 // CATEGORIAS
-// =====================================
+// ================================
 
 
 botoesCategoria.forEach(botao=>{
 
 
-    botao.addEventListener("click",()=>{
+botao.addEventListener("click",()=>{
 
 
-        const categoria = botao.dataset.categoria;
-
-
-
-        if(categoria === "todos"){
-
-
-            mostrarProdutos();
-
-
-            return;
-
-
-        }
+const categoria =
+botao.dataset.categoria;
 
 
 
-        const filtrados = produtos.filter(produto=>
+if(categoria==="todos"){
 
 
-            produto.categoria
-            .toLowerCase()
-            ===
-            categoria.toLowerCase()
+mostrarProdutos();
+
+return;
 
 
-        );
-
-
-
-        mostrarProdutos(filtrados);
+}
 
 
 
-    });
+const filtrados =
+produtos.filter(produto=>{
 
+
+return produto.categoria
+.toLowerCase()
+.includes(
+categoria.toLowerCase()
+);
+
+
+});
+
+
+
+mostrarProdutos(filtrados);
+
+
+
+});
 
 
 });
@@ -302,9 +299,8 @@ botoesCategoria.forEach(botao=>{
 
 
 
-
-// =====================================
-// START
-// =====================================
+// ================================
+// INICIAR
+// ================================
 
 carregarProdutos();
