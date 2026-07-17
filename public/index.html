@@ -1,169 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>💖 It Pink Club</title>
+    <title>It Pink Club</title>
 
-    <meta name="description"
-        content="Os melhores achadinhos da Shopee escolhidos com carinho. Moda, beleza, casa, decoração e muito mais.">
-
-    <link rel="stylesheet" href="css/style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- HEADER -->
+<header>
+    <h1>💖 It Pink Club</h1>
+    <p>Achadinhos escolhidos com carinho para você.</p>
 
-    <header>
+    <input 
+        type="text" 
+        id="pesquisa"
+        placeholder="🔎 Pesquise um produto..."
+    >
 
-        <section class="slider">
+    <div class="categorias">
+        <button data-cat="todos">✨ Todos</button>
+        <button data-cat="Infantil">👗 Infantil</button>
+        <button data-cat="Ballet">🎀 Ballet</button>
+        <button data-cat="Mochilas">🎒 Mochilas</button>
+        <button data-cat="bolsa">👜 Bolsas</button>
+        <button data-cat="Casa">🏡 Casa</button>
+    </div>
+</header>
 
-            <div class="slides">
 
-                <img class="slide ativo" src="assets/banners/banner1.webp" alt="Banner 1">
-                <img class="slide" src="assets/banners/banner2.webp" alt="Banner 2">
-                <img class="slide" src="assets/banners/banner3.webp" alt="Banner 3">
+<section class="titulo-produtos">
 
-            </div>
+    <h2>✨ Escolhas do Clube</h2>
+    <p>Selecionados especialmente para você.</p>
 
-            <div class="indicadores">
+</section>
 
-                <span class="dot ativo"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
 
-            </div>
+<!-- PRODUTOS DO FIREBASE APARECEM AQUI -->
+<section id="produtos" class="produtos"></section>
 
-        </section>
 
-    </header>
 
-    <!-- HERO -->
+<section class="cards-info">
 
-    <section class="hero">
+    <div>
+        💖
+        <h3>Escolha Manual</h3>
+        <p>
+            Selecionamos apenas produtos que
+            realmente chamam atenção.
+        </p>
+    </div>
 
-        <h1>💖 It Pink Club</h1>
 
-        <p>Achadinhos escolhidos com carinho para você.</p>
+    <div>
+        ⭐
+        <h3>Atualizações Frequentes</h3>
+        <p>
+            Novos achadinhos adicionados
+            constantemente.
+        </p>
+    </div>
 
-        <input
-            type="text"
-            id="pesquisa"
-            placeholder="🔍 Pesquise um produto...">
 
-    </section>
+    <div>
+        🎀
+        <h3>Curadoria It Pink</h3>
+        <p>
+            Tudo seguindo a estética delicada e
+            feminina do clube.
+        </p>
+    </div>
 
-    <!-- CATEGORIAS -->
+</section>
 
-    <section class="categorias">
 
-        <button class="categoria ativa" data-categoria="Todos">💖 Todos</button>
 
-        <button class="categoria" data-categoria="Moda Infantil">👗 Infantil</button>
-
-        <button class="categoria" data-categoria="Ballet">🩰 Ballet</button>
-
-        <button class="categoria" data-categoria="Mochilas">🎒 Mochilas</button>
-
-        <button class="categoria" data-categoria="Bolsas">👜 Bolsas</button>
-
-        <button class="categoria" data-categoria="Casa">🏡 Casa</button>
-
-    </section>
-
-    <!-- PRODUTOS -->
-
-    <section class="titulo-produtos">
-
-        <h2>✨ Escolhas do Clube</h2>
-
-        <p>Selecionados especialmente para você.</p>
-
-    </section>
-
-    <main>
-
-        <div id="produtos" class="grid"></div>
-
-    </main>
-
-    <!-- BENEFÍCIOS -->
-
-    <section class="beneficios">
-
-        <div class="beneficio">
-
-            💖
-
-            <h3>Escolha Manual</h3>
-
-            <p>Selecionamos apenas produtos que realmente chamam atenção.</p>
-
-        </div>
-
-        <div class="beneficio">
-
-            ⭐
-
-            <h3>Atualizações Frequentes</h3>
-
-            <p>Novos achadinhos adicionados constantemente.</p>
-
-        </div>
-
-        <div class="beneficio">
-
-            🎀
-
-            <h3>Curadoria It Pink</h3>
-
-            <p>Tudo seguindo a estética delicada e feminina do clube.</p>
-
-        </div>
-
-    </section>
-
-    <!-- BOTÃO TOPO -->
-
-    <button id="topo">
-
-        ↑
-
-    </button>
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <h3>💖 It Pink Club</h3>
-
-        <p>Achadinhos da Shopee escolhidos com carinho.</p>
-
-        <a href="https://instagram.com/itpinkclub" target="_blank">
-
-            @itpinkclub
-
-        </a>
-
-    </footer>
-
-    <!-- Scripts -->
-
-    <script type="module" src="js/produtos.js"></script>
-
-    <script src="js/script.js"></script>
+<!-- IMPORTANTE: Firebase precisa de module -->
+<script type="module" src="script.js"></script>
 
 </body>
-
 </html>
