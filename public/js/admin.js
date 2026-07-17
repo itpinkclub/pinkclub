@@ -1,26 +1,14 @@
 import { db, auth } from "./firebase.js";
 
-
 import {
     collection,
     addDoc,
     getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
 import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
-
-
-// CLOUDINARY
-
-const CLOUD_NAME = "emiy9k2e";
-const UPLOAD_PRESET = "itpinkclub";
-
-
 
 
 
@@ -44,9 +32,7 @@ const sair = document.getElementById("sair");
 
 
 
-
-
-// UPLOAD CLOUDINARY
+// CLOUDINARY
 
 async function enviarImagemCloudinary(arquivo){
 
@@ -62,21 +48,18 @@ async function enviarImagemCloudinary(arquivo){
 
     formData.append(
         "upload_preset",
-        UPLOAD_PRESET
+        "itpinkclub"
     );
 
 
 
     const resposta = await fetch(
 
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        "https://api.cloudinary.com/v1_1/emyi9k2e/image/upload",
 
         {
-
             method:"POST",
-
             body:formData
-
         }
 
     );
@@ -87,10 +70,15 @@ async function enviarImagemCloudinary(arquivo){
 
 
 
-    if(!dados.secure_url){
+    console.log("Cloudinary:", dados);
+
+
+
+    if(!resposta.ok){
 
         throw new Error(
-            "Erro ao enviar imagem para Cloudinary"
+            dados.error?.message || 
+            "Erro no upload da imagem"
         );
 
     }
@@ -107,9 +95,6 @@ async function enviarImagemCloudinary(arquivo){
 
 
 
-
-
-
 // SALVAR PRODUTO
 
 salvar.onclick = async ()=>{
@@ -118,32 +103,13 @@ salvar.onclick = async ()=>{
     try{
 
 
-        if(
-            !nome.value.trim() ||
-            !preco.value
-        ){
+        salvar.innerText = "Enviando...";
 
-            alert(
-                "Preencha nome e preço"
-            );
-
-            return;
-
-        }
+        salvar.disabled = true;
 
 
 
-
-
-        salvar.innerText="Enviando...";
-
-        salvar.disabled=true;
-
-
-
-
-
-        let urlImagem="";
+        let urlImagem = "";
 
 
 
@@ -168,35 +134,28 @@ salvar.onclick = async ()=>{
             nome.value.trim(),
 
 
-
             categoria:
             categoria.value.trim(),
-
 
 
             preco:
             Number(preco.value),
 
 
-
             link:
             link.value.trim(),
-
 
 
             imagem:
             urlImagem,
 
 
-
             destaque:
             destaque.checked,
 
 
-
             ativo:
             ativo.checked,
-
 
 
             criadoEm:
@@ -210,9 +169,32 @@ salvar.onclick = async ()=>{
 
 
 
+        if(
+            !produto.nome ||
+            !produto.preco
+        ){
+
+
+            alert(
+                "Preencha nome e preço do produto"
+            );
+
+
+            return;
+
+
+        }
+
+
+
+
+
         await addDoc(
 
-            collection(db,"produtos"),
+            collection(
+                db,
+                "produtos"
+            ),
 
             produto
 
@@ -231,11 +213,13 @@ salvar.onclick = async ()=>{
         limparFormulario();
 
 
+
         carregarProdutos();
 
 
 
     }
+
 
     catch(error){
 
@@ -243,21 +227,29 @@ salvar.onclick = async ()=>{
         console.error(error);
 
 
+
         alert(
-            "Erro: "
-            + error.message
+
+            "Erro ao salvar produto: "
+            +
+            error.message
+
         );
 
 
     }
 
 
+
     finally{
 
 
-        salvar.innerText="Salvar Produto";
+        salvar.innerText =
+        "Salvar Produto";
 
-        salvar.disabled=false;
+
+        salvar.disabled =
+        false;
 
 
     }
@@ -272,26 +264,27 @@ salvar.onclick = async ()=>{
 
 
 
-
 // LIMPAR FORMULÁRIO
+
 
 function limparFormulario(){
 
 
-    nome.value="";
+    nome.value = "";
 
-    categoria.value="";
+    categoria.value = "";
 
-    preco.value="";
+    preco.value = "";
 
-    link.value="";
+    link.value = "";
 
-    imagem.value="";
+    imagem.value = "";
 
 
-    destaque.checked=false;
+    destaque.checked = false;
 
-    ativo.checked=true;
+
+    ativo.checked = true;
 
 
 }
@@ -306,16 +299,20 @@ function limparFormulario(){
 
 // LISTAR PRODUTOS
 
+
 async function carregarProdutos(){
 
 
-    lista.innerHTML="";
+    lista.innerHTML = "";
 
 
 
     const dados = await getDocs(
 
-        collection(db,"produtos")
+        collection(
+            db,
+            "produtos"
+        )
 
     );
 
@@ -337,22 +334,14 @@ async function carregarProdutos(){
         <div class="produto">
 
 
-
             ${
-                p.imagem
-
-                ?
+                p.imagem ?
 
                 `
-
                 <img 
-
                 src="${p.imagem}"
-
                 width="200"
-
                 >
-
                 `
 
                 :
@@ -364,43 +353,29 @@ async function carregarProdutos(){
 
 
 
-
             <h3>
-
             ${p.nome}
-
             </h3>
 
 
 
-
             <p>
-
-            ${p.categoria || ""}
-
+            ${p.categoria}
             </p>
 
 
 
-
             <strong>
-
             R$ ${p.preco}
-
             </strong>
-
 
 
 
             <br>
 
 
-
-
             <a 
-
             href="${p.link}"
-
             target="_blank">
 
             Comprar
@@ -429,8 +404,8 @@ async function carregarProdutos(){
 
 
 
-
 // SAIR
+
 
 if(sair){
 
@@ -441,7 +416,8 @@ if(sair){
         await signOut(auth);
 
 
-        window.location.href="index.html";
+        window.location.href =
+        "index.html";
 
 
     };
@@ -457,5 +433,6 @@ if(sair){
 
 
 // INICIAR
+
 
 carregarProdutos();
