@@ -1,0 +1,163 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Poppins',Arial,sans-serif;
+    background:#fff0f7;
+    color:#333;
+}
+
+
+#login{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.login-box{
+
+    width:380px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+    0 15px 40px rgba(255,63,158,.15);
+
+}
+
+
+.login-box h1{
+
+    color:#ff3f9e;
+    font-size:32px;
+
+}
+
+
+.login-box p{
+
+    color:#777;
+
+}
+
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin:8px 0;
+
+    border-radius:15px;
+
+    border:1px solid #ddd;
+
+    font-size:15px;
+
+}
+
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:15px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:#ff3f9e;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+
+button:hover{
+
+    opacity:.85;
+
+}
+
+
+/* PAINEL */
+
+#painel{
+
+    padding:40px;
+
+}
+
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+header h1{
+
+    color:#ff3f9e;
+
+}
+
+
+.formulario,
+.lista{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    margin-top:30px;
+
+    box-shadow:0 10px 30px #0001;
+
+}
+
+
+label{
+
+    display:block;
+
+    margin:15px 0;
+
+}
+
+
+#listaProdutos div{
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:#fff0f7;
+
+    margin-top:15px;
+
+}

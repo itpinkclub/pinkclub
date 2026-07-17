@@ -1,0 +1,360 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#fff9fc;
+    color:#444;
+    overflow-x:hidden;
+}
+
+/* ===========================
+   ANIMAÇÕES
+=========================== */
+
+@keyframes fade{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===========================
+   SLIDER
+=========================== */
+
+.slider{
+    width:100%;
+    position:relative;
+    overflow:hidden;
+}
+
+.slides{
+    position:relative;
+}
+
+.slide{
+    width:100%;
+    height:520px;
+    object-fit:cover;
+    display:none;
+    animation:fade .6s;
+}
+
+.slide.ativo{
+    display:block;
+}
+
+/* ===========================
+   INDICADORES
+=========================== */
+
+.indicadores{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+}
+
+.dot{
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:rgba(255,255,255,.5);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.dot.ativo{
+    background:white;
+    transform:scale(1.3);
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+    max-width:1200px;
+    margin:55px auto;
+    text-align:center;
+    padding:0 20px;
+}
+
+.hero h1{
+    color:#ff4fa1;
+    font-size:56px;
+    margin-bottom:12px;
+}
+
+.hero p{
+    color:#777;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+/* ===========================
+   PESQUISA
+=========================== */
+
+#pesquisa{
+    width:100%;
+    max-width:520px;
+    padding:18px 24px;
+    border:none;
+    border-radius:50px;
+    outline:none;
+    font-size:16px;
+    box-shadow:0 12px 30px rgba(255,105,180,.15);
+}
+
+#pesquisa:focus{
+    box-shadow:0 15px 35px rgba(255,105,180,.30);
+}
+
+/* ===========================
+   CATEGORIAS
+=========================== */
+
+.categorias{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-bottom:60px;
+    padding:0 20px;
+}
+
+.categoria{
+    background:white;
+    border:none;
+    border-radius:40px;
+    padding:13px 24px;
+    cursor:pointer;
+    color:#ff4fa1;
+    font-weight:600;
+    transition:.25s;
+    box-shadow:0 8px 20px rgba(255,105,180,.12);
+}
+
+.categoria:hover,
+.categoria.ativa{
+    background:#ff2d87;
+    color:white;
+}
+
+/* ===========================
+   TÍTULO
+=========================== */
+
+.titulo-produtos{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.titulo-produtos h2{
+    color:#ff4fa1;
+    font-size:38px;
+}
+
+.titulo-produtos p{
+    color:#777;
+    margin-top:10px;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.grid{
+    max-width:1300px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:35px;
+    padding:20px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.card{
+    display:block;
+    background:white;
+    border-radius:28px;
+    overflow:hidden;
+    text-decoration:none;
+    color:inherit;
+    box-shadow:0 15px 35px rgba(255,105,180,.12);
+    transition:.35s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(255,105,180,.22);
+}
+
+.card img{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-info{
+    padding:22px;
+}
+
+.card h2{
+    color:#ff4fa1;
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.categoria-produto{
+    color:#999;
+    margin-bottom:20px;
+}
+
+.selo{
+    display:inline-block;
+    background:#ffe2f0;
+    color:#ff2d87;
+    padding:8px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+.botao{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:#ff4fa1;
+    color:white;
+    padding:15px;
+    border-radius:50px;
+    font-weight:600;
+    margin-top:20px;
+}
+
+/* ===========================
+   BENEFÍCIOS
+=========================== */
+
+.beneficios{
+    max-width:1200px;
+    margin:90px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    padding:20px;
+}
+
+.beneficio{
+    background:white;
+    border-radius:25px;
+    text-align:center;
+    padding:35px;
+    box-shadow:0 10px 25px rgba(255,105,180,.10);
+}
+
+.beneficio h3{
+    color:#ff4fa1;
+    margin:18px 0;
+}
+
+/* ===========================
+   BOTÃO TOPO
+=========================== */
+
+#topo{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    background:#ff4fa1;
+    color:white;
+    cursor:pointer;
+    font-size:22px;
+    display:none;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+    background:white;
+    padding:45px;
+    text-align:center;
+    margin-top:70px;
+}
+
+footer h3{
+    color:#ff4fa1;
+    margin-bottom:12px;
+}
+
+footer a{
+    display:inline-block;
+    margin-top:15px;
+    color:#ff4fa1;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* ===========================
+   RESPONSIVO
+=========================== */
+
+@media(max-width:768px){
+
+    .slide{
+        height:260px;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .card img{
+        height:260px;
+    }
+
+}
