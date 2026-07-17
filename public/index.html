@@ -2,128 +2,170 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>It Pink Club</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/style.css">
+<title>It Pink Club</title>
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 
 
 <body>
 
 
-<header class="hero">
-
-    <div class="logo">
-        💖 It Pink Club
-    </div>
-
-    <p>
-        Achadinhos escolhidos com carinho para você.
-    </p>
+<header class="topo">
 
 
-    <input 
-        id="pesquisa"
-        type="text"
-        placeholder="🔍 Pesquise um produto..."
-    >
+<div class="logo">
+💖 It Pink Club
+</div>
 
 
-    <div class="categorias">
+<p>
+Achadinhos escolhidos com carinho para você.
+</p>
 
-        <button data-categoria="todos">
-            ✨ Todos
-        </button>
 
-        <button data-categoria="Infantil">
-            👗 Infantil
-        </button>
+<input 
+id="pesquisa"
+type="text"
+placeholder="🔍 Pesquise um produto..."
+>
 
-        <button data-categoria="Ballet">
-            🎀 Ballet
-        </button>
 
-        <button data-categoria="Mochilas">
-            🎒 Mochilas
-        </button>
+<div class="categorias">
 
-        <button data-categoria="bolsa">
-            👜 Bolsas
-        </button>
 
-        <button data-categoria="Casa">
-            🏠 Casa
-        </button>
+<button data-categoria="todos">
+✨ Todos
+</button>
 
-    </div>
+
+<button data-categoria="infantil">
+👗 Infantil
+</button>
+
+
+<button data-categoria="ballet">
+🎀 Ballet
+</button>
+
+
+<button data-categoria="mochilas">
+🎒 Mochilas
+</button>
+
+
+<button data-categoria="bolsas">
+👜 Bolsas
+</button>
+
+
+<button data-categoria="casa">
+🏠 Casa
+</button>
+
+
+</div>
+
 
 </header>
 
 
 
-<section class="produtos">
+<section class="titulo">
 
-    <h1>
-        ✨ Escolhas do Clube
-    </h1>
+<h1>
+✨ Escolhas do Clube
+</h1>
 
-    <p>
-        Selecionados especialmente para você.
-    </p>
+<p>
+Selecionados especialmente para você.
+</p>
+
+</section>
 
 
-    <!-- O SCRIPT.JS USA ESTE ID -->
-    <div id="listaProdutos"></div>
+
+<main>
+
+<div id="produtos" class="produtos">
+
+</div>
+
+
+</main>
+
+
+
+<section class="beneficios">
+
+
+<div class="card-info">
+
+💖
+
+<h3>
+Escolha Manual
+</h3>
+
+<p>
+Selecionamos apenas produtos que realmente chamam atenção.
+</p>
+
+</div>
+
+
+
+<div class="card-info">
+
+⭐
+
+<h3>
+Atualizações Frequentes
+</h3>
+
+<p>
+Novos achadinhos adicionados constantemente.
+</p>
+
+</div>
+
+
+
+<div class="card-info">
+
+🎀
+
+<h3>
+Curadoria It Pink
+</h3>
+
+<p>
+Tudo seguindo a estética delicada e feminina do clube.
+</p>
+
+</div>
 
 
 </section>
 
 
 
+<script type="module">
+
+window.addEventListener("DOMContentLoaded",()=>{
+
+import("./js/script.js");
+
+});
 
 
-<section class="cards-info">
+</script>
 
-    <div>
-        💖
-        <h3>Escolha Manual</h3>
-
-        <p>
-            Selecionamos apenas produtos que realmente chamam atenção.
-        </p>
-    </div>
-
-
-
-    <div>
-        ⭐
-        <h3>Atualizações Frequentes</h3>
-
-        <p>
-            Novos achadinhos adicionados constantemente.
-        </p>
-    </div>
-
-
-
-    <div>
-        🎀
-        <h3>Curadoria It Pink</h3>
-
-        <p>
-            Tudo seguindo a estética delicada e feminina do clube.
-        </p>
-    </div>
-
-</section>
-
-
-
-
-<script type="module" src="/js/script.js"></script>
 
 
 </body>
