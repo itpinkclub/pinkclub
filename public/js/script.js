@@ -10,92 +10,55 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// ================================
 // ELEMENTOS
-// ================================
 
 const container = document.getElementById("produtos");
 const pesquisa = document.getElementById("pesquisa");
 
-const botoesCategoria = document.querySelectorAll(
-    ".categoria, button[data-categoria]"
-);
-
+const botoesCategoria = document.querySelectorAll("[data-categoria]");
 
 let produtos = [];
 
 
-// ================================
-// IMAGEM PADRÃO
-// ================================
-
-const imagemPadrao =
-"https://placehold.co/400x400/ffd6e7/ff4fa3?text=It+Pink+Club";
-
-
-
-// ================================
+// =====================================
 // CARREGAR PRODUTOS FIREBASE
-// ================================
+// =====================================
 
 async function carregarProdutos(){
 
-
     try{
 
-
-        const snapshot =
-        await getDocs(
-            collection(db,"produtos")
-        );
-
+        const snapshot = await getDocs(collection(db,"produtos"));
 
         produtos = [];
 
 
-
         snapshot.forEach((doc)=>{
 
+            const dados = doc.data();
 
-            const dados =
-            doc.data();
-
-
-
-            console.log(
-                "Produto Firebase:",
-                dados
-            );
-
+            console.log("Produto Firebase:", dados);
 
 
             if(dados.ativo !== false){
-
 
                 produtos.push({
 
                     id: doc.id,
 
-                    nome:
-                    dados.nome || "Produto",
+                    nome: dados.nome || "Produto",
 
-                    categoria:
-                    dados.categoria || "Outros",
+                    categoria: dados.categoria || "Outros",
 
-                    preco:
-                    Number(dados.preco) || 0,
+                    preco: Number(dados.preco) || 0,
 
-                    imagem:
-                    dados.imagem || "",
+                    imagem: dados.imagem || "",
 
-                    link:
-                    dados.link || "#",
+                    link: dados.link || "#",
 
-                    destaque:
-                    dados.destaque || false
+                    destaque: dados.destaque || false
 
                 });
-
 
             }
 
@@ -104,25 +67,15 @@ async function carregarProdutos(){
 
 
 
-        console.log(
-            "Produtos carregados:",
-            produtos
-        );
-
+        console.log("Produtos carregados:", produtos);
 
 
         mostrarProdutos();
 
 
-
     }catch(error){
 
-
-        console.error(
-            "Erro Firebase:",
-            error
-        );
-
+        console.error("Erro Firebase:", error);
 
     }
 
@@ -132,19 +85,16 @@ async function carregarProdutos(){
 
 
 
-// ================================
+// =====================================
 // MOSTRAR PRODUTOS
-// ================================
+// =====================================
 
 function mostrarProdutos(lista = produtos){
 
 
-
     if(!container){
 
-        console.error(
-            "Elemento produtos não encontrado"
-        );
+        console.error("Container produtos não encontrado");
 
         return;
 
@@ -156,31 +106,22 @@ function mostrarProdutos(lista = produtos){
 
 
 
-    lista.forEach((produto)=>{
+    lista.forEach(produto=>{
+
+
+        const card = document.createElement("div");
+
+
+        card.className = "produto-card";
 
 
 
-        const card =
-        document.createElement("div");
+        const imagemFinal = produto.imagem && produto.imagem.trim() !== ""
 
+        ? produto.imagem
 
+        : "https://placehold.co/600x600/f8c8dc/ffffff?text=It+Pink+Club";
 
-        card.className =
-        "produto-card";
-
-
-
-        let imagem =
-        produto.imagem;
-
-
-
-        if(!imagem){
-
-            imagem =
-            imagemPadrao;
-
-        }
 
 
 
@@ -188,37 +129,48 @@ function mostrarProdutos(lista = produtos){
 
 
         <img
-        src="${imagem}"
+
+        src="${imagemFinal}"
+
         alt="${produto.nome}"
-        onerror="this.src='${imagemPadrao}'"
+
         >
 
 
 
         <h3>
+
         ${produto.nome}
+
         </h3>
 
 
 
         <p class="categoria-produto">
+
         ${produto.categoria}
+
         </p>
 
 
 
         <strong>
-        R$ ${produto.preco
-        .toFixed(2)
-        .replace(".",",")}
+
+        R$ ${produto.preco.toFixed(2).replace(".",",")}
+
         </strong>
 
 
 
         <a
+
         href="${produto.link}"
+
         target="_blank"
-        class="comprar">
+
+        class="comprar"
+
+        >
 
         Comprar
 
@@ -242,57 +194,53 @@ function mostrarProdutos(lista = produtos){
 
 
 
-// ================================
+// =====================================
 // PESQUISA
-// ================================
+// =====================================
 
 
 if(pesquisa){
 
 
-    pesquisa.addEventListener(
-        "input",
-        ()=>{
+pesquisa.addEventListener("input",()=>{
 
 
-        const texto =
-        pesquisa.value
-        .toLowerCase()
-        .trim();
+    const texto = pesquisa.value
+    .toLowerCase()
+    .trim();
 
 
 
-        const filtrados =
-        produtos.filter((produto)=>{
+    const filtrados = produtos.filter(produto=>{
 
 
-            return (
+        return (
 
-                produto.nome
-                .toLowerCase()
-                .includes(texto)
-
-
-                ||
+            produto.nome
+            .toLowerCase()
+            .includes(texto)
 
 
-                produto.categoria
-                .toLowerCase()
-                .includes(texto)
+            ||
 
-            );
-
-
-        });
+            produto.categoria
+            .toLowerCase()
+            .includes(texto)
 
 
-
-        mostrarProdutos(
-            filtrados
         );
 
 
     });
+
+
+
+    mostrarProdutos(filtrados);
+
+
+
+});
+
 
 
 }
@@ -300,31 +248,26 @@ if(pesquisa){
 
 
 
-// ================================
+// =====================================
 // CATEGORIAS
-// ================================
+// =====================================
 
 
-botoesCategoria.forEach((botao)=>{
+botoesCategoria.forEach(botao=>{
 
 
-    botao.addEventListener(
-        "click",
-        ()=>{
+    botao.addEventListener("click",()=>{
 
 
-        const categoria =
-        botao.dataset.categoria;
+        const categoria = botao.dataset.categoria;
 
 
 
-        if(
-            !categoria ||
-            categoria === "todos"
-        ){
+        if(categoria === "todos"){
 
 
             mostrarProdutos();
+
 
             return;
 
@@ -333,28 +276,25 @@ botoesCategoria.forEach((botao)=>{
 
 
 
-
-        const filtrados =
-        produtos.filter((produto)=>{
+        const filtrados = produtos.filter(produto=>
 
 
-            return produto.categoria
+            produto.categoria
             .toLowerCase()
             ===
-            categoria.toLowerCase();
+            categoria.toLowerCase()
 
 
-        });
-
-
-
-        mostrarProdutos(
-            filtrados
         );
 
 
 
+        mostrarProdutos(filtrados);
+
+
+
     });
+
 
 
 });
@@ -362,8 +302,9 @@ botoesCategoria.forEach((botao)=>{
 
 
 
-// ================================
-// INICIAR
-// ================================
+
+// =====================================
+// START
+// =====================================
 
 carregarProdutos();
