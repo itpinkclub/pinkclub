@@ -1,89 +1,47 @@
-import { db, auth } from "./firebase.js";
+import { db } from "./firebase.js";
 
 import {
     collection,
     addDoc,
-    getDocs
+    getDocs,
+    deleteDoc,
+    doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-import {
-    signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 
 // ELEMENTOS
 
-const nome = document.getElementById("nome");
-const categoria = document.getElementById("categoria");
-const preco = document.getElementById("preco");
-const link = document.getElementById("link");
-const imagem = document.getElementById("imagem");
+const nomeInput = document.getElementById("nome");
+const categoriaInput = document.getElementById("categoria");
+const precoInput = document.getElementById("preco");
+const imagemInput = document.getElementById("imagem");
+const linkInput = document.getElementById("link");
 
-const destaque = document.getElementById("destaque");
-const ativo = document.getElementById("ativo");
+const btnSalvar = document.getElementById("salvar");
 
-const salvar = document.getElementById("salvar");
-const lista = document.getElementById("lista");
-const sair = document.getElementById("sair");
+const lista = document.getElementById("listaAdmin");
 
 
 
+// IMAGEM PADRÃO
 
-// CLOUDINARY
-
-async function enviarImagemCloudinary(arquivo){
-
-
-    const url =
-    "https://api.cloudinary.com/v1_1/emyi9k2e/image/upload";
+const imagemPadrao = 
+"https://placehold.co/500x500/ffd6ea/ff3f9b?text=It+Pink";
 
 
-    const formData = new FormData();
 
 
-    formData.append(
-        "file",
-        arquivo
+// TESTAR IMAGEM
+
+function imagemValida(url){
+
+    if(!url) return false;
+
+    return (
+        url.startsWith("http://") ||
+        url.startsWith("https://")
     );
-
-
-    formData.append(
-        "upload_preset",
-        "itpinkclub"
-    );
-
-
-
-    const resposta = await fetch(
-        url,
-        {
-            method:"POST",
-            body:formData
-        }
-    );
-
-
-
-    const dados = await resposta.json();
-
-
-
-    if(!resposta.ok){
-
-        console.error(dados);
-
-        throw new Error(
-            dados.error?.message ||
-            "Erro ao enviar imagem"
-        );
-
-    }
-
-
-
-    return dados.secure_url;
-
 
 }
 
@@ -91,68 +49,48 @@ async function enviarImagemCloudinary(arquivo){
 
 
 
+// CADASTRAR PRODUTO
 
-// SALVAR PRODUTO
-
-salvar.onclick = async ()=>{
-
-
-try{
+if(btnSalvar){
 
 
-    salvar.innerText="Salvando...";
-    salvar.disabled=true;
-
-
-
-    let imagemURL="";
-
-
-
-    if(imagem.files.length > 0){
-
-
-        imagemURL =
-        await enviarImagemCloudinary(
-            imagem.files[0]
-        );
-
-
-    }
-
-
-
+btnSalvar.addEventListener(
+"click",
+async ()=>{
 
 
     const produto = {
 
 
         nome:
-        nome.value.trim(),
+        nomeInput.value.trim(),
 
 
         categoria:
-        categoria.value.trim(),
+        categoriaInput.value.trim(),
 
 
         preco:
-        Number(preco.value),
-
-
-        link:
-        link.value.trim(),
+        Number(precoInput.value),
 
 
         imagem:
-        imagemURL,
+        imagemValida(imagemInput.value.trim())
+
+        ?
+
+        imagemInput.value.trim()
+
+        :
+
+        imagemPadrao,
 
 
-        destaque:
-        destaque.checked,
+        link:
+        linkInput.value.trim(),
 
 
-        ativo:
-        ativo.checked,
+        ativo:true,
 
 
         criadoEm:
@@ -163,15 +101,11 @@ try{
 
 
 
-
-
-    if(!produto.nome || !produto.preco){
-
+    if(!produto.nome){
 
         alert(
-            "Preencha nome e preço"
+        "Digite o nome do produto"
         );
-
 
         return;
 
@@ -180,65 +114,50 @@ try{
 
 
 
+    try{
 
-    await addDoc(
 
-        collection(
-            db,
-            "produtos"
-        ),
-
-        produto
-
-    );
+        await addDoc(
+            collection(db,"produtos"),
+            produto
+        );
 
 
 
-
-    alert(
-        "Produto salvo!"
-    );
-
-
-
-    limparFormulario();
-
-
-    carregarProdutos();
+        alert(
+        "Produto cadastrado 💗"
+        );
 
 
 
-}
-catch(error){
+        limparFormulario();
 
 
-    console.error(error);
+        carregarProdutosAdmin();
 
 
-    alert(
-        error.message
-    );
+
+    }catch(error){
 
 
-}
-finally{
+        console.error(
+            error
+        );
 
 
-    salvar.innerText=
-    "Salvar Produto";
+        alert(
+        "Erro ao salvar produto"
+        );
 
 
-    salvar.disabled=false;
+    }
+
+
+
+});
 
 
 }
-
-
-
-};
-
-
-
 
 
 
@@ -247,179 +166,114 @@ finally{
 
 function limparFormulario(){
 
-
-    nome.value="";
-    categoria.value="";
-    preco.value="";
-    link.value="";
-    imagem.value="";
-
-    destaque.checked=false;
-    ativo.checked=true;
-
+    nomeInput.value="";
+    categoriaInput.value="";
+    precoInput.value="";
+    imagemInput.value="";
+    linkInput.value="";
 
 }
 
 
 
 
+// LISTAR ADMIN
+
+async function carregarProdutosAdmin(){
 
 
-
-
-// LISTAR PRODUTOS
-
-async function carregarProdutos(){
+    if(!lista) return;
 
 
     lista.innerHTML="";
 
 
-    const dados =
+    const snapshot =
     await getDocs(
-        collection(
-            db,
-            "produtos"
-        )
+        collection(db,"produtos")
     );
 
 
 
-    dados.forEach((doc)=>{
+    snapshot.forEach(
+    (item)=>{
 
 
-        const p =
-        doc.data();
+        const produto =
+        item.data();
 
 
 
         lista.innerHTML += `
 
 
-        <div class="produto">
+        <div class="admin-card">
 
 
-
-        ${
-            p.imagem
-
-            ?
-
-            `
-            <img
-            src="${p.imagem}"
-            width="200"
-            onerror="this.style.display='none'"
+            <img 
+            src="${produto.imagem || imagemPadrao}"
+            width="100"
             >
-            `
-
-            :
-
-            ""
-
-        }
 
 
+            <h3>
+            ${produto.nome}
+            </h3>
 
 
-        <h3>
-        ${p.nome || "Sem nome"}
-        </h3>
+            <p>
+            ${produto.categoria}
+            </p>
 
 
+            <button 
+            onclick="removerProduto('${item.id}')"
+            >
 
-        <p>
-        ${p.categoria || ""}
-        </p>
+            Excluir
 
-
-
-
-        <strong>
-        R$ ${
-            Number(p.preco || 0)
-            .toFixed(2)
-            .replace(".",",")
-        }
-        </strong>
-
-
-
-
-        <br>
-
-
-
-        ${
-            p.link
-
-            ?
-
-            `
-            <a 
-            href="${p.link}"
-            target="_blank">
-            Comprar
-            </a>
-            `
-
-            :
-
-            ""
-
-        }
-
+            </button>
 
 
         </div>
 
 
-
         `;
-
 
 
     });
 
 
+}
+
+
+
+
+// EXCLUIR
+
+window.removerProduto = async function(id){
+
+
+    if(
+        !confirm(
+        "Excluir produto?"
+        )
+    )
+    return;
+
+
+
+    await deleteDoc(
+        doc(db,"produtos",id)
+    );
+
+
+    carregarProdutosAdmin();
+
 
 }
 
 
 
 
-
-
-
-
-
-// SAIR
-
-if(sair){
-
-
-    sair.onclick = async()=>{
-
-
-        await signOut(auth);
-
-
-        window.location.href =
-        "index.html";
-
-
-    };
-
-
-}
-
-
-
-
-
-
-
-
-// INICIAR
-
-carregarProdutos();
+carregarProdutosAdmin();
