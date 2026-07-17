@@ -21,6 +21,7 @@ const botoesCategoria = document.querySelectorAll(
     ".categoria, button[data-categoria]"
 );
 
+
 let produtos = [];
 
 
@@ -28,7 +29,9 @@ let produtos = [];
 // IMAGEM PADRÃO
 // ================================
 
-const imagemPadrao = "/imagens/sem-imagem.png";
+const imagemPadrao =
+"https://placehold.co/400x400/ffd6e7/ff4fa3?text=It+Pink+Club";
+
 
 
 // ================================
@@ -37,9 +40,12 @@ const imagemPadrao = "/imagens/sem-imagem.png";
 
 async function carregarProdutos(){
 
+
     try{
 
-        const snapshot = await getDocs(
+
+        const snapshot =
+        await getDocs(
             collection(db,"produtos")
         );
 
@@ -47,13 +53,19 @@ async function carregarProdutos(){
         produtos = [];
 
 
+
         snapshot.forEach((doc)=>{
 
 
-            const dados = doc.data();
+            const dados =
+            doc.data();
 
 
-            console.log("Produto Firebase:", dados);
+
+            console.log(
+                "Produto Firebase:",
+                dados
+            );
 
 
 
@@ -71,7 +83,7 @@ async function carregarProdutos(){
                     dados.categoria || "Outros",
 
                     preco:
-                    dados.preco || 0,
+                    Number(dados.preco) || 0,
 
                     imagem:
                     dados.imagem || "",
@@ -105,10 +117,12 @@ async function carregarProdutos(){
 
     }catch(error){
 
+
         console.error(
             "Erro Firebase:",
             error
         );
+
 
     }
 
@@ -117,11 +131,13 @@ async function carregarProdutos(){
 
 
 
+
 // ================================
 // MOSTRAR PRODUTOS
 // ================================
 
 function mostrarProdutos(lista = produtos){
+
 
 
     if(!container){
@@ -140,10 +156,13 @@ function mostrarProdutos(lista = produtos){
 
 
 
-    lista.forEach(produto=>{
+    lista.forEach((produto)=>{
 
 
-        const card = document.createElement("div");
+
+        const card =
+        document.createElement("div");
+
 
 
         card.className =
@@ -156,12 +175,10 @@ function mostrarProdutos(lista = produtos){
 
 
 
-        if(
-            !imagem ||
-            imagem.trim()===""
-        ){
+        if(!imagem){
 
-            imagem = imagemPadrao;
+            imagem =
+            imagemPadrao;
 
         }
 
@@ -191,7 +208,7 @@ function mostrarProdutos(lista = produtos){
 
 
         <strong>
-        R$ ${Number(produto.preco)
+        R$ ${produto.preco
         .toFixed(2)
         .replace(".",",")}
         </strong>
@@ -224,6 +241,7 @@ function mostrarProdutos(lista = produtos){
 
 
 
+
 // ================================
 // PESQUISA
 // ================================
@@ -245,7 +263,7 @@ if(pesquisa){
 
 
         const filtrados =
-        produtos.filter(produto=>{
+        produtos.filter((produto)=>{
 
 
             return (
@@ -287,7 +305,7 @@ if(pesquisa){
 // ================================
 
 
-botoesCategoria.forEach(botao=>{
+botoesCategoria.forEach((botao)=>{
 
 
     botao.addEventListener(
@@ -302,19 +320,22 @@ botoesCategoria.forEach(botao=>{
 
         if(
             !categoria ||
-            categoria==="todos"
+            categoria === "todos"
         ){
+
 
             mostrarProdutos();
 
             return;
 
+
         }
 
 
 
+
         const filtrados =
-        produtos.filter(produto=>{
+        produtos.filter((produto)=>{
 
 
             return produto.categoria
