@@ -30,53 +30,76 @@ async function carregarProdutos(){
 
     try{
 
-        const snapshot = await getDocs(collection(db,"produtos"));
+        const snapshot = await getDocs(
+            collection(db,"produtos")
+        );
+
 
         produtos = [];
 
 
         snapshot.forEach((doc)=>{
 
+
             const dados = doc.data();
+
 
             console.log("Produto Firebase:", dados);
 
 
+
             if(dados.ativo !== false){
+
 
                 produtos.push({
 
                     id: doc.id,
 
-                    nome: dados.nome || "Produto",
+                    nome:
+                    dados.nome || "Produto",
 
-                    categoria: dados.categoria || "Outros",
+                    categoria:
+                    dados.categoria || "Outros",
 
-                    preco: dados.preco || 0,
+                    preco:
+                    dados.preco || 0,
 
-                    imagem: dados.imagem || "",
+                    imagem:
+                    dados.imagem || "",
 
-                    link: dados.link || "#",
+                    link:
+                    dados.link || "#",
 
-                    destaque: dados.destaque || false
+                    destaque:
+                    dados.destaque || false
 
                 });
 
+
             }
+
 
 
         });
 
 
-        console.log("Produtos carregados:", produtos);
+
+        console.log(
+            "Produtos carregados:",
+            produtos
+        );
 
 
         mostrarProdutos();
 
 
+
     }catch(error){
 
-        console.error("Erro Firebase:",error);
+        console.error(
+            "Erro Firebase:",
+            error
+        );
 
     }
 
@@ -95,40 +118,62 @@ function mostrarProdutos(lista = produtos){
 
     if(!container){
 
-        console.error("Elemento produtos não encontrado");
+        console.error(
+            "Elemento produtos não encontrado"
+        );
 
         return;
 
     }
 
 
-    container.innerHTML="";
+
+    container.innerHTML = "";
 
 
 
-    lista.forEach(produto=>{
+    lista.forEach((produto)=>{
 
 
-        const card=document.createElement("div");
+
+        const card =
+        document.createElement("div");
 
 
-        card.className="produto-card";
+
+        card.className =
+        "produto-card";
+
+
+
+        const imagemProduto =
+        produto.imagem
+        ?
+        produto.imagem
+        :
+        "https://placehold.co/600x400/ffd6eb/ff4da6?text=It+Pink+Club";
 
 
 
         card.innerHTML = `
 
 
-        <img 
+        <img
+
         class="imagem-produto"
-        src="${produto.imagem}"
+
+        src="${imagemProduto}"
+
         alt="${produto.nome}"
+
         >
 
 
 
         <h3>
+
         ${produto.nome}
+
         </h3>
 
 
@@ -151,28 +196,38 @@ function mostrarProdutos(lista = produtos){
 
 
 
-        <a 
+        <a
+
         href="${produto.link}"
+
         target="_blank"
-        class="comprar">
+
+        class="comprar"
+
+        >
 
         Comprar
 
         </a>
 
 
-
         `;
 
 
 
-        const img = card.querySelector("img");
+        const img =
+        card.querySelector(
+            ".imagem-produto"
+        );
 
 
 
-        img.onerror=function(){
+        img.onerror = function(){
 
-            this.style.display="none";
+
+            this.src =
+            "https://placehold.co/600x400/ffd6eb/ff4da6?text=Imagem+Indisponivel";
+
 
         };
 
@@ -190,6 +245,7 @@ function mostrarProdutos(lista = produtos){
 
 
 
+
 // ================================
 // PESQUISA
 // ================================
@@ -198,43 +254,45 @@ function mostrarProdutos(lista = produtos){
 if(pesquisa){
 
 
-pesquisa.addEventListener("input",()=>{
+pesquisa.addEventListener(
+"input",
+()=>{
 
 
-const texto =
-pesquisa.value
-.toLowerCase()
-.trim();
-
-
-
-const filtrados =
-produtos.filter(produto=>{
-
-
-return (
-
-produto.nome
-.toLowerCase()
-.includes(texto)
-
-
-||
-
-
-produto.categoria
-.toLowerCase()
-.includes(texto)
-
-);
-
-
-});
+    const texto =
+    pesquisa.value
+    .toLowerCase()
+    .trim();
 
 
 
-mostrarProdutos(filtrados);
+    const filtrados =
+    produtos.filter((produto)=>{
 
+
+        return (
+
+            produto.nome
+            .toLowerCase()
+            .includes(texto)
+
+
+            ||
+
+            produto.categoria
+            .toLowerCase()
+            .includes(texto)
+
+        );
+
+
+    });
+
+
+
+    mostrarProdutos(
+        filtrados
+    );
 
 
 });
@@ -249,45 +307,50 @@ mostrarProdutos(filtrados);
 // ================================
 
 
-botoesCategoria.forEach(botao=>{
+botoesCategoria.forEach(
+(botao)=>{
 
 
-botao.addEventListener("click",()=>{
+botao.addEventListener(
+"click",
+()=>{
 
 
-const categoria =
-botao.dataset.categoria;
-
-
-
-if(categoria==="todos"){
-
-
-mostrarProdutos();
-
-return;
-
-
-}
+    const categoria =
+    botao.dataset.categoria;
 
 
 
-const filtrados =
-produtos.filter(produto=>{
+    if(categoria === "todos"){
 
 
-return produto.categoria
-.toLowerCase()
-.includes(
-categoria.toLowerCase()
-);
+        mostrarProdutos();
 
 
-});
+        return;
+
+    }
 
 
 
-mostrarProdutos(filtrados);
+    const filtrados =
+    produtos.filter((produto)=>{
+
+
+        return produto.categoria
+        .toLowerCase()
+        .includes(
+            categoria.toLowerCase()
+        );
+
+
+    });
+
+
+
+    mostrarProdutos(
+        filtrados
+    );
 
 
 
