@@ -17,9 +17,18 @@ import {
 const container = document.getElementById("produtos");
 const pesquisa = document.getElementById("pesquisa");
 
-const botoesCategoria = document.querySelectorAll(".categoria");
+const botoesCategoria = document.querySelectorAll(
+    ".categoria, button[data-categoria]"
+);
 
 let produtos = [];
+
+
+// ================================
+// IMAGEM PADRÃO
+// ================================
+
+const imagemPadrao = "/imagens/sem-imagem.png";
 
 
 // ================================
@@ -30,44 +39,79 @@ async function carregarProdutos(){
 
     try{
 
-        const snapshot = await getDocs(collection(db,"produtos"));
+        const snapshot = await getDocs(
+            collection(db,"produtos")
+        );
+
 
         produtos = [];
 
+
         snapshot.forEach((doc)=>{
+
 
             const dados = doc.data();
 
+
             console.log("Produto Firebase:", dados);
+
+
 
             if(dados.ativo !== false){
 
+
                 produtos.push({
+
                     id: doc.id,
-                    nome: dados.nome || "Produto",
-                    categoria: dados.categoria || "Outros",
-                    preco: dados.preco || 0,
-                    imagem: dados.imagem || "",
-                    link: dados.link || "#",
-                    destaque: dados.destaque || false
+
+                    nome:
+                    dados.nome || "Produto",
+
+                    categoria:
+                    dados.categoria || "Outros",
+
+                    preco:
+                    dados.preco || 0,
+
+                    imagem:
+                    dados.imagem || "",
+
+                    link:
+                    dados.link || "#",
+
+                    destaque:
+                    dados.destaque || false
+
                 });
 
+
             }
+
 
         });
 
 
-        console.log("Produtos carregados:", produtos);
+
+        console.log(
+            "Produtos carregados:",
+            produtos
+        );
+
 
 
         mostrarProdutos();
 
 
+
     }catch(error){
 
-        console.error("Erro Firebase:",error);
+        console.error(
+            "Erro Firebase:",
+            error
+        );
 
     }
+
 
 }
 
@@ -82,68 +126,90 @@ function mostrarProdutos(lista = produtos){
 
     if(!container){
 
-        console.error("Elemento produtos não encontrado");
+        console.error(
+            "Elemento produtos não encontrado"
+        );
 
         return;
 
     }
 
 
-    container.innerHTML="";
+
+    container.innerHTML = "";
+
 
 
     lista.forEach(produto=>{
 
 
-        const card=document.createElement("div");
-
-        card.className="produto-card";
+        const card = document.createElement("div");
 
 
-        let imagem = produto.imagem;
+        card.className =
+        "produto-card";
 
 
-        if(!imagem){
 
-            imagem="https://via.placeholder.com/400x400?text=It+Pink+Club";
+        let imagem =
+        produto.imagem;
+
+
+
+        if(
+            !imagem ||
+            imagem.trim()===""
+        ){
+
+            imagem = imagemPadrao;
 
         }
 
 
-        card.innerHTML=`
 
-            <img 
-            src="${imagem}" 
-            alt="${produto.nome}"
-            onerror="this.src='https://via.placeholder.com/400x400?text=Sem+Imagem'"
-            >
+        card.innerHTML = `
 
 
-            <h3>${produto.nome}</h3>
-
-            <p class="categoria-produto">
-            ${produto.categoria}
-            </p>
-
-
-            <strong>
-            R$ ${Number(produto.preco)
-            .toFixed(2)
-            .replace(".",",")}
-            </strong>
+        <img
+        src="${imagem}"
+        alt="${produto.nome}"
+        onerror="this.src='${imagemPadrao}'"
+        >
 
 
-            <a 
-            href="${produto.link}" 
-            target="_blank"
-            class="comprar">
 
-            Comprar
+        <h3>
+        ${produto.nome}
+        </h3>
 
-            </a>
+
+
+        <p class="categoria-produto">
+        ${produto.categoria}
+        </p>
+
+
+
+        <strong>
+        R$ ${Number(produto.preco)
+        .toFixed(2)
+        .replace(".",",")}
+        </strong>
+
+
+
+        <a
+        href="${produto.link}"
+        target="_blank"
+        class="comprar">
+
+        Comprar
+
+        </a>
 
 
         `;
+
 
 
         container.appendChild(card);
@@ -165,40 +231,50 @@ function mostrarProdutos(lista = produtos){
 
 if(pesquisa){
 
-pesquisa.addEventListener("input",()=>{
+
+    pesquisa.addEventListener(
+        "input",
+        ()=>{
 
 
-    const texto = pesquisa.value
-    .toLowerCase()
-    .trim();
+        const texto =
+        pesquisa.value
+        .toLowerCase()
+        .trim();
 
 
-    const filtrados = produtos.filter(produto=>{
+
+        const filtrados =
+        produtos.filter(produto=>{
 
 
-        return (
+            return (
 
-            produto.nome
-            .toLowerCase()
-            .includes(texto)
+                produto.nome
+                .toLowerCase()
+                .includes(texto)
 
-            ||
 
-            produto.categoria
-            .toLowerCase()
-            .includes(texto)
+                ||
 
+
+                produto.categoria
+                .toLowerCase()
+                .includes(texto)
+
+            );
+
+
+        });
+
+
+
+        mostrarProdutos(
+            filtrados
         );
 
 
     });
-
-
-    mostrarProdutos(filtrados);
-
-
-
-});
 
 
 }
@@ -214,14 +290,20 @@ pesquisa.addEventListener("input",()=>{
 botoesCategoria.forEach(botao=>{
 
 
-    botao.addEventListener("click",()=>{
+    botao.addEventListener(
+        "click",
+        ()=>{
 
 
         const categoria =
         botao.dataset.categoria;
 
 
-        if(categoria==="todos"){
+
+        if(
+            !categoria ||
+            categoria==="todos"
+        ){
 
             mostrarProdutos();
 
@@ -232,23 +314,26 @@ botoesCategoria.forEach(botao=>{
 
 
         const filtrados =
-        produtos.filter(produto=>
+        produtos.filter(produto=>{
 
-            produto.categoria
+
+            return produto.categoria
             .toLowerCase()
             ===
-            categoria.toLowerCase()
+            categoria.toLowerCase();
 
+
+        });
+
+
+
+        mostrarProdutos(
+            filtrados
         );
 
 
 
-        mostrarProdutos(filtrados);
-
-
-
     });
-
 
 
 });
