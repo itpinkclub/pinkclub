@@ -12,7 +12,9 @@ import {
 
 
 
+// ===============================
 // ELEMENTOS
+// ===============================
 
 const nome = document.getElementById("nome");
 const categoria = document.getElementById("categoria");
@@ -32,21 +34,29 @@ const sair = document.getElementById("sair");
 
 
 
+// ===============================
 // CLOUDINARY
+// ===============================
 
 async function enviarImagemCloudinary(arquivo){
 
 
-    const formData = new FormData();
+    const url =
+    "https://api.cloudinary.com/v1_1/emyi9k2e/image/upload";
 
 
-    formData.append(
+
+    const dados = new FormData();
+
+
+
+    dados.append(
         "file",
         arquivo
     );
 
 
-    formData.append(
+    dados.append(
         "upload_preset",
         "itpinkclub"
     );
@@ -54,38 +64,37 @@ async function enviarImagemCloudinary(arquivo){
 
 
     const resposta = await fetch(
-
-        "https://api.cloudinary.com/v1_1/emyi9k2e/image/upload",
-
+        url,
         {
             method:"POST",
-            body:formData
+            body:dados
         }
-
     );
 
 
 
-    const dados = await resposta.json();
-
-
-
-    console.log("Cloudinary:", dados);
+    const retorno = await resposta.json();
 
 
 
     if(!resposta.ok){
 
+        console.error(
+            "Cloudinary:",
+            retorno
+        );
+
+
         throw new Error(
-            dados.error?.message || 
-            "Erro no upload da imagem"
+            retorno.error?.message ||
+            "Erro no Cloudinary"
         );
 
     }
 
 
 
-    return dados.secure_url;
+    return retorno.secure_url;
 
 
 }
@@ -94,165 +103,157 @@ async function enviarImagemCloudinary(arquivo){
 
 
 
-
+// ===============================
 // SALVAR PRODUTO
+// ===============================
 
 salvar.onclick = async ()=>{
 
 
-    try{
+try{
 
 
-        salvar.innerText = "Enviando...";
-
-        salvar.disabled = true;
-
-
-
-        let urlImagem = "";
+    salvar.innerText="Enviando...";
+    salvar.disabled=true;
 
 
 
-        if(imagem.files.length > 0){
-
-
-            urlImagem = await enviarImagemCloudinary(
-                imagem.files[0]
-            );
-
-
-        }
+    let urlImagem="";
 
 
 
+    // envia imagem caso exista
+
+    if(imagem.files.length > 0){
 
 
-        const produto = {
-
-
-            nome:
-            nome.value.trim(),
-
-
-            categoria:
-            categoria.value.trim(),
-
-
-            preco:
-            Number(preco.value),
-
-
-            link:
-            link.value.trim(),
-
-
-            imagem:
-            urlImagem,
-
-
-            destaque:
-            destaque.checked,
-
-
-            ativo:
-            ativo.checked,
-
-
-            criadoEm:
-            new Date()
-
-
-        };
-
-
-
-
-
-
-        if(
-            !produto.nome ||
-            !produto.preco
-        ){
-
-
-            alert(
-                "Preencha nome e preço do produto"
-            );
-
-
-            return;
-
-
-        }
-
-
-
-
-
-        await addDoc(
-
-            collection(
-                db,
-                "produtos"
-            ),
-
-            produto
-
+        urlImagem =
+        await enviarImagemCloudinary(
+            imagem.files[0]
         );
 
 
+    }
 
 
+
+
+
+    const produto = {
+
+
+        nome:
+        nome.value.trim(),
+
+
+        categoria:
+        categoria.value.trim(),
+
+
+        preco:
+        Number(preco.value),
+
+
+        link:
+        link.value.trim(),
+
+
+        imagem:
+        urlImagem,
+
+
+        destaque:
+        destaque.checked,
+
+
+        ativo:
+        ativo.checked,
+
+
+        criadoEm:
+        new Date()
+
+
+    };
+
+
+
+
+
+
+    if(
+        !produto.nome ||
+        !produto.preco
+    ){
 
         alert(
-            "Produto salvo com sucesso!"
+            "Preencha nome e preço"
         );
 
 
-
-        limparFormulario();
-
-
-
-        carregarProdutos();
-
-
-
-    }
-
-
-    catch(error){
-
-
-        console.error(error);
-
-
-
-        alert(
-
-            "Erro ao salvar produto: "
-            +
-            error.message
-
-        );
-
+        return;
 
     }
 
 
 
-    finally{
 
 
-        salvar.innerText =
-        "Salvar Produto";
+    await addDoc(
+
+        collection(
+            db,
+            "produtos"
+        ),
+
+        produto
+
+    );
 
 
-        salvar.disabled =
-        false;
 
 
-    }
+
+    alert(
+        "Produto salvo com sucesso!"
+    );
+
+
+
+    limparFormulario();
+
+
+
+    carregarProdutos();
+
+
+
+}
+catch(error){
+
+
+    console.error(error);
+
+
+    alert(
+        "Erro: " +
+        error.message
+    );
+
+
+}
+finally{
+
+
+    salvar.innerText=
+    "Salvar Produto";
+
+
+    salvar.disabled=false;
+
+
+}
+
 
 
 };
@@ -262,29 +263,21 @@ salvar.onclick = async ()=>{
 
 
 
-
-
-// LIMPAR FORMULÁRIO
-
+// ===============================
+// LIMPAR FORM
+// ===============================
 
 function limparFormulario(){
 
 
-    nome.value = "";
+    nome.value="";
+    categoria.value="";
+    preco.value="";
+    link.value="";
+    imagem.value="";
 
-    categoria.value = "";
-
-    preco.value = "";
-
-    link.value = "";
-
-    imagem.value = "";
-
-
-    destaque.checked = false;
-
-
-    ativo.checked = true;
+    destaque.checked=false;
+    ativo.checked=true;
 
 
 }
@@ -295,36 +288,31 @@ function limparFormulario(){
 
 
 
-
-
+// ===============================
 // LISTAR PRODUTOS
-
+// ===============================
 
 async function carregarProdutos(){
 
 
-    lista.innerHTML = "";
+    lista.innerHTML="";
 
 
-
-    const dados = await getDocs(
-
+    const dados =
+    await getDocs(
         collection(
             db,
             "produtos"
         )
-
     );
-
-
 
 
 
     dados.forEach((doc)=>{
 
 
-        const p = doc.data();
-
+        const p =
+        doc.data();
 
 
 
@@ -334,53 +322,45 @@ async function carregarProdutos(){
         <div class="produto">
 
 
-            ${
-                p.imagem ?
+        ${
+            p.imagem ?
 
-                `
-                <img 
-                src="${p.imagem}"
-                width="200"
-                >
-                `
+            `
+            <img 
+            src="${p.imagem}"
+            width="200">
+            `
 
-                :
+            :
 
-                ""
+            ""
 
-            }
-
+        }
 
 
 
-            <h3>
-            ${p.nome}
-            </h3>
+        <h3>
+        ${p.nome}
+        </h3>
 
 
-
-            <p>
-            ${p.categoria}
-            </p>
-
+        <p>
+        ${p.categoria}
+        </p>
 
 
-            <strong>
-            R$ ${p.preco}
-            </strong>
+        <strong>
+        R$ ${p.preco}
+        </strong>
 
 
+        <br>
 
-            <br>
 
-
-            <a 
-            href="${p.link}"
-            target="_blank">
-
-            Comprar
-
-            </a>
+        <a href="${p.link}"
+        target="_blank">
+        Comprar
+        </a>
 
 
 
@@ -403,24 +383,24 @@ async function carregarProdutos(){
 
 
 
-
+// ===============================
 // SAIR
-
+// ===============================
 
 if(sair){
 
 
-    sair.onclick = async ()=>{
+sair.onclick = async()=>{
 
 
-        await signOut(auth);
+    await signOut(auth);
 
 
-        window.location.href =
-        "index.html";
+    window.location.href=
+    "index.html";
 
 
-    };
+};
 
 
 }
@@ -430,9 +410,8 @@ if(sair){
 
 
 
-
-
+// ===============================
 // INICIAR
-
+// ===============================
 
 carregarProdutos();
