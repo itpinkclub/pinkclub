@@ -12,6 +12,14 @@ import {
 
 
 
+// CLOUDINARY
+
+const cloudName = "emiy9k2e";
+const uploadPreset = "itpinkclub";
+
+
+
+
 // ELEMENTOS
 
 const nome = document.getElementById("nome");
@@ -32,54 +40,160 @@ const sair = document.getElementById("sair");
 
 
 
+// ENVIA IMAGEM PARA CLOUDINARY
+
+async function enviarImagemCloudinary(arquivo){
+
+
+    const formData = new FormData();
+
+
+    formData.append(
+        "file",
+        arquivo
+    );
+
+
+    formData.append(
+        "upload_preset",
+        uploadPreset
+    );
+
+
+
+    const resposta = await fetch(
+
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+
+        {
+            method:"POST",
+            body:formData
+        }
+
+    );
+
+
+
+    const dados = await resposta.json();
+
+
+
+    if(!dados.secure_url){
+
+        throw new Error(
+            "Erro ao enviar imagem para Cloudinary"
+        );
+
+    }
+
+
+
+    return dados.secure_url;
+
+
+}
+
+
+
+
 // SALVAR PRODUTO
 
 salvar.onclick = async () => {
-
-
-    const produto = {
-
-        nome: nome.value.trim(),
-
-        categoria: categoria.value.trim(),
-
-        preco: Number(preco.value),
-
-        link: link.value.trim(),
-
-        imagem: imagem.value.trim(),
-
-        destaque: destaque.checked,
-
-        ativo: ativo.checked,
-
-        criadoEm: new Date()
-
-    };
-
-
-
-    if(!produto.nome || !produto.preco){
-
-        alert("Preencha nome e preço do produto");
-
-        return;
-
-    }
 
 
 
     try{
 
 
+        let urlImagem = "";
+
+
+
+        // ENVIA IMAGEM CASO TENHA SELECIONADO
+
+        if(imagem.files.length > 0){
+
+
+            urlImagem = await enviarImagemCloudinary(
+                imagem.files[0]
+            );
+
+
+        }
+
+
+
+
+        const produto = {
+
+
+            nome: nome.value.trim(),
+
+
+            categoria: categoria.value.trim(),
+
+
+            preco: Number(preco.value),
+
+
+            link: link.value.trim(),
+
+
+            imagem: urlImagem,
+
+
+            destaque: destaque.checked,
+
+
+            ativo: ativo.checked,
+
+
+            criadoEm: new Date()
+
+
+        };
+
+
+
+
+
+        if(!produto.nome || !produto.preco){
+
+
+            alert(
+                "Preencha nome e preço do produto"
+            );
+
+
+            return;
+
+
+        }
+
+
+
+
+
+
         await addDoc(
-            collection(db,"produtos"),
+
+            collection(
+                db,
+                "produtos"
+            ),
+
             produto
+
         );
 
 
 
-        alert("Produto salvo com sucesso!");
+
+
+        alert(
+            "Produto salvo com sucesso!"
+        );
+
 
 
 
@@ -91,21 +205,29 @@ salvar.onclick = async () => {
 
 
 
+
     }catch(error){
 
 
         console.error(error);
 
+
+
         alert(
+
             "Erro ao salvar produto: "
             + error.message
+
         );
 
 
     }
 
 
+
 };
+
+
 
 
 
@@ -115,17 +237,29 @@ salvar.onclick = async () => {
 function limparFormulario(){
 
 
-    nome.value="";
-    categoria.value="";
-    preco.value="";
-    link.value="";
-    imagem.value="";
 
-    destaque.checked=false;
-    ativo.checked=true;
+    nome.value = "";
+
+    categoria.value = "";
+
+    preco.value = "";
+
+    link.value = "";
+
+    imagem.value = null;
+
+
+    destaque.checked = false;
+
+
+    ativo.checked = true;
+
 
 
 }
+
+
+
 
 
 
@@ -135,39 +269,58 @@ function limparFormulario(){
 async function carregarProdutos(){
 
 
-    lista.innerHTML="";
+
+    lista.innerHTML = "";
+
 
 
     const dados = await getDocs(
-        collection(db,"produtos")
+
+        collection(
+            db,
+            "produtos"
+        )
+
     );
+
+
 
 
 
     dados.forEach((doc)=>{
 
 
+
         const p = doc.data();
+
 
 
 
         lista.innerHTML += `
 
 
+
         <div class="produto">
 
 
+
             ${
-                p.imagem 
+                p.imagem
+
                 ?
+
                 `<img 
                 src="${p.imagem}"
                 width="200"
                 onerror="this.style.display='none'"
                 >`
+
                 :
+
                 ""
+
             }
+
 
 
 
@@ -176,9 +329,13 @@ async function carregarProdutos(){
             </h3>
 
 
+
+
             <p>
                 ${p.categoria}
             </p>
+
+
 
 
             <strong>
@@ -186,18 +343,26 @@ async function carregarProdutos(){
             </strong>
 
 
+
+
             <br>
+
+
 
 
             <a 
             href="${p.link}" 
             target="_blank">
+
             Comprar
+
             </a>
 
 
 
+
         </div>
+
 
 
         `;
@@ -207,7 +372,10 @@ async function carregarProdutos(){
     });
 
 
+
 }
+
+
 
 
 
@@ -217,6 +385,7 @@ async function carregarProdutos(){
 // SAIR
 
 if(sair){
+
 
     sair.onclick = async ()=>{
 
@@ -231,6 +400,8 @@ if(sair){
 
 
 }
+
+
 
 
 
