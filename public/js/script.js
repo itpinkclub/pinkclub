@@ -1,9 +1,14 @@
+// ===============================
+// IT PINK CLUB - SCRIPT FIREBASE
+// ===============================
+
 import { db } from "./firebase.js";
 
 import {
     collection,
     getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 
 const container = document.getElementById("produtos");
@@ -15,52 +20,101 @@ let produtos = [];
 let categoriaAtual = "Todos";
 
 
-// BUSCAR FIRESTORE
+
+// ===============================
+// CARREGAR PRODUTOS FIREBASE
+// ===============================
 
 async function carregarProdutos(){
 
-    const snapshot = await getDocs(
-        collection(db,"produtos")
-    );
+
+    try{
 
 
-    produtos = [];
+        const snapshot = await getDocs(
+            collection(db,"produtos")
+        );
 
 
-    snapshot.forEach(doc=>{
-
-        const p = doc.data();
+        produtos = [];
 
 
-        if(
-            p.ativo &&
-            p.nome &&
-            p.imagem
-        ){
-
-            produtos.push(p);
-
-        }
+        snapshot.forEach(doc=>{
 
 
-    });
+            const p = doc.data();
 
 
-    mostrarProdutos();
+            console.log(
+                "Produto Firebase:",
+                p
+            );
+
+
+            if(p.nome){
+
+
+                produtos.push({
+
+                    nome: p.nome || "",
+                    categoria: p.categoria || "",
+                    preco: p.preco || 0,
+                    link: p.link || "#",
+                    imagem: p.imagem || "",
+                    destaque: p.destaque || false
+
+                });
+
+
+            }
+
+
+        });
+
+
+
+        console.log(
+            "Produtos carregados:",
+            produtos
+        );
+
+
+
+        mostrarProdutos();
+
+
+
+    }catch(error){
+
+
+        console.error(
+            "Erro Firebase:",
+            error
+        );
+
+
+    }
+
 
 }
 
 
 
+
+// ===============================
 // MOSTRAR PRODUTOS
+// ===============================
 
 function mostrarProdutos(){
+
 
     container.innerHTML="";
 
 
+
     const texto =
-    pesquisa.value.toLowerCase();
+    pesquisa.value
+    .toLowerCase();
 
 
 
@@ -68,70 +122,111 @@ function mostrarProdutos(){
     produtos.filter(produto=>{
 
 
-        const nome =
+        const nomeOk =
         produto.nome
         .toLowerCase()
         .includes(texto);
 
 
 
-        const categoria =
-        categoriaAtual==="Todos" ||
-        produto.categoria===categoriaAtual;
+        const categoriaOk =
+        categoriaAtual === "Todos" ||
+        produto.categoria === categoriaAtual;
 
 
 
-        return nome && categoria;
+        return nomeOk && categoriaOk;
 
 
     });
 
 
 
+    if(filtrados.length === 0){
+
+
+        container.innerHTML = `
+
+        <div style="
+        text-align:center;
+        padding:60px;
+        ">
+
+        <h2>
+        💔 Nenhum produto encontrado
+        </h2>
+
+        </div>
+
+        `;
+
+
+        return;
+
+
+    }
+
+
+
     filtrados.forEach(produto=>{
+
 
 
         container.innerHTML += `
 
+
         <a 
+        class="card"
         href="${produto.link}"
-        target="_blank"
-        class="card">
+        target="_blank">
 
 
+            ${
+            produto.imagem
+            ?
+
+            `
             <img 
             src="${produto.imagem}"
             alt="${produto.nome}">
+            `
+
+            :
+
+            ""
+
+            }
+
 
 
             <div class="card-info">
 
 
-            <span class="selo">
-            💖 Escolha do Clube
-            </span>
+                <span class="selo">
+                💖 Escolha do Clube
+                </span>
 
 
-            <h2>
-            ${produto.nome}
-            </h2>
+                <h2>
+                ${produto.nome}
+                </h2>
 
 
-            <p>
-            ${produto.categoria}
-            </p>
+                <p>
+                ${produto.categoria}
+                </p>
 
 
-            <strong>
-            R$ ${Number(produto.preco)
-            .toFixed(2)
-            .replace(".",",")}
-            </strong>
+                <strong>
+                R$ ${Number(produto.preco)
+                .toFixed(2)
+                .replace(".",",")}
+                </strong>
 
 
-            <span class="botao">
-            💖 Quero esse
-            </span>
+                <span class="botao">
+                💖 Quero esse
+                </span>
 
 
             </div>
@@ -146,49 +241,68 @@ function mostrarProdutos(){
     });
 
 
+
 }
 
 
 
+
+
+// ===============================
 // PESQUISA
+// ===============================
 
-pesquisa.addEventListener(
-"input",
-mostrarProdutos
-);
+if(pesquisa){
+
+    pesquisa.addEventListener(
+        "input",
+        mostrarProdutos
+    );
+
+}
 
 
 
+// ===============================
 // CATEGORIAS
+// ===============================
 
 botoesCategoria.forEach(botao=>{
 
 
-    botao.onclick=()=>{
+    botao.addEventListener(
+        "click",
+        ()=>{
 
 
-        botoesCategoria.forEach(btn=>
-            btn.classList.remove("ativa")
-        );
+            botoesCategoria.forEach(btn=>
+                btn.classList.remove("ativa")
+            );
 
 
-        botao.classList.add("ativa");
+            botao.classList.add("ativa");
 
 
-        categoriaAtual =
-        botao.dataset.categoria;
+            categoriaAtual =
+            botao.dataset.categoria;
 
 
-        mostrarProdutos();
+
+            mostrarProdutos();
 
 
-    };
+
+        }
+    );
 
 
 });
 
 
 
+
+// ===============================
 // INICIAR
+// ===============================
 
 carregarProdutos();
