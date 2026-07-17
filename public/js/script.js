@@ -1,3 +1,7 @@
+// =====================================
+// IT PINK CLUB - SCRIPT PRINCIPAL
+// =====================================
+
 import { db } from "./firebase.js";
 
 import {
@@ -6,9 +10,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+// ================================
 // ELEMENTOS
+// ================================
 
-const container = document.getElementById("listaProdutos");
+const container = document.getElementById("produtos");
 const pesquisa = document.getElementById("pesquisa");
 
 const botoesCategoria = document.querySelectorAll(".categoria");
@@ -16,41 +22,42 @@ const botoesCategoria = document.querySelectorAll(".categoria");
 let produtos = [];
 
 
-
-// CARREGAR PRODUTOS
+// ================================
+// CARREGAR PRODUTOS FIREBASE
+// ================================
 
 async function carregarProdutos(){
 
     try{
 
-        const snapshot = await getDocs(
-            collection(db,"produtos")
-        );
-
+        const snapshot = await getDocs(collection(db,"produtos"));
 
         produtos = [];
 
-
         snapshot.forEach((doc)=>{
 
-            const produto = doc.data();
+            const dados = doc.data();
 
-            console.log("Produto Firebase:", produto);
+            console.log("Produto Firebase:", dados);
 
+            if(dados.ativo !== false){
 
-            if(produto.ativo !== false){
-
-                produtos.push(produto);
+                produtos.push({
+                    id: doc.id,
+                    nome: dados.nome || "Produto",
+                    categoria: dados.categoria || "Outros",
+                    preco: dados.preco || 0,
+                    imagem: dados.imagem || "",
+                    link: dados.link || "#",
+                    destaque: dados.destaque || false
+                });
 
             }
 
         });
 
 
-        console.log(
-            "Produtos carregados:",
-            produtos
-        );
+        console.log("Produtos carregados:", produtos);
 
 
         mostrarProdutos();
@@ -58,10 +65,7 @@ async function carregarProdutos(){
 
     }catch(error){
 
-        console.error(
-            "Erro Firebase:",
-            error
-        );
+        console.error("Erro Firebase:",error);
 
     }
 
@@ -69,169 +73,132 @@ async function carregarProdutos(){
 
 
 
-
+// ================================
 // MOSTRAR PRODUTOS
+// ================================
 
 function mostrarProdutos(lista = produtos){
 
 
     if(!container){
-        console.error(
-            "Elemento listaProdutos não encontrado"
-        );
-        return;
-    }
 
-
-    container.innerHTML = "";
-
-
-
-    if(lista.length === 0){
-
-        container.innerHTML = `
-
-        <h3>
-        Nenhum produto encontrado 💗
-        </h3>
-
-        `;
+        console.error("Elemento produtos não encontrado");
 
         return;
 
     }
 
 
+    container.innerHTML="";
 
 
-    lista.forEach((produto)=>{
+    lista.forEach(produto=>{
 
 
-        const imagem = 
-        produto.imagem &&
-        produto.imagem.startsWith("http")
+        const card=document.createElement("div");
 
-        ?
-
-        produto.imagem
-
-        :
-
-        "https://placehold.co/500x500/ffd6ea/ff3f9b?text=It+Pink";
+        card.className="produto-card";
 
 
-
-        const preco = Number(
-            produto.preco || 0
-        )
-        .toFixed(2)
-        .replace(".",",");
+        let imagem = produto.imagem;
 
 
+        if(!imagem){
+
+            imagem="https://via.placeholder.com/400x400?text=It+Pink+Club";
+
+        }
 
 
-        container.innerHTML += `
-
-
-        <div class="produto-card">
-
+        card.innerHTML=`
 
             <img 
-            src="${imagem}"
-            alt="${produto.nome || "Produto"}"
+            src="${imagem}" 
+            alt="${produto.nome}"
+            onerror="this.src='https://via.placeholder.com/400x400?text=Sem+Imagem'"
             >
 
 
-            <h3>
-            ${produto.nome || "Produto sem nome"}
-            </h3>
+            <h3>${produto.nome}</h3>
 
-
-            <p>
-            ${produto.categoria || "Sem categoria"}
+            <p class="categoria-produto">
+            ${produto.categoria}
             </p>
 
 
             <strong>
-            R$ ${preco}
+            R$ ${Number(produto.preco)
+            .toFixed(2)
+            .replace(".",",")}
             </strong>
 
 
-            <br>
-
-
             <a 
-            href="${produto.link || "#"}"
+            href="${produto.link}" 
             target="_blank"
-            >
+            class="comprar">
 
             Comprar
 
             </a>
 
 
-        </div>
-
-
         `;
+
+
+        container.appendChild(card);
+
 
 
     });
 
 
+
 }
 
 
 
-
-
+// ================================
 // PESQUISA
+// ================================
+
 
 if(pesquisa){
 
-
-    pesquisa.addEventListener(
-        "input",
-        ()=>{
+pesquisa.addEventListener("input",()=>{
 
 
-            const texto =
-            pesquisa.value
+    const texto = pesquisa.value
+    .toLowerCase()
+    .trim();
+
+
+    const filtrados = produtos.filter(produto=>{
+
+
+        return (
+
+            produto.nome
             .toLowerCase()
-            .trim();
+            .includes(texto)
+
+            ||
+
+            produto.categoria
+            .toLowerCase()
+            .includes(texto)
+
+        );
+
+
+    });
+
+
+    mostrarProdutos(filtrados);
 
 
 
-            const filtrados =
-            produtos.filter((produto)=>{
-
-
-                return (
-
-                    produto.nome
-                    ?.toLowerCase()
-                    .includes(texto)
-
-                    ||
-
-                    produto.categoria
-                    ?.toLowerCase()
-                    .includes(texto)
-
-                );
-
-
-            });
-
-
-
-            mostrarProdutos(
-                filtrados
-            );
-
-
-        }
-    );
+});
 
 
 }
@@ -239,63 +206,49 @@ if(pesquisa){
 
 
 
-
-// FILTROS
-
-botoesCategoria.forEach(
-(botao)=>{
+// ================================
+// CATEGORIAS
+// ================================
 
 
-    botao.addEventListener(
-        "click",
-        ()=>{
+botoesCategoria.forEach(botao=>{
 
 
-            const categoria =
-            botao.dataset.categoria;
+    botao.addEventListener("click",()=>{
 
 
-
-            if(
-                !categoria ||
-                categoria === "todos"
-            ){
-
-                mostrarProdutos();
-
-                return;
-
-            }
+        const categoria =
+        botao.dataset.categoria;
 
 
+        if(categoria==="todos"){
 
-            const filtrados =
-            produtos.filter(
-            (produto)=>{
+            mostrarProdutos();
 
-
-                return (
-
-                produto.categoria
-                ?.toLowerCase()
-                ===
-                categoria
-                .toLowerCase()
-
-                );
-
-
-            });
-
-
-
-            mostrarProdutos(
-                filtrados
-            );
-
+            return;
 
         }
-    );
+
+
+
+        const filtrados =
+        produtos.filter(produto=>
+
+            produto.categoria
+            .toLowerCase()
+            ===
+            categoria.toLowerCase()
+
+        );
+
+
+
+        mostrarProdutos(filtrados);
+
+
+
+    });
+
 
 
 });
@@ -303,7 +256,8 @@ botoesCategoria.forEach(
 
 
 
-
+// ================================
 // INICIAR
+// ================================
 
 carregarProdutos();
