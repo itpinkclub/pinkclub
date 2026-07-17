@@ -6,42 +6,54 @@
 
     <title>It Pink Club</title>
 
-    <link rel="stylesheet" href="style.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
-<header>
-    <h1>💖 It Pink Club</h1>
-    <p>Achadinhos escolhidos com carinho para você.</p>
+<header class="hero">
+    <div class="logo">
+        💖 It Pink Club
+    </div>
+
+    <p>
+        Achadinhos escolhidos com carinho para você.
+    </p>
 
     <input 
         type="text" 
-        id="pesquisa"
-        placeholder="🔎 Pesquise um produto..."
+        id="busca"
+        placeholder="🔍 Pesquise um produto..."
     >
 
     <div class="categorias">
         <button data-cat="todos">✨ Todos</button>
-        <button data-cat="Infantil">👗 Infantil</button>
-        <button data-cat="Ballet">🎀 Ballet</button>
-        <button data-cat="Mochilas">🎒 Mochilas</button>
-        <button data-cat="bolsa">👜 Bolsas</button>
-        <button data-cat="Casa">🏡 Casa</button>
+        <button data-cat="infantil">👗 Infantil</button>
+        <button data-cat="ballet">🎀 Ballet</button>
+        <button data-cat="mochilas">🎒 Mochilas</button>
+        <button data-cat="bolsas">👜 Bolsas</button>
+        <button data-cat="casa">🏠 Casa</button>
     </div>
 </header>
 
 
-<section class="titulo-produtos">
+<section class="produtos">
 
-    <h2>✨ Escolhas do Clube</h2>
-    <p>Selecionados especialmente para você.</p>
+    <h1>
+        ✨ Escolhas do Clube
+    </h1>
+
+    <p>
+        Selecionados especialmente para você.
+    </p>
+
+
+    <div id="lista-produtos">
+        <!-- Produtos carregados pelo Firebase -->
+    </div>
 
 </section>
-
-
-<!-- PRODUTOS DO FIREBASE APARECEM AQUI -->
-<section id="produtos" class="produtos"></section>
 
 
 
@@ -51,8 +63,7 @@
         💖
         <h3>Escolha Manual</h3>
         <p>
-            Selecionamos apenas produtos que
-            realmente chamam atenção.
+            Selecionamos apenas produtos que realmente chamam atenção.
         </p>
     </div>
 
@@ -61,8 +72,7 @@
         ⭐
         <h3>Atualizações Frequentes</h3>
         <p>
-            Novos achadinhos adicionados
-            constantemente.
+            Novos achadinhos adicionados constantemente.
         </p>
     </div>
 
@@ -71,8 +81,7 @@
         🎀
         <h3>Curadoria It Pink</h3>
         <p>
-            Tudo seguindo a estética delicada e
-            feminina do clube.
+            Tudo seguindo a estética delicada e feminina do clube.
         </p>
     </div>
 
@@ -80,8 +89,8 @@
 
 
 
-<!-- IMPORTANTE: Firebase precisa de module -->
-<script type="module" src="script.js"></script>
+<!-- JS -->
+<script type="module" src="/js/script.js"></script>
 
 </body>
 </html>
