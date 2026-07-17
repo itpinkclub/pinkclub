@@ -6,28 +6,25 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-// ==============================
-// VARIÁVEIS
-// ==============================
-
-let produtos = [];
+// ELEMENTOS
 
 const container = document.getElementById("listaProdutos");
 const pesquisa = document.getElementById("pesquisa");
 
-let categoriaAtual = "todos";
+const botoesCategoria = document.querySelectorAll(".categoria");
+
+let produtos = [];
 
 
-// ==============================
-// CARREGAR PRODUTOS FIREBASE
-// ==============================
+
+// CARREGAR PRODUTOS
 
 async function carregarProdutos(){
 
-    try {
+    try{
 
         const snapshot = await getDocs(
-            collection(db, "produtos")
+            collection(db,"produtos")
         );
 
 
@@ -40,7 +37,12 @@ async function carregarProdutos(){
 
             console.log("Produto Firebase:", produto);
 
-            produtos.push(produto);
+
+            if(produto.ativo !== false){
+
+                produtos.push(produto);
+
+            }
 
         });
 
@@ -54,7 +56,7 @@ async function carregarProdutos(){
         mostrarProdutos();
 
 
-    } catch(error){
+    }catch(error){
 
         console.error(
             "Erro Firebase:",
@@ -68,18 +70,32 @@ async function carregarProdutos(){
 
 
 
-// ==============================
 // MOSTRAR PRODUTOS
-// ==============================
 
-function mostrarProdutos(){
+function mostrarProdutos(lista = produtos){
 
 
     if(!container){
-
         console.error(
-            "Elemento listaProdutos não encontrado no HTML"
+            "Elemento listaProdutos não encontrado"
         );
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+
+    if(lista.length === 0){
+
+        container.innerHTML = `
+
+        <h3>
+        Nenhum produto encontrado 💗
+        </h3>
+
+        `;
 
         return;
 
@@ -87,80 +103,57 @@ function mostrarProdutos(){
 
 
 
-    container.innerHTML = "";
+
+    lista.forEach((produto)=>{
+
+
+        const imagem = 
+        produto.imagem &&
+        produto.imagem.startsWith("http")
+
+        ?
+
+        produto.imagem
+
+        :
+
+        "https://placehold.co/500x500/ffd6ea/ff3f9b?text=It+Pink";
 
 
 
-    const texto = pesquisa
-        ? pesquisa.value.toLowerCase()
-        : "";
+        const preco = Number(
+            produto.preco || 0
+        )
+        .toFixed(2)
+        .replace(".",",");
 
 
 
-    const filtrados = produtos.filter((produto)=>{
+
+        container.innerHTML += `
 
 
-        const nome =
-        (produto.nome || "")
-        .toLowerCase();
+        <div class="produto-card">
 
-
-
-        const categoria =
-        (produto.categoria || "")
-        .toLowerCase();
-
-
-
-        const busca =
-        nome.includes(texto);
-
-
-
-        const cat =
-        categoriaAtual === "todos" ||
-        categoria === categoriaAtual.toLowerCase();
-
-
-
-        return busca && cat;
-
-
-    });
-
-
-
-    filtrados.forEach((produto)=>{
-
-
-        const card = document.createElement("div");
-
-        card.className = "produto-card";
-
-
-
-        card.innerHTML = `
 
             <img 
-            src="${produto.imagem || ''}"
-            alt="${produto.nome || ''}"
+            src="${imagem}"
+            alt="${produto.nome || "Produto"}"
             >
 
 
             <h3>
-            ${produto.nome || "Produto"}
+            ${produto.nome || "Produto sem nome"}
             </h3>
 
 
             <p>
-            ${produto.categoria || ""}
+            ${produto.categoria || "Sem categoria"}
             </p>
 
 
             <strong>
-            R$ ${Number(produto.preco || 0)
-            .toFixed(2)
-            .replace(".",",")}
+            R$ ${preco}
             </strong>
 
 
@@ -168,68 +161,89 @@ function mostrarProdutos(){
 
 
             <a 
-            href="${produto.link || '#'}"
-            target="_blank">
+            href="${produto.link || "#"}"
+            target="_blank"
+            >
 
             Comprar
 
             </a>
 
+
+        </div>
+
+
         `;
-
-
-        container.appendChild(card);
-
 
 
     });
 
 
-
-    if(filtrados.length === 0){
-
-        container.innerHTML = `
-        <p>
-        Nenhum produto encontrado 💖
-        </p>
-        `;
-
-    }
-
-
 }
 
 
 
 
-// ==============================
+
 // PESQUISA
-// ==============================
 
 if(pesquisa){
 
+
     pesquisa.addEventListener(
         "input",
-        mostrarProdutos
+        ()=>{
+
+
+            const texto =
+            pesquisa.value
+            .toLowerCase()
+            .trim();
+
+
+
+            const filtrados =
+            produtos.filter((produto)=>{
+
+
+                return (
+
+                    produto.nome
+                    ?.toLowerCase()
+                    .includes(texto)
+
+                    ||
+
+                    produto.categoria
+                    ?.toLowerCase()
+                    .includes(texto)
+
+                );
+
+
+            });
+
+
+
+            mostrarProdutos(
+                filtrados
+            );
+
+
+        }
     );
+
 
 }
 
 
 
-// ==============================
-// CATEGORIAS
-// ==============================
 
 
-const botoes =
-document.querySelectorAll(
-    "[data-categoria]"
-);
+// FILTROS
 
-
-
-botoes.forEach((botao)=>{
+botoesCategoria.forEach(
+(botao)=>{
 
 
     botao.addEventListener(
@@ -237,11 +251,47 @@ botoes.forEach((botao)=>{
         ()=>{
 
 
-            categoriaAtual =
+            const categoria =
             botao.dataset.categoria;
 
 
-            mostrarProdutos();
+
+            if(
+                !categoria ||
+                categoria === "todos"
+            ){
+
+                mostrarProdutos();
+
+                return;
+
+            }
+
+
+
+            const filtrados =
+            produtos.filter(
+            (produto)=>{
+
+
+                return (
+
+                produto.categoria
+                ?.toLowerCase()
+                ===
+                categoria
+                .toLowerCase()
+
+                );
+
+
+            });
+
+
+
+            mostrarProdutos(
+                filtrados
+            );
 
 
         }
@@ -253,8 +303,7 @@ botoes.forEach((botao)=>{
 
 
 
-// ==============================
+
 // INICIAR
-// ==============================
 
 carregarProdutos();
