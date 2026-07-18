@@ -1,369 +1,54 @@
-// =====================================
-// IT PINK CLUB - SCRIPT PRINCIPAL
-// =====================================
-
 import { db } from "./firebase.js";
+import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { catalogoInicial, normalizarCategoria, tituloCategoria } from "./catalogo.js";
 
-import {
-    collection,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-// ================================
-// ELEMENTOS
-// ================================
-
-const container = document.getElementById("produtos");
-const pesquisa = document.getElementById("pesquisa");
-
-const botoesCategoria = document.querySelectorAll("[data-categoria]");
-
+const container = document.querySelector("#produtos");
+const resultado = document.querySelector("#resultado");
+const vitrine = document.querySelector(".vitrine");
+const busca = document.querySelector("#pesquisa");
+const botoes = [...document.querySelectorAll("[data-categoria]")];
 let produtos = [];
+let categoriaAtiva = "todos";
 
+const moeda = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+const escapar = (texto) => String(texto ?? "").replace(/[&<>'"]/g, (caractere) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[caractere]);
+const linkSeguro = (valor) => {
+  try {
+    const url = new URL(valor);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : "#";
+  } catch {
+    return "#";
+  }
+};
 
-// ================================
-// CARREGAR PRODUTOS FIREBASE
-// ================================
-
-async function carregarProdutos(){
-
-    try{
-
-        const snapshot = await getDocs(
-            collection(db,"produtos")
-        );
-
-
-        produtos = [];
-
-
-        snapshot.forEach((doc)=>{
-
-
-            const dados = doc.data();
-
-
-            console.log("Produto Firebase:", dados);
-
-
-
-            if(dados.ativo !== false){
-
-
-                produtos.push({
-
-                    id: doc.id,
-
-                    nome:
-                    dados.nome || "Produto",
-
-                    categoria:
-                    dados.categoria || "Outros",
-
-                    preco:
-                    dados.preco || 0,
-
-                    imagem:
-                    dados.imagem || "",
-
-                    link:
-                    dados.link || "#",
-
-                    destaque:
-                    dados.destaque || false
-
-                });
-
-
-            }
-
-
-
-        });
-
-
-
-        console.log(
-            "Produtos carregados:",
-            produtos
-        );
-
-
-        mostrarProdutos();
-
-
-
-    }catch(error){
-
-        console.error(
-            "Erro Firebase:",
-            error
-        );
-
-    }
-
-
+function produtoValido(dados, id) {
+  return { id, nome: String(dados.nome || "Produto"), categoria: normalizarCategoria(dados.categoria), preco: Number(dados.preco) || 0, imagem: String(dados.imagem || ""), link: String(dados.link || "#"), destaque: dados.destaque === true, ativo: dados.ativo !== false };
 }
-
-
-
-// ================================
-// MOSTRAR PRODUTOS
-// ================================
-
-
-function mostrarProdutos(lista = produtos){
-
-
-    if(!container){
-
-        console.error(
-            "Elemento produtos não encontrado"
-        );
-
-        return;
-
-    }
-
-
-
-    container.innerHTML = "";
-
-
-
-    lista.forEach((produto)=>{
-
-
-
-        const card =
-        document.createElement("div");
-
-
-
-        card.className =
-        "produto-card";
-
-
-
-        const imagemProduto =
-        produto.imagem
-        ?
-        produto.imagem
-        :
-        "https://placehold.co/600x400/ffd6eb/ff4da6?text=It+Pink+Club";
-
-
-
-        card.innerHTML = `
-
-
-        <img
-
-        class="imagem-produto"
-
-        src="${imagemProduto}"
-
-        alt="${produto.nome}"
-
-        >
-
-
-
-        <h3>
-
-        ${produto.nome}
-
-        </h3>
-
-
-
-        <p class="categoria-produto">
-
-        ${produto.categoria}
-
-        </p>
-
-
-
-        <strong>
-
-        R$ ${Number(produto.preco)
-        .toFixed(2)
-        .replace(".",",")}
-
-        </strong>
-
-
-
-        <a
-
-        href="${produto.link}"
-
-        target="_blank"
-
-        class="comprar"
-
-        >
-
-        Comprar
-
-        </a>
-
-
-        `;
-
-
-
-        const img =
-        card.querySelector(
-            ".imagem-produto"
-        );
-
-
-
-        img.onerror = function(){
-
-
-            this.src =
-            "https://placehold.co/600x400/ffd6eb/ff4da6?text=Imagem+Indisponivel";
-
-
-        };
-
-
-
-        container.appendChild(card);
-
-
-
-    });
-
-
-
+function filtrar() {
+  const termo = busca.value.trim().toLocaleLowerCase("pt-BR");
+  return produtos.filter((produto) => produto.ativo && (categoriaAtiva === "todos" || produto.categoria === categoriaAtiva) && `${produto.nome} ${produto.categoria}`.toLocaleLowerCase("pt-BR").includes(termo)).sort((a, b) => Number(b.destaque) - Number(a.destaque) || a.nome.localeCompare(b.nome, "pt-BR"));
 }
-
-
-
-
-// ================================
-// PESQUISA
-// ================================
-
-
-if(pesquisa){
-
-
-pesquisa.addEventListener(
-"input",
-()=>{
-
-
-    const texto =
-    pesquisa.value
-    .toLowerCase()
-    .trim();
-
-
-
-    const filtrados =
-    produtos.filter((produto)=>{
-
-
-        return (
-
-            produto.nome
-            .toLowerCase()
-            .includes(texto)
-
-
-            ||
-
-            produto.categoria
-            .toLowerCase()
-            .includes(texto)
-
-        );
-
-
-    });
-
-
-
-    mostrarProdutos(
-        filtrados
-    );
-
-
-});
-
-
+function renderizar() {
+  const lista = filtrar();
+  vitrine.setAttribute("aria-busy", "false");
+  resultado.textContent = lista.length ? `${lista.length} ${lista.length === 1 ? "achadinho encontrado" : "achadinhos encontrados"}.` : "Nenhum achadinho encontrado com esses filtros.";
+  container.replaceChildren();
+  if (!lista.length) return;
+  const fragmento = document.createDocumentFragment();
+  lista.forEach((produto) => {
+    const card = document.createElement("article");
+    card.className = "produto-card";
+    const imagem = produto.imagem || "https://placehold.co/600x600/fff0f7/ff3f9b?text=It+Pink+Club";
+    card.innerHTML = `${produto.destaque ? '<span class="selo">Destaque</span>' : ""}<img class="imagem-produto" src="${escapar(imagem)}" alt="${escapar(produto.nome)}" loading="lazy"><div class="produto-conteudo"><p class="categoria-produto">${escapar(tituloCategoria(produto.categoria))}</p><h2>${escapar(produto.nome)}</h2>${produto.preco > 0 ? `<strong>${moeda.format(produto.preco)}</strong>` : '<strong class="preco-consultar">Confira o preço</strong>'}<a href="${escapar(linkSeguro(produto.link))}" target="_blank" rel="noopener noreferrer" class="comprar">Ver achadinho <span aria-hidden="true">→</span></a></div>`;
+    card.querySelector("img").addEventListener("error", (evento) => { evento.currentTarget.src = "https://placehold.co/600x600/fff0f7/ff3f9b?text=Imagem+indisponivel"; }, { once: true });
+    fragmento.append(card);
+  });
+  container.append(fragmento);
 }
-
-
-
-// ================================
-// CATEGORIAS
-// ================================
-
-
-botoesCategoria.forEach(
-(botao)=>{
-
-
-botao.addEventListener(
-"click",
-()=>{
-
-
-    const categoria =
-    botao.dataset.categoria;
-
-
-
-    if(categoria === "todos"){
-
-
-        mostrarProdutos();
-
-
-        return;
-
-    }
-
-
-
-    const filtrados =
-    produtos.filter((produto)=>{
-
-
-        return produto.categoria
-        .toLowerCase()
-        .includes(
-            categoria.toLowerCase()
-        );
-
-
-    });
-
-
-
-    mostrarProdutos(
-        filtrados
-    );
-
-
-
-});
-
-
-});
-
-
-
-
-// ================================
-// INICIAR
-// ================================
-
-carregarProdutos();
+function carregarCatalogo() {
+  const produtosRef = collection(db, "produtos");
+  onSnapshot(produtosRef, (snapshot) => { produtos = snapshot.docs.map((item) => produtoValido(item.data(), item.id)); renderizar(); }, (erro) => { console.warn("Não foi possível carregar a vitrine do Firebase.", erro); produtos = catalogoInicial.map((item, indice) => produtoValido(item, `local-${indice}`)); renderizar(); });
+}
+busca.addEventListener("input", renderizar);
+botoes.forEach((botao) => botao.addEventListener("click", () => { categoriaAtiva = botao.dataset.categoria; botoes.forEach((item) => { const ativa = item === botao; item.classList.toggle("ativa", ativa); item.setAttribute("aria-pressed", String(ativa)); }); renderizar(); }));
+carregarCatalogo();
