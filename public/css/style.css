@@ -1,1 +1,277 @@
-:root{--pink:#ff3f9b;--pink-dark:#dc257b;--pink-soft:#fff0f7;--text:#392a32;--muted:#76636d;--surface:#fff;--shadow:0 12px 30px rgba(196,49,119,.13);font-family:Poppins,Arial,sans-serif;color:var(--text);background:var(--pink-soft)}*{box-sizing:border-box}body{margin:0}.topo,.titulo,.vitrine,.beneficios{padding-inline:clamp(1.25rem,5vw,5rem)}.topo{text-align:center;padding-block:3.5rem 2rem;background:linear-gradient(150deg,#fff 0%,#fff0f7 100%)}.logo{display:inline-block;color:var(--pink);font-size:clamp(2rem,5vw,2.75rem);font-weight:700;text-decoration:none}.topo>p,.titulo>p{color:var(--muted);margin:.5rem auto 1.5rem}.pesquisa-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}#pesquisa{width:min(32rem,100%);padding:.9rem 1.25rem;border:1px solid #f6b8d6;border-radius:2rem;font:inherit;outline-color:var(--pink);box-shadow:0 4px 15px #e873aa21}.categorias{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin:1.5rem auto 0}.categoria{border:1px solid #ffd0e5;background:#fff;color:var(--pink);font:600 .9rem Poppins,Arial,sans-serif;padding:.65rem 1rem;border-radius:2rem;cursor:pointer;transition:.2s}.categoria:hover,.categoria.ativa{background:var(--pink);border-color:var(--pink);color:#fff}.titulo{text-align:center;padding-top:2.5rem}.titulo h1{margin:0;color:var(--pink);font-size:clamp(1.7rem,4vw,2.4rem)}.vitrine{max-width:1440px;margin:auto;padding-block:1rem 4rem}.resultado{color:var(--muted);text-align:center;min-height:1.5rem}.produtos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}.produto-card{position:relative;overflow:hidden;background:var(--surface);border-radius:1.35rem;box-shadow:var(--shadow);transition:transform .2s,box-shadow .2s}.produto-card:hover{transform:translateY(-5px);box-shadow:0 18px 35px rgba(196,49,119,.2)}.imagem-produto{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#ffe1ef}.produto-conteudo{padding:1.1rem 1.2rem 1.3rem}.categoria-produto{margin:0;color:var(--pink-dark);font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em}.produto-card h2{margin:.35rem 0 .55rem;font-size:1.05rem}.produto-card strong{display:block;font-size:1.05rem}.preco-consultar{color:var(--muted);font-size:.9rem}.comprar{display:block;margin-top:1rem;padding:.65rem 1rem;border-radius:1.5rem;background:var(--pink);color:#fff;font-size:.9rem;font-weight:600;text-align:center;text-decoration:none}.comprar:hover{background:var(--pink-dark)}.selo{position:absolute;z-index:1;top:.8rem;left:.8rem;padding:.35rem .65rem;border-radius:1rem;background:#fff;color:var(--pink-dark);font-size:.72rem;font-weight:700;box-shadow:0 2px 8px #0002}.beneficios{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;padding-block:3rem;background:#fff}.card-info{text-align:center;padding:1.5rem;border-radius:1.2rem;background:var(--pink-soft)}.card-info span{font-size:1.7rem}.card-info h2{margin:.5rem 0;color:var(--pink);font-size:1rem}.card-info p{margin:0;color:var(--muted);font-size:.87rem}@media(max-width:650px){.topo{padding-top:2.5rem}.beneficios{grid-template-columns:1fr}.produtos{grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}.produto-conteudo{padding:.85rem}.produto-card h2{font-size:.9rem}.comprar{padding:.55rem;font-size:.78rem}}
+:root {
+    --pink: #ff3f9b;
+    --pink-dark: #dc257b;
+    --pink-soft: #fff0f7;
+    --text: #392a32;
+    --muted: #76636d;
+    --surface: #fff;
+    --shadow: 0 12px 30px rgba(196, 49, 119, .13);
+    font-family: Poppins, Arial, sans-serif;
+    color: var(--text);
+    background: var(--pink-soft)
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0
+}
+
+.topo,
+.titulo,
+.vitrine,
+.beneficios {
+    padding-inline: clamp(1.25rem, 5vw, 5rem)
+}
+.banner {
+    width: 100%;
+    overflow: hidden;
+    background: #fff0f7;
+}
+
+.banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.topo {
+    text-align: center;
+    padding-block: 3.5rem 2rem;
+    background: linear-gradient(150deg, #fff 0%, #fff0f7 100%)
+}
+
+.logo {
+    display: inline-block;
+    color: var(--pink);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    text-decoration: none
+}
+
+.topo>p,
+.titulo>p {
+    color: var(--muted);
+    margin: .5rem auto 1.5rem
+}
+
+.pesquisa-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0
+}
+
+#pesquisa {
+    width: min(32rem, 100%);
+    padding: .9rem 1.25rem;
+    border: 1px solid #f6b8d6;
+    border-radius: 2rem;
+    font: inherit;
+    outline-color: var(--pink);
+    box-shadow: 0 4px 15px #e873aa21
+}
+
+.categorias {
+    display: flex;
+    justify-content: center;
+    gap: .6rem;
+    flex-wrap: wrap;
+    margin: 1.5rem auto 0
+}
+
+.categoria {
+    border: 1px solid #ffd0e5;
+    background: #fff;
+    color: var(--pink);
+    font: 600 .9rem Poppins, Arial, sans-serif;
+    padding: .65rem 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: .2s
+}
+
+.categoria:hover,
+.categoria.ativa {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: #fff
+}
+
+.titulo {
+    text-align: center;
+    padding-top: 2.5rem
+}
+
+.titulo h1 {
+    margin: 0;
+    color: var(--pink);
+    font-size: clamp(1.7rem, 4vw, 2.4rem)
+}
+
+.vitrine {
+    max-width: 1440px;
+    margin: auto;
+    padding-block: 1rem 4rem
+}
+
+.resultado {
+    color: var(--muted);
+    text-align: center;
+    min-height: 1.5rem
+}
+
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem
+}
+
+.produto-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--surface);
+    border-radius: 1.35rem;
+    box-shadow: var(--shadow);
+    transition: transform .2s, box-shadow .2s
+}
+
+.produto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 35px rgba(196, 49, 119, .2)
+}
+
+.imagem-produto {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: #ffe1ef
+}
+
+.produto-conteudo {
+    padding: 1.1rem 1.2rem 1.3rem
+}
+
+.categoria-produto {
+    margin: 0;
+    color: var(--pink-dark);
+    font-size: .78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .04em
+}
+
+.produto-card h2 {
+    margin: .35rem 0 .55rem;
+    font-size: 1.05rem
+}
+
+.produto-card strong {
+    display: block;
+    font-size: 1.05rem
+}
+
+.preco-consultar {
+    color: var(--muted);
+    font-size: .9rem
+}
+
+.comprar {
+    display: block;
+    margin-top: 1rem;
+    padding: .65rem 1rem;
+    border-radius: 1.5rem;
+    background: var(--pink);
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none
+}
+
+.comprar:hover {
+    background: var(--pink-dark)
+}
+
+.selo {
+    position: absolute;
+    z-index: 1;
+    top: .8rem;
+    left: .8rem;
+    padding: .35rem .65rem;
+    border-radius: 1rem;
+    background: #fff;
+    color: var(--pink-dark);
+    font-size: .72rem;
+    font-weight: 700;
+    box-shadow: 0 2px 8px #0002
+}
+
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    padding-block: 3rem;
+    background: #fff
+}
+
+.card-info {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    background: var(--pink-soft)
+}
+
+.card-info span {
+    font-size: 1.7rem
+}
+
+.card-info h2 {
+    margin: .5rem 0;
+    color: var(--pink);
+    font-size: 1rem
+}
+
+.card-info p {
+    margin: 0;
+    color: var(--muted);
+    font-size: .87rem
+}
+
+@media(max-width:650px) {
+    .topo {
+        padding-top: 2.5rem
+    }
+
+    .beneficios {
+        grid-template-columns: 1fr
+    }
+
+    .produtos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .85rem
+    }
+
+    .produto-conteudo {
+        padding: .85rem
+    }
+
+    .produto-card h2 {
+        font-size: .9rem
+    }
+
+    .comprar {
+        padding: .55rem;
+        font-size: .78rem
+    }
+}
