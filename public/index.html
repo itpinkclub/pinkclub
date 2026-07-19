@@ -6,49 +6,155 @@
   <meta name="theme-color" content="#ff3f9b">
   <meta name="description" content="Achadinhos escolhidos com carinho pelo It Pink Club.">
   <title>It Pink Club | Achadinhos especiais</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <header class="topo">
-    <a class="logo" href="/" aria-label="It Pink Club, página inicial">💖 It Pink Club</a>
+
+<!-- BANNER -->
+<section class="banner">
+    <div class="banner-slider">
+        <img src="assets/banner1.webp" class="slide active" alt="Banner 1">
+        <img src="assets/banner2.webp" class="slide" alt="Banner 2">
+        <img src="assets/banner3.webp" class="slide" alt="Banner 3">
+    </div>
+</section>
+
+<!-- TOPO -->
+<header class="topo">
+
+    <a class="logo" href="/" aria-label="It Pink Club">
+        💖 It Pink Club
+    </a>
+
     <p>Achadinhos escolhidos com carinho para você.</p>
-    <label class="pesquisa-label" for="pesquisa">Encontre seu achadinho</label>
-    <input id="pesquisa" type="search" placeholder="🔍 Pesquise um produto..." autocomplete="off">
-    <nav class="categorias" aria-label="Categorias de produtos">
-      <button class="categoria ativa" type="button" data-categoria="todos" aria-pressed="true">✨ Todos</button>
-      <button class="categoria" type="button" data-categoria="infantil" aria-pressed="false">👗 Infantil</button>
-      <button class="categoria" type="button" data-categoria="ballet" aria-pressed="false">🎀 Ballet</button>
-      <button class="categoria" type="button" data-categoria="mochilas" aria-pressed="false">🎒 Mochilas</button>
-      <button class="categoria" type="button" data-categoria="bolsas" aria-pressed="false">👜 Bolsas</button>
-      <button class="categoria" type="button" data-categoria="casa" aria-pressed="false">🏠 Casa</button>
+
+    <label class="pesquisa-label" for="pesquisa">
+        Encontre seu achadinho
+    </label>
+
+    <input
+        id="pesquisa"
+        type="search"
+        placeholder="🔍 Pesquise um produto..."
+        autocomplete="off">
+
+    <nav class="categorias" aria-label="Categorias">
+
+        <button class="categoria ativa" type="button"
+            data-categoria="todos"
+            aria-pressed="true">
+            ✨ Todos
+        </button>
+
+        <button class="categoria"
+            type="button"
+            data-categoria="infantil">
+            👗 Infantil
+        </button>
+
+        <button class="categoria"
+            type="button"
+            data-categoria="ballet">
+            🎀 Ballet
+        </button>
+
+        <button class="categoria"
+            type="button"
+            data-categoria="mochilas">
+            🎒 Mochilas
+        </button>
+
+        <button class="categoria"
+            type="button"
+            data-categoria="bolsas">
+            👜 Bolsas
+        </button>
+
+        <button class="categoria"
+            type="button"
+            data-categoria="casa">
+            🏠 Casa
+        </button>
+
     </nav>
-  <  </header>
 
-  <section class="banner">
-    <img 
-      src="assets/banner.webp" 
-      alt="It Pink Club - Achadinhos especiais">
-  </section>
+</header>
 
-  <main>
-    <section class="titulo" aria-labelledby="titulo-produtos">
-      <h1 id="titulo-produtos">✨ Escolhas do Clube</h1>
-      <p>Selecionados especialmente para você.</p>
-    </section>
-    <section class="vitrine" aria-live="polite" aria-busy="true">
-      <p id="resultado" class="resultado">Carregando achadinhos...</p>
-      <div id="produtos" class="produtos"></div>
-    </section>
-  </main>
+<main>
 
-  <section class="beneficios" aria-label="Por que escolher o clube">
-    <article class="card-info"><span aria-hidden="true">💖</span><h2>Escolha Manual</h2><p>Selecionamos apenas produtos que realmente chamam atenção.</p></article>
-    <article class="card-info"><span aria-hidden="true">⭐</span><h2>Atualizações Frequentes</h2><p>Novos achadinhos adicionados constantemente.</p></article>
-    <article class="card-info"><span aria-hidden="true">🎀</span><h2>Curadoria It Pink</h2><p>Tudo seguindo a estética delicada e feminina do clube.</p></article>
-  </section>
-  <script type="module" src="js/script.js"></script>
+<section class="titulo">
+
+    <h1>✨ Escolhas do Clube</h1>
+
+    <p>Selecionados especialmente para você.</p>
+
+</section>
+
+<section class="vitrine" aria-live="polite">
+
+    <p id="resultado" class="resultado">
+        Carregando achadinhos...
+    </p>
+
+    <div id="produtos" class="produtos"></div>
+
+</section>
+
+</main>
+
+<section class="beneficios">
+
+    <article class="card-info">
+        <span>💖</span>
+        <h2>Escolha Manual</h2>
+        <p>Selecionamos apenas produtos que realmente chamam atenção.</p>
+    </article>
+
+    <article class="card-info">
+        <span>⭐</span>
+        <h2>Atualizações Frequentes</h2>
+        <p>Novos achadinhos adicionados constantemente.</p>
+    </article>
+
+    <article class="card-info">
+        <span>🎀</span>
+        <h2>Curadoria It Pink</h2>
+        <p>Tudo seguindo a estética delicada e feminina do clube.</p>
+    </article>
+
+</section>
+
+<script type="module" src="js/script.js"></script>
+
+<script>
+const slides = document.querySelectorAll(".slide");
+
+let atual = 0;
+
+function trocarBanner(){
+
+    slides[atual].classList.remove("active");
+
+    atual++;
+
+    if(atual >= slides.length){
+        atual = 0;
+    }
+
+    slides[atual].classList.add("active");
+
+}
+
+setInterval(trocarBanner,4000);
+
+</script>
+
 </body>
 </html>
