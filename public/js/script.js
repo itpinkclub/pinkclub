@@ -52,3 +52,29 @@ function carregarCatalogo() {
 busca.addEventListener("input", renderizar);
 botoes.forEach((botao) => botao.addEventListener("click", () => { categoriaAtiva = botao.dataset.categoria; botoes.forEach((item) => { const ativa = item === botao; item.classList.toggle("ativa", ativa); item.setAttribute("aria-pressed", String(ativa)); }); renderizar(); }));
 carregarCatalogo();
+// ===== Banner Rotativo =====
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const slides = document.querySelectorAll(".banner-slider .slide");
+
+console.log("Banner iniciado", slides.length);
+
+let slideAtual = 0;
+
+if (slides.length > 1) {
+
+    setInterval(() => {
+
+        console.log("Trocando banner", slideAtual);
+
+        slides[slideAtual].classList.remove("active");
+
+        slideAtual = (slideAtual + 1) % slides.length;
+
+        slides[slideAtual].classList.add("active");
+
+    }, 4000);
+} 
+
+}); 
