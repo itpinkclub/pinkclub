@@ -1,52 +1,16 @@
 {
   "categorias": [
-    {
-      "id": "tendencias",
-      "nome": "🔥 Tendências"
-    },
-    {
-      "id": "casa",
-      "nome": "🏠 Casa"
-    },
-    {
-      "id": "cozinha",
-      "nome": "🍳 Cozinha"
-    },
-    {
-      "id": "beleza",
-      "nome": "💄 Beleza"
-    },
-    {
-      "id": "skincare",
-      "nome": "🇰🇷 Skincare"
-    },
-    {
-      "id": "moda",
-      "nome": "👗 Moda"
-    },
-    {
-      "id": "infantil",
-      "nome": "🧸 Infantil"
-    },
-    {
-      "id": "fitness",
-      "nome": "🏋️ Fitness"
-    },
-    {
-      "id": "eletronicos",
-      "nome": "📱 Eletrônicos"
-    },
-    {
-      "id": "pets",
-      "nome": "🐶 Pets"
-    },
-    {
-      "id": "papelaria",
-      "nome": "📚 Papelaria"
-    },
-    {
-      "id": "automotivo",
-      "nome": "🚗 Automotivo"
-    }
+    { "id": "tendencias", "nome": "🔥 Tendências" },
+    { "id": "casa", "nome": "🏠 Casa" },
+    { "id": "beleza", "nome": "💄 Beleza" },
+    { "id": "skincare", "nome": "🧴 Skincare" },
+    { "id": "cabelo", "nome": "💇 Cabelos" },
+    { "id": "moda", "nome": "👗 Moda" },
+    { "id": "infantil", "nome": "🧸 Infantil" },
+    { "id": "fitness", "nome": "🏋️ Fitness" },
+    { "id": "tech", "nome": "📱 Tech" },
+    { "id": "pets", "nome": "🐶 Pets" },
+    { "id": "papelaria", "nome": "📚 Papelaria" },
+    { "id": "auto", "nome": "🚗 Auto" }
   ]
 }
