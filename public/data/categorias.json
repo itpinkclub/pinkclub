@@ -8,7 +8,7 @@
     { "id": "moda", "nome": "👗 Moda" },
     { "id": "infantil", "nome": "🧸 Infantil" },
     { "id": "fitness", "nome": "🏋️ Fitness" },
-    {"id": "tecnologia","nome": "📱 Tecnologia"}
+    { "id": "tecnologia", "nome": "📱 Tecnologia"},
     { "id": "pets", "nome": "🐶 Pets" },
     { "id": "papelaria", "nome": "📚 Papelaria" },
     { "id": "auto", "nome": "🚗 Auto" }
