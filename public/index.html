@@ -54,7 +54,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Preload Banner -->
-<link rel="preload" as="image" href="/assets/banner1.webp">
+<link rel="preload" as="image" href="/assets/banner1.webp" type="image/webp">
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/style.css">
@@ -115,45 +115,15 @@
         placeholder="🔍 Pesquise um produto..."
         autocomplete="off">
 
-    <nav class="categorias" aria-label="Categorias">
+   <nav class="categorias" id="categorias" aria-label="Categorias">
 
-        <button class="categoria ativa" type="button"
-            data-categoria="todos"
-            aria-pressed="true">
-            ✨ Todos
-        </button>
+    <button
+        class="categoria ativa"
+        data-categoria="todos">
+        ✨ Todos
+    </button>
 
-        <button class="categoria"
-            type="button"
-            data-categoria="infantil">
-            👗 Infantil
-        </button>
-
-        <button class="categoria"
-            type="button"
-            data-categoria="ballet">
-            🎀 Ballet
-        </button>
-
-        <button class="categoria"
-            type="button"
-            data-categoria="mochilas">
-            🎒 Mochilas
-        </button>
-
-        <button class="categoria"
-            type="button"
-            data-categoria="bolsas">
-            👜 Bolsas
-        </button>
-
-        <button class="categoria"
-            type="button"
-            data-categoria="casa">
-            🏠 Casa
-        </button>
-
-    </nav>
+</nav>
 
 </header>
 
@@ -201,7 +171,7 @@
 
 </section>
 
-<script type="module" src="js/script.js"></script>
+<script type="module" src="./js/script.js"></script>
 
 
 </body>

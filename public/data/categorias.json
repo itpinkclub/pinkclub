@@ -1,0 +1,204 @@
+{
+  "categorias": [
+    {
+      "id": "tendencias",
+      "nome": "🔥 Tendências",
+      "subcategorias": [
+        "TikTok Viral",
+        "Instagram Viral",
+        "Novidades",
+        "Mais Vendidos"
+      ]
+    },
+
+    {
+      "id": "casa",
+      "nome": "🏠 Casa & Decoração",
+      "subcategorias": [
+        "Decoração",
+        "Organização",
+        "Iluminação",
+        "Móveis",
+        "Jardim",
+        "Banheiro",
+        "Cozinha",
+        "Lavanderia"
+      ]
+    },
+
+    {
+      "id": "cozinha",
+      "nome": "🍳 Cozinha",
+      "subcategorias": [
+        "Utensílios",
+        "Panelas",
+        "Talheres",
+        "Copos",
+        "Pratos",
+        "Facas",
+        "Garrafas",
+        "Air Fryer",
+        "Organizadores"
+      ]
+    },
+
+    {
+      "id": "beleza",
+      "nome": "💄 Beleza",
+      "subcategorias": [
+        "Maquiagem",
+        "Perfumes",
+        "Unhas",
+        "Acessórios",
+        "Escovas",
+        "Espelhos"
+      ]
+    },
+
+    {
+      "id": "skincare",
+      "nome": "🇰🇷 Skincare Coreano",
+      "subcategorias": [
+        "Limpeza",
+        "Sérum",
+        "Hidratante",
+        "Protetor Solar",
+        "Máscaras",
+        "Anti Acne",
+        "Anti Idade"
+      ]
+    },
+
+    {
+      "id": "cabelo",
+      "nome": "💇 Cabelos",
+      "subcategorias": [
+        "Shampoo",
+        "Condicionador",
+        "Máscaras",
+        "Óleos",
+        "Escovas",
+        "Chapinhas",
+        "Modeladores"
+      ]
+    },
+
+    {
+      "id": "infantil",
+      "nome": "🧸 Infantil",
+      "subcategorias": [
+        "Brinquedos",
+        "Roupas",
+        "Calçados",
+        "Mochilas",
+        "Material Escolar",
+        "Quarto Infantil",
+        "Bebês"
+      ]
+    },
+
+    {
+      "id": "modafem",
+      "nome": "👗 Moda Feminina",
+      "subcategorias": [
+        "Vestidos",
+        "Blusas",
+        "Calças",
+        "Tênis",
+        "Bolsas",
+        "Acessórios",
+        "Lingerie"
+      ]
+    },
+
+    {
+      "id": "modamasc",
+      "nome": "👕 Moda Masculina",
+      "subcategorias": [
+        "Camisetas",
+        "Calças",
+        "Tênis",
+        "Bonés",
+        "Relógios",
+        "Jaquetas"
+      ]
+    },
+
+    {
+      "id": "fitness",
+      "nome": "🏋️ Fitness",
+      "subcategorias": [
+        "Academia",
+        "Yoga",
+        "Pilates",
+        "Acessórios",
+        "Garrafas",
+        "Roupas"
+      ]
+    },
+
+    {
+      "id": "eletronicos",
+      "nome": "📱 Eletrônicos",
+      "subcategorias": [
+        "Fones",
+        "Smartwatch",
+        "Caixas de Som",
+        "Carregadores",
+        "Cabos",
+        "Teclados",
+        "Mouse"
+      ]
+    },
+
+    {
+      "id": "gamer",
+      "nome": "🎮 Gamer",
+      "subcategorias": [
+        "Mouse",
+        "Teclados",
+        "Headsets",
+        "RGB",
+        "Cadeiras",
+        "Controles"
+      ]
+    },
+
+    {
+      "id": "pets",
+      "nome": "🐶 Pets",
+      "subcategorias": [
+        "Cachorros",
+        "Gatos",
+        "Brinquedos",
+        "Camas",
+        "Comedouros",
+        "Roupinhas"
+      ]
+    },
+
+    {
+      "id": "papelaria",
+      "nome": "📚 Papelaria",
+      "subcategorias": [
+        "Canetas",
+        "Cadernos",
+        "Planner",
+        "Organizadores",
+        "Adesivos"
+      ]
+    },
+
+    {
+      "id": "automotivo",
+      "nome": "🚗 Automotivo",
+      "subcategorias": [
+        "Limpeza",
+        "Organização",
+        "Acessórios",
+        "Suportes",
+        "Iluminação"
+      ]
+    }
+  ]
+}

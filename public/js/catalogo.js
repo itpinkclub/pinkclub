@@ -1,32 +1,171 @@
-export const CATEGORIAS = ["infantil", "ballet", "mochilas", "bolsas", "casa"];
+export const CATEGORIAS = [
+  "tendencias",
+  "casa",
+  "cozinha",
+  "beleza",
+  "skincare",
+  "cabelo",
+  "infantil",
+  "modafem",
+  "modamasc",
+  "fitness",
+  "eletronicos",
+  "gamer",
+  "pets",
+  "papelaria",
+  "automotivo"
+];
 
 export const catalogoInicial = [
-  { nome: "Bota Menina", categoria: "infantil", destaque: true, preco: 0, imagem: "/assets/products/bota menina.png", link: "https://s.shopee.com.br/60Q3R0SVlX" },
-  { nome: "Mochila Rosa", categoria: "mochilas", destaque: true, preco: 0, imagem: "/assets/products/mochila.png", link: "https://s.shopee.com.br/6VMK2KY6kM" },
-  { nome: "Bolsa Feminina", categoria: "bolsas", destaque: true, preco: 0, imagem: "/assets/products/bolsas.png", link: "https://s.shopee.com.br/4VbFi2ixJv" },
-  { nome: "Kit Ballet", categoria: "ballet", destaque: false, preco: 0, imagem: "/assets/products/kit ballet.png", link: "https://s.shopee.com.br/2qT1jDeqFX" },
-  { nome: "Lençol Barbie", categoria: "casa", destaque: false, preco: 0, imagem: "/assets/products/lençol barbie solteiro.png", link: "https://s.shopee.com.br/9fJLljh2yO" },
-  { nome: "Pantufa Infantil", categoria: "infantil", destaque: false, preco: 0, imagem: "/assets/products/pantufa infantil.png", link: "https://s.shopee.com.br/903ezhg9yQ" },
-  { nome: "Vestido Infantil", categoria: "infantil", destaque: true, preco: 0, imagem: "/assets/products/vestido.png", link: "https://s.shopee.com.br/18qGpnIt1" }
+  {
+    nome: "Produto Exemplo",
+    categoria: "tendencias",
+    destaque: true,
+    preco: 0,
+    imagem: "",
+    link: "#"
+  }
 ];
 
 const aliases = Object.freeze({
-  "moda infantil": "infantil",
+
+  // Tendências
+  tendencias: "tendencias",
+  tendência: "tendencias",
+  tendencias: "tendencias",
+  viral: "tendencias",
+  novidades: "tendencias",
+
+  // Casa
+  casa: "casa",
+  decoração: "casa",
+  decoracao: "casa",
+  organização: "casa",
+  organizacao: "casa",
+  jardim: "casa",
+
+  // Cozinha
+  cozinha: "cozinha",
+  utensilios: "cozinha",
+  utensílios: "cozinha",
+  panelas: "cozinha",
+  pratos: "cozinha",
+
+  // Beleza
+  beleza: "beleza",
+  maquiagem: "beleza",
+  perfume: "beleza",
+  perfumes: "beleza",
+  unhas: "beleza",
+
+  // Skincare
+  skincare: "skincare",
+  sérum: "skincare",
+  serum: "skincare",
+  hidratante: "skincare",
+  protetor: "skincare",
+
+  // Cabelo
+  cabelo: "cabelo",
+  cabelos: "cabelo",
+  shampoo: "cabelo",
+  condicionador: "cabelo",
+  chapinha: "cabelo",
+
+  // Infantil
   infantil: "infantil",
-  ballet: "ballet",
-  mochilas: "mochilas",
-  mochila: "mochilas",
-  bolsas: "bolsas",
-  bolsa: "bolsas",
-  casa: "casa"
+  bebê: "infantil",
+  bebe: "infantil",
+  brinquedos: "infantil",
+  brinquedo: "infantil",
+
+  // Moda Feminina
+  modafem: "modafem",
+  feminina: "modafem",
+  mulher: "modafem",
+  vestido: "modafem",
+  vestidos: "modafem",
+  bolsa: "modafem",
+  bolsas: "modafem",
+
+  // Moda Masculina
+  modamasc: "modamasc",
+  masculino: "modamasc",
+  homem: "modamasc",
+  camiseta: "modamasc",
+
+  // Fitness
+  fitness: "fitness",
+  academia: "fitness",
+  yoga: "fitness",
+  pilates: "fitness",
+
+  // Eletrônicos
+  eletronicos: "eletronicos",
+  eletrônicos: "eletronicos",
+  celular: "eletronicos",
+  smartwatch: "eletronicos",
+  fone: "eletronicos",
+  fones: "eletronicos",
+
+  // Gamer
+  gamer: "gamer",
+  rgb: "gamer",
+  headset: "gamer",
+  teclado: "gamer",
+  mouse: "gamer",
+
+  // Pets
+  pet: "pets",
+  pets: "pets",
+  cachorro: "pets",
+  cachorros: "pets",
+  gato: "pets",
+  gatos: "pets",
+
+  // Papelaria
+  papelaria: "papelaria",
+  planner: "papelaria",
+  caderno: "papelaria",
+  cadernos: "papelaria",
+
+  // Automotivo
+  automotivo: "automotivo",
+  carro: "automotivo",
+  carros: "automotivo"
+
 });
 
 export function normalizarCategoria(valor) {
-  const categoria = String(valor || "").trim().toLocaleLowerCase("pt-BR");
-  const categoriaNormalizada = aliases[categoria];
-  return CATEGORIAS.includes(categoriaNormalizada) ? categoriaNormalizada : "outros";
+
+  const categoria = String(valor || "")
+    .trim()
+    .toLocaleLowerCase("pt-BR");
+
+  return aliases[categoria] || categoria;
+
 }
 
 export function tituloCategoria(categoria) {
-  return categoria === "infantil" ? "Moda Infantil" : categoria.charAt(0).toUpperCase() + categoria.slice(1);
+
+  const item = {
+    tendencias: "Tendências",
+    casa: "Casa & Decoração",
+    cozinha: "Cozinha",
+    beleza: "Beleza",
+    skincare: "Skincare Coreano",
+    cabelo: "Cabelos",
+    infantil: "Infantil",
+    modafem: "Moda Feminina",
+    modamasc: "Moda Masculina",
+    fitness: "Fitness",
+    eletronicos: "Eletrônicos",
+    gamer: "Gamer",
+    pets: "Pets",
+    papelaria: "Papelaria",
+    automotivo: "Automotivo"
+  };
+
+  return item[categoria] || categoria;
+
 }
