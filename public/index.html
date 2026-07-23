@@ -100,23 +100,26 @@
 
     <p>Achadinhos escolhidos com carinho para você.</p>
 
-    <label class="pesquisa-label" for="pesquisa">
-        Encontre seu achadinho
-    </label>
+    <!-- NAVEGAÇÃO / BUSCA E CATEGORIAS FIXAS AO ROLAR -->
+    <div class="sticky-header">
+        <label class="pesquisa-label" for="pesquisa">
+            Encontre seu achadinho
+        </label>
 
-    <input
-        id="pesquisa"
-        type="search"
-        placeholder="🔍 Pesquise um produto..."
-        autocomplete="off">
+        <input
+            id="pesquisa"
+            type="search"
+            placeholder="🔍 Pesquise um produto..."
+            autocomplete="off">
 
-    <nav class="categorias" id="categorias" aria-label="Categorias">
-        <button
-            class="categoria ativa"
-            data-categoria="todos">
-            ✨ Todos
-        </button>
-    </nav>
+        <nav class="categorias" id="categorias" aria-label="Categorias">
+            <button
+                class="categoria ativa"
+                data-categoria="todos">
+                ✨ Todos
+            </button>
+        </nav>
+    </div>
 
 </header>
 
@@ -168,18 +171,32 @@
     </p>
 
     <div class="vip-buttons" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-        <a href="https://chat.whatsapp.com/SEU-LINK-AQUI" target="_blank" rel="noopener noreferrer" style="background-color: #25d366; color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s;">
+        <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" style="background-color: #25d366; color: white; padding: 12px 24px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s;">
             💬 Entrar no Grupo VIP
         </a>
     </div>
 </section>
 
-<!-- RODAPÉ -->
-<footer class="rodape" style="text-align: center; padding: 30px 20px; font-size: 0.9rem; color: #666; margin-top: 40px; border-top: 1px solid #ffe6f0;">
-    <p>© 2026 It Pink Club - Todos os direitos reservados.</p>
-    <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">
-        Como participante do programa de afiliados, podemos receber comissões por compras qualificadas.
-    </p>
+<!-- RODAPÉ COMPLETO -->
+<footer class="rodape" style="background-color: #fff0f5; text-align: center; padding: 35px 20px; font-size: 0.9rem; color: #666; margin-top: 50px; border-top: 1px solid #ffe1ec;">
+    <div style="max-width: 800px; margin: 0 auto;">
+        
+        <!-- Instagram -->
+        <p style="margin-bottom: 12px; font-weight: 600; color: #d63384; font-size: 1rem;">
+            💖 Siga nosso perfil: 
+            <a href="https://instagram.com/itpinkclub" target="_blank" rel="noopener noreferrer" style="color: #d63384; text-decoration: underline;">@itpinkclub</a>
+        </p>
+
+        <!-- Aviso de Afiliados e Transparência -->
+        <p style="font-size: 0.8rem; color: #777; max-width: 650px; margin: 0 auto 15px auto; line-height: 1.5;">
+            🔒 <strong>Aviso de transparência:</strong> Participamos de programas de afiliados. Ao comprar através dos nossos links, podemos receber comissões qualificadas. Você não paga nada a mais por isso e nos ajuda a manter a curadoria do It Pink Club sempre incrível!
+        </p>
+
+        <!-- Copyright -->
+        <p style="font-size: 0.75rem; opacity: 0.7; margin: 0;">
+            © 2026 It Pink Club. Todos os direitos reservados.
+        </p>
+    </div>
 </footer>
 
 <script type="module" src="./js/script.js"></script>
