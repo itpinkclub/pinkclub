@@ -10,28 +10,24 @@
     <meta name="google-site-verification" content="ouUpmd0L-F-6NngD0j5jJGvzfFvZcFHDgI5ECPSboQw">
 
     <!-- SEO -->
-    <meta name="description" content="Os melhores achadinhos da Shopee. Moda feminina, infantil, bolsas, decoração, ballet, casa e muito mais escolhidos com carinho para você.">
-
-    <meta name="keywords" content="Shopee, achadinhos, ofertas Shopee, moda feminina, infantil, bolsas, decoração, casa, ballet, It Pink Club">
-
+    <meta name="description" content="Os melhores achadinhos da Shopee. Moda feminina, beleza, skincare, decoração, casa, tecnologia e mimos escolhidos com carinho para você.">
+    <meta name="keywords" content="Shopee, achadinhos, ofertas Shopee, moda feminina, beleza, skincare, cabelos, decoração, casa, tecnologia, pets, papelaria, It Pink Club">
     <meta name="author" content="It Pink Club">
-
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
     <meta name="language" content="pt-BR">
     <meta name="revisit-after" content="7 days">
-
     <meta name="theme-color" content="#ff4fa0">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://pinkclub-three.vercel.app/">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / WhatsApp / Pinterest -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="It Pink Club">
     <meta property="og:title" content="💖 It Pink Club | Os achadinhos mais lindos da Shopee">
-    <meta property="og:description" content="Descubra produtos incríveis da Shopee selecionados com carinho para você. Moda, infantil, bolsas, decoração e muito mais.">
+    <meta property="og:description" content="Descubra os achadinhos mais lindos da Shopee com ofertas imperdíveis. Moda, beleza, skincare, casa e mimos escolhidos com carinho!">
     <meta property="og:url" content="https://pinkclub-three.vercel.app/">
     <meta property="og:image" content="https://pinkclub-three.vercel.app/assets/banner1.webp">
     <meta property="og:image:alt" content="It Pink Club">
@@ -44,46 +40,45 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
-<link rel="shortcut icon" href="/assets/favicon.png">
-<link rel="apple-touch-icon" href="/assets/favicon.png">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
 
     <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Preload Banner -->
+    <link rel="preload" as="image" href="/assets/banner1.webp" type="image/webp">
 
-<!-- Preload Banner -->
-<link rel="preload" as="image" href="/assets/banner1.webp" type="image/webp">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 
-<!-- CSS -->
-<link rel="stylesheet" href="css/style.css">
     <!-- Schema.org -->
-   <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name":"It Pink Club",
-  "url":"https://pinkclub-three.vercel.app/",
-  "description":"Os melhores achadinhos da Shopee escolhidos com carinho para você.",
-  "inLanguage":"pt-BR",
-  "potentialAction":{
-      "@type":"SearchAction",
-      "target":"https://pinkclub-three.vercel.app/?q={search_term_string}",
-      "query-input":"required name=search_term_string"
-  },
-  "publisher":{
-      "@type":"Organization",
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"WebSite",
       "name":"It Pink Club",
       "url":"https://pinkclub-three.vercel.app/",
-      "logo":{
-          "@type":"ImageObject",
-          "url":"https://pinkclub-three.vercel.app/assets/favicon.png"
+      "description":"Os melhores achadinhos da Shopee escolhidos com carinho para você.",
+      "inLanguage":"pt-BR",
+      "potentialAction":{
+          "@type":"SearchAction",
+          "target":"https://pinkclub-three.vercel.app/?q={search_term_string}",
+          "query-input":"required name=search_term_string"
+      },
+      "publisher":{
+          "@type":"Organization",
+          "name":"It Pink Club",
+          "url":"https://pinkclub-three.vercel.app/",
+          "logo":{
+              "@type":"ImageObject",
+              "url":"https://pinkclub-three.vercel.app/assets/favicon.png"
+          }
       }
-  }
-}
-</script>
-
+    }
+    </script>
 </head>
 <body>
 
@@ -115,36 +110,29 @@
         placeholder="🔍 Pesquise um produto..."
         autocomplete="off">
 
-   <nav class="categorias" id="categorias" aria-label="Categorias">
-
-    <button
-        class="categoria ativa"
-        data-categoria="todos">
-        ✨ Todos
-    </button>
-
-</nav>
+    <nav class="categorias" id="categorias" aria-label="Categorias">
+        <button
+            class="categoria ativa"
+            data-categoria="todos">
+            ✨ Todos
+        </button>
+    </nav>
 
 </header>
 
 <main>
 
 <section class="titulo">
-
     <h1>💖 Achadinhos da Shopee | It Pink Club</h1>
-
     <p>Selecionados especialmente para você.</p>
-
 </section>
 
 <section class="vitrine" aria-live="polite">
-
     <p id="resultado" class="resultado">
         Carregando achadinhos...
     </p>
 
     <div id="produtos" class="produtos"></div>
-
 </section>
 
 </main>
@@ -171,8 +159,15 @@
 
 </section>
 
-<script type="module" src="./js/script.js"></script>
+<!-- RODAPÉ -->
+<footer class="rodape" style="text-align: center; padding: 30px 20px; font-size: 0.9rem; color: #666; margin-top: 40px; border-top: 1px solid #ffe6f0;">
+    <p>© 2026 It Pink Club - Todos os direitos reservados.</p>
+    <p style="font-size: 0.8rem; opacity: 0.8; margin-top: 8px;">
+        Como participante do programa de afiliados, podemos receber comissões por compras qualificadas.
+    </p>
+</footer>
 
+<script type="module" src="./js/script.js"></script>
 
 </body>
 </html>
