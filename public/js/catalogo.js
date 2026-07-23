@@ -1,25 +1,16 @@
 export const CATEGORIAS = [
-  "tendencias",
-  "casa",
-  "cozinha",
-  "beleza",
   "skincare",
   "cabelo",
+  "moda",
   "infantil",
-  "modafem",
-  "modamasc",
   "fitness",
-  "eletronicos",
-  "gamer",
-  "pets",
-  "papelaria",
-  "automotivo"
+  "outros"
 ];
 
 export const catalogoInicial = [
   {
     nome: "Produto Exemplo",
-    categoria: "tendencias",
+    categoria: "skincare",
     destaque: true,
     preco: 0,
     imagem: "",
@@ -28,144 +19,64 @@ export const catalogoInicial = [
 ];
 
 const aliases = Object.freeze({
-
-  // Tendências
-  tendencias: "tendencias",
-  tendência: "tendencias",
-  tendencias: "tendencias",
-  viral: "tendencias",
-  novidades: "tendencias",
-
-  // Casa
-  casa: "casa",
-  decoração: "casa",
-  decoracao: "casa",
-  organização: "casa",
-  organizacao: "casa",
-  jardim: "casa",
-
-  // Cozinha
-  cozinha: "cozinha",
-  utensilios: "cozinha",
-  utensílios: "cozinha",
-  panelas: "cozinha",
-  pratos: "cozinha",
-
-  // Beleza
-  beleza: "beleza",
-  maquiagem: "beleza",
-  perfume: "beleza",
-  perfumes: "beleza",
-  unhas: "beleza",
-
   // Skincare
   skincare: "skincare",
   sérum: "skincare",
   serum: "skincare",
   hidratante: "skincare",
   protetor: "skincare",
+  beleza: "skincare",
 
   // Cabelo
   cabelo: "cabelo",
   cabelos: "cabelo",
   shampoo: "cabelo",
   condicionador: "cabelo",
-  chapinha: "cabelo",
+
+  // Moda
+  moda: "moda",
+  modafem: "moda",
+  modamasc: "moda",
+  feminina: "moda",
+  masculino: "moda",
+  vestido: "moda",
+  roupa: "moda",
 
   // Infantil
   infantil: "infantil",
   bebê: "infantil",
   bebe: "infantil",
   brinquedos: "infantil",
-  brinquedo: "infantil",
-
-  // Moda Feminina
-  modafem: "modafem",
-  feminina: "modafem",
-  mulher: "modafem",
-  vestido: "modafem",
-  vestidos: "modafem",
-  bolsa: "modafem",
-  bolsas: "modafem",
-
-  // Moda Masculina
-  modamasc: "modamasc",
-  masculino: "modamasc",
-  homem: "modamasc",
-  camiseta: "modamasc",
 
   // Fitness
   fitness: "fitness",
   academia: "fitness",
   yoga: "fitness",
-  pilates: "fitness",
 
-  // Eletrônicos
-  eletronicos: "eletronicos",
-  eletrônicos: "eletronicos",
-  celular: "eletronicos",
-  smartwatch: "eletronicos",
-  fone: "eletronicos",
-  fones: "eletronicos",
-
-  // Gamer
-  gamer: "gamer",
-  rgb: "gamer",
-  headset: "gamer",
-  teclado: "gamer",
-  mouse: "gamer",
-
-  // Pets
-  pet: "pets",
-  pets: "pets",
-  cachorro: "pets",
-  cachorros: "pets",
-  gato: "pets",
-  gatos: "pets",
-
-  // Papelaria
-  papelaria: "papelaria",
-  planner: "papelaria",
-  caderno: "papelaria",
-  cadernos: "papelaria",
-
-  // Automotivo
-  automotivo: "automotivo",
-  carro: "automotivo",
-  carros: "automotivo"
-
+  // Outros
+  outros: "outros",
+  casa: "outros",
+  eletronicos: "outros"
 });
 
 export function normalizarCategoria(valor) {
-
   const categoria = String(valor || "")
     .trim()
     .toLocaleLowerCase("pt-BR");
 
-  return aliases[categoria] || categoria;
-
+  return aliases[categoria] || (CATEGORIAS.includes(categoria) ? categoria : "outros");
 }
 
 export function tituloCategoria(categoria) {
-
   const item = {
-    tendencias: "Tendências",
-    casa: "Casa & Decoração",
-    cozinha: "Cozinha",
-    beleza: "Beleza",
-    skincare: "Skincare Coreano",
+    skincare: "Skincare",
     cabelo: "Cabelos",
+    moda: "Moda",
     infantil: "Infantil",
-    modafem: "Moda Feminina",
-    modamasc: "Moda Masculina",
     fitness: "Fitness",
-    eletronicos: "Eletrônicos",
-    gamer: "Gamer",
-    pets: "Pets",
-    papelaria: "Papelaria",
-    automotivo: "Automotivo"
+    outros: "Outros"
   };
 
-  return item[categoria] || categoria;
-
+  const normalizada = normalizarCategoria(categoria);
+  return item[normalizada] || "Outros";
 }
