@@ -1,16 +1,11 @@
 {
   "categorias": [
     { "id": "tendencias", "nome": "🔥 Tendências" },
-    { "id": "casa", "nome": "🏠 Casa" },
-    { "id": "beleza", "nome": "💄 Beleza" },
-    { "id": "skincare", "nome": "🧴 Skincare" },
-    { "id": "cabelo", "nome": "💇 Cabelos" },
-    { "id": "moda", "nome": "👗 Moda" },
-    { "id": "infantil", "nome": "🧸 Infantil" },
-    { "id": "fitness", "nome": "🏋️ Fitness" },
-    { "id": "tecnologia", "nome": "📱 Tecnologia"},
-    { "id": "pets", "nome": "🐶 Pets" },
-    { "id": "papelaria", "nome": "📚 Papelaria" },
-    { "id": "auto", "nome": "🚗 Auto" }
+    { "id": "beleza", "nome": "💄 Beleza & Autocuidado" },
+    { "id": "casa", "nome": "🏠 Casa & Decoração" },
+    { "id": "moda", "nome": "👗 Moda & Estilo" },
+    { "id": "tecnologia", "nome": "📱 Tecnologia & Auto" },
+    { "id": "papelaria", "nome": "🎨 Papelaria & Fofuras" },
+    { "id": "pets", "nome": "🐾 Pets" }
   ]
 }
