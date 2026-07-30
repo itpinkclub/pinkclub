@@ -8,6 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script>
+        // Protege o painel: se não estiver logado, redireciona para a tela de login
+        if (localStorage.getItem("logado") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+
     <header class="topo" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
         <div>
             <a href="/" class="logo">💖 Painel Admin | It Pink Club</a>
@@ -47,7 +54,6 @@
     </main>
 
     <script>
-        // Produtos iniciais de exemplo caso não haja nada salvo
         let produtos = JSON.parse(localStorage.getItem('produtos_pink')) || [
             { id: 1, titulo: "Organizador Giratório de Maquiagem", categoria: "skincare", preco: "R$ 49,90", imagem: "" },
             { id: 2, titulo: "Difusor de Aromas Efeito Chama", categoria: "casa", preco: "R$ 79,90", imagem: "" }
@@ -90,6 +96,10 @@
             }
         }
 
+        function editarProduto(index) {
+            alert("Função de edição do produto " + (index + 1));
+        }
+
         function filtrarAdmin(cat) {
             if (cat === 'todos') {
                 renderizarProdutos(produtos);
@@ -101,10 +111,9 @@
 
         function fazerLogout() {
             localStorage.removeItem("logado");
-            window.location.href = "/";
+            window.location.href = "login.html";
         }
 
-        // Carrega os produtos ao iniciar a página
         renderizarProdutos(produtos);
     </script>
 </body>
