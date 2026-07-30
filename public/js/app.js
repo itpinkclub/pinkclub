@@ -10,6 +10,7 @@ const $ = (seletor) => document.querySelector(seletor);
 const containerProdutos = $("#produtos-container");
 const containerFiltros = $("#filtros-categorias");
 const inputBusca = $("#busca-produto");
+const bannerSlider = $("#bannerSlider") || $(".banner-slider");
 
 let produtosCache = [];
 let categoriaAtiva = "todos";
@@ -46,6 +47,38 @@ function carregarFiltrosCategorias() {
             renderizarProdutos();
         });
     });
+}
+
+async function carregarBanners() {
+    if (!bannerSlider) return;
+    try {
+        const snapshot = await getDocs(collection(db, "banners"));
+        if (!snapshot.empty) {
+            let bannersHtml = "";
+            snapshot.docs.forEach((doc, index) => {
+                const b = doc.data();
+                const ativoClass = index === 0 ? "active slide" : "slide";
+                bannersHtml += `<img src="${b.imagem || b.url}" class="${ativoClass}" alt="Banner">`;
+            });
+            bannerSlider.innerHTML = bannersHtml;
+            
+            // Ativa o carrosel se houver mais de um banner
+            const slides = bannerSlider.querySelectorAll(".slide");
+            if (slides.length > 1) {
+                let atual = 0;
+                setInterval(() => {
+                    slides[atual].classList.remove("active");
+                    atual = (atual + 1) % slides.length;
+                    slides[atual].classList.add("active");
+                }, 4000);
+            }
+        } else {
+            bannerSlider.innerHTML = `<img src="https://placehold.co/1200x400/fff0f7/ff3f9b?text=It+Pink+Club" class="slide active" alt="Banner Default">`;
+        }
+    } catch (e) {
+        console.log("Erro ao carregar banners (usando padrão):", e);
+        bannerSlider.innerHTML = `<img src="https://placehold.co/1200x400/fff0f7/ff3f9b?text=It+Pink+Club" class="slide active" alt="Banner Default">`;
+    }
 }
 
 async function carregarProdutos() {
@@ -98,6 +131,7 @@ function renderizarProdutos() {
             <div class="card-conteudo">
                 <span class="card-cat">${produto.categoria || 'Geral'}</span>
                 <h3>${produto.nome || 'Produto'}</h3>
+                <strong>${produto.preco ? 'R$ ' + produto.preco : ''}</strong>
                 <a href="${produto.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-comprar">
                     Ver na Shopee 🛍️
                 </a>
@@ -115,5 +149,6 @@ if (inputBusca) {
 
 document.addEventListener("DOMContentLoaded", () => {
     carregarFiltrosCategorias();
+    carregarBanners();
     carregarProdutos();
 });
