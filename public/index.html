@@ -202,6 +202,22 @@
 </footer>
 
 <script>
+    // 1. Carrossel de Banners Automático
+    let indiceAtual = 0;
+    const slides = document.querySelectorAll('.banner-slider .slide');
+
+    function alternarSlides() {
+        if (slides.length === 0) return;
+        slides[indiceAtual].classList.remove('active');
+        indiceAtual = (indiceAtual + 1) % slides.length;
+        slides[indiceAtual].classList.add('active');
+    }
+
+    if (slides.length > 1) {
+        setInterval(alternarSlides, 4000); // Troca a cada 4 segundos
+    }
+
+    // 2. Vitrine e Produtos do Painel Admin
     let produtosGlobal = JSON.parse(localStorage.getItem('produtos_pink')) || [];
     let categoriaSelecionada = 'todos';
 
