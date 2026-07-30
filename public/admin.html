@@ -64,7 +64,9 @@
         /* Buttons */
         .btn-primary { background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2); transition: opacity 0.2s; }
         .btn-primary:hover { opacity: 0.9; }
-        .btn-danger { background: #ef4444; color: white; border: none; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; }
+        .btn-warning { background: #f59e0b; color: white; border: none; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; margin-right: 5px; font-family: 'Poppins', sans-serif; font-weight: 500; }
+        .btn-warning:hover { background: #d97706; }
+        .btn-danger { background: #ef4444; color: white; border: none; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 500; }
         .btn-danger:hover { background: #dc2626; }
 
         /* Table */
@@ -95,7 +97,7 @@
                 <button onclick="mudarSecao('produtos')">🛍 Produtos</button>
                 <ul class="sub-menu">
                     <li><a href="#" onclick="mudarSecao('produtos')">Todos</a></li>
-                    <li><a href="#" onclick="mudarSecao('novo-produto')">+ Adicionar</a></li>
+                    <li><a href="#" onclick="prepararNovoProduto()">+ Adicionar</a></li>
                 </ul>
             </li>
             <li><button onclick="mudarSecao('categorias')">📂 Categorias</button></li>
@@ -136,8 +138,8 @@
             </div>
             <div style="background: #fff0f6; padding: 20px; border-radius: 12px; border: 1px dashed var(--primary);">
                 <h3 style="color: var(--primary-dark); margin-top:0;">🚀 Atalho Rápido</h3>
-                <p style="font-size: 0.9rem; color: #555;">Use o menu lateral para gerenciar achadinhos, cadastrar novos produtos com arraste de imagem e acompanhar tudo sincronizado em tempo real com o Firebase!</p>
-                <button class="btn-primary" onclick="mudarSecao('novo-produto')">+ Novo Produto</button>
+                <p style="font-size: 0.9rem; color: #555;">Use o menu lateral para gerenciar achadinhos, cadastrar novos produtos e editar itens direto pelo painel.</p>
+                <button class="btn-primary" onclick="prepararNovoProduto()">+ Novo Produto</button>
             </div>
         </section>
 
@@ -161,10 +163,11 @@
             </div>
         </section>
 
-        <!-- 3. ADICIONAR PRODUTO -->
+        <!-- 3. ADICIONAR / EDITAR PRODUTO -->
         <section id="sec-novo-produto" class="admin-section">
-            <h2>Cadastrar Novo Achadinho</h2>
+            <h2 id="form-titulo">Cadastrar Novo Achadinho</h2>
             <form id="form-produto">
+                <input type="hidden" id="produto-id">
                 <div class="form-grid">
                     <div class="form-group full">
                         <label>🖼 Foto do Produto (Arraste ou Clique)</label>
@@ -212,7 +215,7 @@
                         <label><input type="checkbox" id="mostrarHome" checked> [✓] Mostrar na Home</label>
                     </div>
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Salvar Achadinho 🚀</button>
+                <button type="submit" id="btn-salvar" class="btn-primary" style="width: 100%; margin-top: 15px;">Salvar Achadinho 🚀</button>
             </form>
         </section>
 
@@ -246,7 +249,7 @@
     <!-- Script Firebase e Lógica do Painel -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
         const firebaseConfig = {
           apiKey: "AIzaSyD9ojNdDkM9M6iO16SW8k7wfWnnJbvHS40",
@@ -285,7 +288,18 @@
             window.location.href = 'login.html';
         };
 
-        // Redimensionar imagem automaticamente para evitar estouro de tamanho no Firebase
+        // Preparar formulário para novo produto (limpar modo de edição)
+        window.prepararNovoProduto = function() {
+            document.getElementById('form-produto').reset();
+            document.getElementById('produto-id').value = '';
+            document.getElementById('form-titulo').textContent = 'Cadastrar Novo Achadinho';
+            document.getElementById('btn-salvar').textContent = 'Salvar Achadinho 🚀';
+            document.getElementById('preview').style.display = 'none';
+            document.getElementById('drop-zone').querySelector('p').textContent = '📁 Clique aqui ou arraste a imagem do produto';
+            mudarSecao('novo-produto');
+        };
+
+        // Compactador de imagem automático
         const dropZone = document.getElementById('drop-zone');
         const inputImagem = document.getElementById('imagem');
         const preview = document.getElementById('preview');
@@ -297,30 +311,20 @@
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
-                    
-                    // Limita o tamanho máximo para otimizar o banco de dados
                     let width = img.width;
                     let height = img.height;
                     const maxWidth = 500;
                     const maxHeight = 500;
                     
                     if (width > height) {
-                        if (width > maxWidth) {
-                            height *= maxWidth / width;
-                            width = maxWidth;
-                        }
+                        if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; }
                     } else {
-                        if (height > maxHeight) {
-                            width *= maxHeight / height;
-                            height = maxHeight;
-                        }
+                        if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; }
                     }
                     
                     canvas.width = width;
                     canvas.height = height;
                     ctx.drawImage(img, 0, 0, width, height);
-                    
-                    // Converte para JPEG comprimido
                     const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
                     callback(dataUrl);
                 };
@@ -370,11 +374,13 @@
             }
         });
 
-        // Salvar Produto no Firebase com descrição opcional
+        // Salvar ou Atualizar Produto no Firebase
         const form = document.getElementById('form-produto');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const novoProduto = {
+            const idProduto = document.getElementById('produto-id').value;
+            
+            const dadosProduto = {
                 titulo: document.getElementById('titulo').value,
                 categoria: document.getElementById('categoria').value,
                 preco: document.getElementById('preco').value || '',
@@ -383,23 +389,29 @@
                 descricao: document.getElementById('descricao').value || '',
                 destaque: document.getElementById('destaque').checked,
                 mostrarHome: document.getElementById('mostrarHome').checked,
-                criadoEm: new Date()
+                atualizadoEm: new Date()
             };
 
             try {
-                await addDoc(collection(db, "produtos"), novoProduto);
-                alert('Achadinho cadastrado com sucesso na nuvem! 💖');
-                form.reset();
-                preview.style.display = 'none';
-                dropZone.querySelector('p').textContent = '📁 Clique aqui ou arraste a imagem do produto';
+                if (idProduto) {
+                    // Atualizar produto existente
+                    await updateDoc(doc(db, "produtos", idProduto), dadosProduto);
+                    alert('Achadinho atualizado com sucesso! 💖');
+                } else {
+                    // Criar novo produto
+                    dadosProduto.criadoEm = new Date();
+                    await addDoc(collection(db, "produtos"), dadosProduto);
+                    alert('Achadinho cadastrado com sucesso na nuvem! 💖');
+                }
+                prepararNovoProduto();
                 mudarSecao('produtos');
             } catch (error) {
-                console.error("Erro ao cadastrar: ", error);
+                console.error("Erro ao salvar: ", error);
                 alert('Erro ao salvar produto. A imagem pode estar muito pesada.');
             }
         });
 
-        // Listar Produtos e Atualizar Contador no Dashboard
+        // Listar Produtos na Tabela com Botões de Ação Completa
         const tabelaProdutos = document.getElementById('tabela-produtos');
         const statProdutos = document.getElementById('stat-produtos');
 
@@ -425,12 +437,50 @@
                     <td style="text-transform: capitalize;">${prod.categoria}</td>
                     <td>✅ Ativo</td>
                     <td>
+                        <button class="btn-warning" onclick="window.editarProduto('${id}')">✏️ Editar</button>
                         <button class="btn-danger" onclick="window.excluirProduto('${id}')">🗑️ Excluir</button>
                     </td>
                 `;
                 tabelaProdutos.appendChild(tr);
             });
         });
+
+        // Carregar dados no formulário para edição
+        window.editarProduto = async function(id) {
+            try {
+                const docRef = doc(db, "produtos", id);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const prod = docSnap.data();
+                    document.getElementById('produto-id').value = id;
+                    document.getElementById('titulo').value = prod.titulo || '';
+                    document.getElementById('categoria').value = prod.categoria || 'beleza';
+                    document.getElementById('preco').value = prod.preco || '';
+                    document.getElementById('link').value = prod.link || '';
+                    document.getElementById('descricao').value = prod.descricao || '';
+                    document.getElementById('destaque').checked = prod.destaque !== false;
+                    document.getElementById('mostrarHome').checked = prod.mostrarHome !== false;
+                    
+                    document.getElementById('imagem').value = prod.imagem || '';
+                    if (prod.imagem) {
+                        preview.src = prod.imagem;
+                        preview.style.display = 'block';
+                        dropZone.querySelector('p').textContent = '✅ Imagem carregada!';
+                    }
+
+                    document.getElementById('form-titulo').textContent = 'Editar Achadinho';
+                    document.getElementById('btn-salvar').textContent = 'Atualizar Achadinho 🔄';
+                    
+                    mudarSecao('novo-produto');
+                } else {
+                    alert('Produto não encontrado.');
+                }
+            } catch (error) {
+                console.error("Erro ao carregar para edição:", error);
+                alert('Erro ao carregar dados do produto.');
+            }
+        };
 
         window.excluirProduto = async function(id) {
             if (confirm('Deseja realmente excluir este produto?')) {
