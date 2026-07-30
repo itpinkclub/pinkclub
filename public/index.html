@@ -136,7 +136,7 @@
 <section class="vitrine" aria-live="polite">
     <p id="resultado" class="resultado" style="display: none;"></p>
 
-    <!-- Contêiner onde os produtos cadastrados vão aparecer -->
+    <!-- Contêiner onde os produtos do Firestore vão aparecer -->
     <div id="produtos" class="produtos" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; padding: 1rem 0;"></div>
 </section>
 
@@ -201,7 +201,27 @@
     </div>
 </footer>
 
-<script>
+<!-- FIREBASE & SCRIPT DA VITRINE -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9ojNdDkM9M6iO16SW8k7wfWnnJbvHS40",
+      authDomain: "itpinkclub-a786e.firebaseapp.com",
+      projectId: "itpinkclub-a786e",
+      storageBucket: "itpinkclub-a786e.firebasestorage.app",
+      messagingSenderId: "716111814812",
+      appId: "1:716111814812:web:06e1c76950d39021698d59",
+      measurementId: "G-3XSF7CYT1D"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let produtosGlobal = [];
+    let categoriaSelecionada = 'todos';
+
     // 1. Carrossel de Banners Automático
     let indiceAtual = 0;
     const slides = document.querySelectorAll('.banner-slider .slide');
@@ -217,9 +237,36 @@
         setInterval(alternarSlides, 4000); // Troca a cada 4 segundos
     }
 
-    // 2. Vitrine e Produtos do Painel Admin
-    let produtosGlobal = JSON.parse(localStorage.getItem('produtos_pink')) || [];
-    let categoriaSelecionada = 'todos';
+    // 2. Sincronização em tempo real com o Firestore
+    onSnapshot(collection(db, "produtos"), (snapshot) => {
+        produtosGlobal = [];
+        snapshot.forEach((doc) => {
+            produtosGlobal.push({ id: doc.id, ...doc.data() });
+        });
+        filtrarVitrine();
+    });
+
+    window.mudarCategoria = function(cat, btnElement) {
+        categoriaSelecionada = cat;
+        document.querySelectorAll('.categoria').forEach(b => b.classList.remove('ativa'));
+        if(btnElement) btnElement.classList.add('ativa');
+        filtrarVitrine();
+    };
+
+    window.filtrarVitrine = function() {
+        const termo = document.getElementById('pesquisa').value.toLowerCase();
+        let lista = produtosGlobal;
+
+        if (categoriaSelecionada !== 'todos') {
+            lista = lista.filter(p => p.categoria === categoriaSelecionada);
+        }
+
+        if (termo) {
+            lista = lista.filter(p => p.titulo && p.titulo.toLowerCase().includes(termo));
+        }
+
+        renderizarVitrine(lista);
+    };
 
     function renderizarVitrine(lista) {
         const container = document.getElementById('produtos');
@@ -247,31 +294,6 @@
             container.appendChild(card);
         });
     }
-
-    function mudarCategoria(cat, btnElement) {
-        categoriaSelecionada = cat;
-        document.querySelectorAll('.categoria').forEach(b => b.classList.remove('ativa'));
-        if(btnElement) btnElement.classList.add('ativa');
-        filtrarVitrine();
-    }
-
-    function filtrarVitrine() {
-        const termo = document.getElementById('pesquisa').value.toLowerCase();
-        let lista = produtosGlobal;
-
-        if (categoriaSelecionada !== 'todos') {
-            lista = lista.filter(p => p.categoria === categoriaSelecionada);
-        }
-
-        if (termo) {
-            lista = lista.filter(p => p.titulo.toLowerCase().includes(termo));
-        }
-
-        renderizarVitrine(lista);
-    }
-
-    // Inicializa a vitrine ao carregar a página
-    renderizarVitrine(produtosGlobal);
 </script>
 
 </body>

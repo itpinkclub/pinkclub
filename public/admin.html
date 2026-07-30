@@ -1,304 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo - It Pink Club</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>💖 Painel Admin | It Pink Club</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --pink: #ec4899;
-            --pink-light: #fff0f6;
-            --pink-border: #f6b8d6;
-            --shadow: 0 4px 12px rgba(236, 72, 153, 0.08);
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #fffdf9;
-            margin: 0;
-            color: #333;
-        }
-        .admin-layout {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            min-height: 100vh;
-        }
-        @media (max-width: 900px) {
-            .admin-layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        .admin-sidebar {
-            background: white;
-            border-right: 1px solid #ffe3f0;
-            padding: 1.5rem;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            box-sizing: border-box;
-        }
-        .admin-content {
-            padding: 2rem;
-            box-sizing: border-box;
-            background: #fffbfe;
-        }
-        .grid-produtos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-        .cat-btn {
-            padding: 0.4rem 0.8rem;
-            border-radius: 9999px;
-            border: 1px solid var(--pink-border);
-            background: #fff;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-        .cat-btn:hover, .cat-btn.ativo {
-            background: var(--pink);
-            color: white;
-            border-color: var(--pink);
-        }
-        #toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #10b981;
-            color: white;
-            text-align: center;
-            border-radius: 8px;
-            padding: 12px;
-            position: fixed;
-            z-index: 1000;
-            right: 30px;
-            bottom: 30px;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+        body { font-family: 'Poppins', sans-serif; background: #fff5f8; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 25px; border-radius: 1rem; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.1); }
+        h1 { color: #d63384; text-align: center; font-size: 1.5rem; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 600; color: #555; margin-bottom: 5px; font-size: 0.9rem; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ffccd5; border-radius: 8px; font-size: 0.95rem; box-sizing: border-box; }
+        button { background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2); }
+        button:hover { opacity: 0.9; }
+        .lista-produtos { margin-top: 30px; }
+        .item-admin { display: flex; justify-content: space-between; align-items: center; background: #fff0f6; padding: 10px 15px; border-radius: 8px; margin-bottom: 10px; }
+        .btn-excluir { background: #ef4444; width: auto; padding: 6px 12px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-    <script>
-        if (localStorage.getItem("logado") !== "true") {
-            window.location.href = "login.html";
-        }
-    </script>
 
-    <div class="admin-layout">
-        <!-- COLUNA ESQUERDA: FORMULÁRIO FIXO -->
-        <aside class="admin-sidebar">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2 style="color: var(--pink); font-size: 1.2rem; margin: 0;">💖 Painel Admin</h2>
-                <button onclick="fazerLogout()" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 0.3rem 0.8rem; border-radius: 9999px; cursor: pointer; font-size: 0.8rem; font-weight: 500;">🚪 Sair</button>
-            </div>
+<div class="container">
+    <h1>💖 Cadastrar Achadinho</h1>
+    
+    <form id="form-produto">
+        <div class="form-group">
+            <label>Título do Produto</label>
+            <input type="text" id="titulo" required placeholder="Ex: Organizador de Maquiagem">
+        </div>
+        
+        <div class="form-group">
+            <label>Categoria</label>
+            <select id="categoria">
+                <option value="skincare">Beleza</option>
+                <option value="casa">Casa</option>
+                <option value="moda">Moda</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="papelaria">Papelaria</option>
+                <option value="pets">Pets</option>
+            </select>
+        </div>
 
-            <h3 style="font-size: 1rem; margin-bottom: 1rem; color: #444;">➕ Novo Produto</h3>
+        <div class="form-group">
+            <label>Link da Imagem (URL ou Foto)</label>
+            <input type="text" id="imagem" required placeholder="Cole o link da foto ou arraste">
+        </div>
 
-            <form id="form-produto" onsubmit="salvarProduto(event)" style="display: flex; flex-direction: column; gap: 0.8rem;">
-                <div>
-                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Nome do Produto</label>
-                    <input type="text" id="titulo-prod" required placeholder="Ex: Organizador..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
-                </div>
+        <div class="form-group">
+            <label>Link de Afiliado da Shopee</label>
+            <input type="url" id="link" required placeholder="https://shope.ee/...">
+        </div>
 
-                <div>
-                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Categoria</label>
-                    <select id="categoria-prod" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; background: white; box-sizing: border-box;">
-                        <option value="skincare">💄 Beleza & Autocuidado</option>
-                        <option value="casa">🏠 Casa & Decoração</option>
-                        <option value="moda">👗 Moda</option>
-                        <option value="tecnologia">📱 Tecnologia</option>
-                        <option value="papelaria">🎨 Papelaria</option>
-                        <option value="pets">🐾 Pets</option>
-                    </select>
-                </div>
+        <button type="submit">Cadastrar Achadinho 🚀</button>
+    </form>
 
-                <div>
-                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Link do Afiliado</label>
-                    <input type="url" id="link-prod" required placeholder="https://..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
-                </div>
-
-                <div>
-                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Imagem do Produto</label>
-                    <!-- Input de arquivo oculto -->
-                    <input type="file" id="input-arquivo-img" accept="image/*" style="display: none;" onchange="processarArquivo(this.files[0])">
-                    
-                    <!-- Área de Arrastar e Soltar (Dropzone) -->
-                    <div id="drop-zone" onclick="document.getElementById('input-arquivo-img').click()" ondragover="event.preventDefault(); this.style.borderColor='var(--pink)';" ondragleave="this.style.borderColor='var(--pink-border)';" ondrop="tratarDrop(event)" style="background: var(--pink-light); height: 110px; border-radius: 0.6rem; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; border: 2px dashed var(--pink-border); cursor: pointer; text-align: center; padding: 0.5rem; box-sizing: border-box;">
-                        <span style="font-size: 0.85rem; color: var(--pink); font-weight: 500;">📷 Arraste a imagem ou clique aqui</span>
-                        <span style="font-size: 0.7rem; color: #888; margin-top: 0.2rem;">PNG, JPG ou WEBP</span>
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-                    <button type="submit" style="flex: 2; background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 0.7rem; border-radius: 9999px; font-weight: 600; cursor: pointer; font-size: 0.9rem; box-shadow: var(--shadow);">💾 Cadastrar</button>
-                    <button type="button" onclick="limparFormulario()" style="flex: 1; background: #f3f4f6; border: 1px solid #d1d5db; color: #4b5563; padding: 0.7rem; border-radius: 9999px; font-weight: 600; cursor: pointer; font-size: 0.9rem;">🧹 Limpar</button>
-                </div>
-            </form>
-        </aside>
-
-        <!-- COLUNA DIREITA: VITRINE E LISTAGEM -->
-        <main class="admin-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-                <h2 id="contador-produtos" style="color: var(--pink); font-size: 1.3rem; margin: 0;">📦 Produtos (0)</h2>
-                <input type="text" id="pesquisa-admin" oninput="pesquisarProdutos()" placeholder="🔍 Pesquisar produto..." style="padding: 0.6rem 1rem; border: 1px solid var(--pink-border); border-radius: 9999px; outline-color: var(--pink); font: inherit; font-size: 0.9rem; width: 250px; background: white;">
-            </div>
-
-            <!-- Filtros de Categoria com Ícones -->
-            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem;">
-                <button class="cat-btn ativo" onclick="filtrarAdmin('todos', this)">✨ Todos</button>
-                <button class="cat-btn" onclick="filtrarAdmin('skincare', this)">💄 Beleza</button>
-                <button class="cat-btn" onclick="filtrarAdmin('casa', this)">🏠 Casa</button>
-                <button class="cat-btn" onclick="filtrarAdmin('moda', this)">👗 Moda</button>
-                <button class="cat-btn" onclick="filtrarAdmin('tecnologia', this)">📱 Tecnologia</button>
-                <button class="cat-btn" onclick="filtrarAdmin('papelaria', this)">🎨 Papelaria</button>
-                <button class="cat-btn" onclick="filtrarAdmin('pets', this)">🐾 Pets</button>
-            </div>
-
-            <!-- Lista de Cards Menores -->
-            <div id="lista-produtos-admin" class="grid-produtos">
-                <!-- Produtos entram aqui dinamicamente -->
-            </div>
-        </main>
+    <div class="lista-produtos">
+        <h2>Gerenciar Produtos Cadastrados</h2>
+        <div id="container-admin"></div>
     </div>
+</div>
 
-    <!-- Toast de Sucesso -->
-    <div id="toast">✅ Produto cadastrado com sucesso!</div>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-    <script>
-        let produtos = JSON.parse(localStorage.getItem('produtos_pink')) || [];
-        let categoriaAtual = 'todos';
-        let imagemBase64Temp = '';
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9ojNdDkM9M6iO16SW8k7wfWnnJbvHS40",
+      authDomain: "itpinkclub-a786e.firebaseapp.com",
+      projectId: "itpinkclub-a786e",
+      storageBucket: "itpinkclub-a786e.firebasestorage.app",
+      messagingSenderId: "716111814812",
+      appId: "1:716111814812:web:06e1c76950d39021698d59",
+      measurementId: "G-3XSF7CYT1D"
+    };
 
-        function processarArquivo(arquivo) {
-            if (!arquivo || !arquivo.type.startsWith('image/')) return;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imagemBase64Temp = e.target.result;
-                const dropZone = document.getElementById('drop-zone');
-                dropZone.innerHTML = `<img src="${imagemBase64Temp}" style="width:100%; height:100%; object-fit:cover; border-radius:0.5rem;">`;
-            };
-            reader.readAsDataURL(arquivo);
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById('form-produto');
+    const containerAdmin = document.getElementById('container-admin');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const novoProduto = {
+            titulo: document.getElementById('titulo').value,
+            categoria: document.getElementById('categoria').value,
+            imagem: document.getElementById('imagem').value,
+            link: document.getElementById('link').value,
+            criadoEm: new Date()
+        };
+
+        try {
+            await addDoc(collection(db, "produtos"), novoProduto);
+            alert('Achadinho cadastrado com sucesso na nuvem! 💖');
+            form.reset();
+        } catch (error) {
+            console.error("Erro ao cadastrar: ", error);
+            alert('Erro ao cadastrar produto.');
+        }
+    });
+
+    // Listar e permitir exclusão no admin em tempo real
+    onSnapshot(collection(db, "produtos"), (snapshot) => {
+        containerAdmin.innerHTML = '';
+        if (snapshot.empty) {
+            containerAdmin.innerHTML = '<p style="color: #666; font-size: 0.9rem;">Nenhum produto na nuvem.</p>';
+            return;
         }
 
-        function tratarDrop(event) {
-            event.preventDefault();
-            document.getElementById('drop-zone').style.borderColor = 'var(--pink-border)';
-            if (event.dataTransfer.files && event.dataTransfer.files[0]) {
-                processarArquivo(event.dataTransfer.files[0]);
-            }
-        }
+        snapshot.forEach((documento) => {
+            const prod = documento.data();
+            const id = documento.id;
 
-        function renderizarProdutos(lista) {
-            const container = document.getElementById('lista-produtos-admin');
-            container.innerHTML = '';
-
-            document.getElementById('contador-produtos').innerText = `📦 Produtos (${produtos.length})`;
-
-            if (lista.length === 0) {
-                container.innerHTML = '<p style="color: #666; grid-column: 1/-1; text-align: center; padding: 2rem;">Nenhum produto encontrado.</p>';
-                return;
-            }
-
-            lista.forEach((prod, index) => {
-                const card = document.createElement('div');
-                card.style.cssText = "background: white; border: 1px solid #ffe3f0; border-radius: 1rem; padding: 0.8rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 0.4rem;";
-                
-                card.innerHTML = `
-                    <div style="background: var(--pink-light); height: 120px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; color: var(--pink); font-weight: 600; overflow: hidden;">
-                        ${prod.imagem ? `<img src="${prod.imagem}" style="width:100%; height:100%; object-fit:cover;">` : '📷 Imagem'}
-                    </div>
-                    <h3 style="font-size: 0.9rem; margin: 0.2rem 0; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${prod.titulo}">${prod.titulo}</h3>
-                    <span style="font-size: 0.75rem; color: #db2777; font-weight: 500;">${prod.categoria}</span>
-                    <div style="display: flex; gap: 0.4rem; margin-top: 0.4rem;">
-                        <button onclick="excluirProduto(${index})" style="width: 100%; padding: 0.4rem; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; border-radius: 0.4rem; cursor: pointer; font-size: 0.8rem; font-weight: 500;">🗑 Excluir</button>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function salvarProduto(event) {
-            event.preventDefault();
-
-            if (!imagemBase64Temp) {
-                alert("Por favor, adicione uma imagem para o produto!");
-                return;
-            }
-
-            const novoProduto = {
-                titulo: document.getElementById('titulo-prod').value,
-                categoria: document.getElementById('categoria-prod').value,
-                link: document.getElementById('link-prod').value,
-                imagem: imagemBase64Temp
-            };
-
-            produtos.unshift(novoProduto);
-            localStorage.setItem('produtos_pink', JSON.stringify(produtos));
-            
-            limparFormulario();
-            filtrarAdmin(categoriaAtual);
-            mostrarToast();
-        }
-
-        function limparFormulario() {
-            document.getElementById('form-produto').reset();
-            imagemBase64Temp = '';
-            document.getElementById('drop-zone').innerHTML = `
-                <span style="font-size: 0.85rem; color: var(--pink); font-weight: 500;">📷 Arraste a imagem ou clique aqui</span>
-                <span style="font-size: 0.7rem; color: #888; margin-top: 0.2rem;">PNG, JPG ou WEBP</span>
+            const div = document.createElement('div');
+            div.className = 'item-admin';
+            div.innerHTML = `
+                <span style="font-size: 0.9rem; font-weight: 500;">${prod.titulo}</span>
+                <button class="btn-excluir" onclick="window.excluirProduto('${id}')">Excluir</button>
             `;
-        }
+            containerAdmin.appendChild(div);
+        });
+    });
 
-        function excluirProduto(index) {
-            if (confirm("Tem certeza que deseja excluir este produto?")) {
-                produtos.splice(index, 1);
-                localStorage.setItem('produtos_pink', JSON.stringify(produtos));
-                filtrarAdmin(categoriaAtual);
+    window.excluirProduto = async function(id) {
+        if (confirm('Deseja realmente excluir este achadinho?')) {
+            try {
+                await deleteDoc(doc(db, "produtos", id));
+            } catch (error) {
+                console.error("Erro ao excluir: ", error);
             }
         }
+    };
+</script>
 
-        function filtrarAdmin(cat, btnElement) {
-            categoriaAtual = cat;
-            if (btnElement) {
-                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('ativo'));
-                btnElement.classList.add('ativo');
-            }
-
-            let listaFiltrada = cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat);
-            const termo = document.getElementById('pesquisa-admin').value.toLowerCase();
-            if (termo) {
-                listaFiltrada = listaFiltrada.filter(p => p.titulo.toLowerCase().includes(termo));
-            }
-            renderizarProdutos(listaFiltrada);
-        }
-
-        function pesquisarProdutos() {
-            filtrarAdmin(categoriaAtual);
-        }
-
-        function mostrarToast() {
-            const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-        }
-
-        function fazerLogout() {
-            localStorage.removeItem("logado");
-            window.location.href = "login.html";
-        }
-
-        renderizarProdutos(produtos);
-    </script>
 </body>
 </html>
