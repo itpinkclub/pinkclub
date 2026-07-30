@@ -14,9 +14,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Estado global para filtros combinados (Busca + Categoria)
+let termoBusca = "";
+let categoriaAtiva = "todos";
+
 document.addEventListener("DOMContentLoaded", () => {
     carregarProdutos();
     configurarBusca();
+    configurarFiltroCategorias();
 });
 
 async function carregarProdutos() {
@@ -35,16 +40,22 @@ async function carregarProdutos() {
         let html = "";
         snapshot.forEach((doc) => {
             const p = doc.data();
+            
+            // Badge de Destaque Criativo em tom Pink chamativo
+            const badgeDestaque = p.destaque 
+                ? `<span style="position: absolute; top: 12px; left: 12px; background: #FF007F; color: white; padding: 4px 12px; font-size: 0.75rem; font-weight: 700; border-radius: 9999px; z-index: 10; box-shadow: 0 4px 10px rgba(255,0,127,0.3); text-transform: uppercase; letter-spacing: 0.5px;">✨ Você Merece Ter</span>` 
+                : '';
+
             html += `
-                <div class="card-produto">
-                    ${p.destaque ? '<span class="badge-destaque">Destaque</span>' : ''}
-                    <div class="card-imagem">
-                        <img src="${p.imagem || p.url}" alt="${p.titulo || 'Produto'}">
+                <div class="produto-card" data-categoria="${(p.categoria || 'achadinho').toLowerCase()}">
+                    ${badgeDestaque}
+                    <div class="produto-img-container">
+                        <img src="${p.imagem || p.url}" alt="${p.titulo || 'Produto'}" loading="lazy">
                     </div>
-                    <div class="card-conteudo">
-                        <p class="card-cat">${p.categoria || 'Achadinho'}</p>
-                        <h3>${p.titulo || 'Produto It Pink'}</h3>
-                        <a href="${p.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-comprar">Ver Achadinho 💖</a>
+                    <div class="produto-conteudo">
+                        <span class="produto-categoria-tag">${p.categoria || 'Achadinho'}</span>
+                        <h3 class="produto-titulo">${p.titulo || 'Produto It Pink'}</h3>
+                        <a href="${p.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-acao">Ver Achadinho 💖</a>
                     </div>
                 </div>
             `;
@@ -58,46 +69,76 @@ async function carregarProdutos() {
 
 function renderizarFallbackProdutos(container) {
     container.innerHTML = `
-        <div class="card-produto">
-            <span class="badge-destaque">Favorito</span>
-            <div class="card-imagem">
+        <div class="produto-card" data-categoria="beleza">
+            <span style="position: absolute; top: 12px; left: 12px; background: #FF007F; color: white; padding: 4px 12px; font-size: 0.75rem; font-weight: 700; border-radius: 9999px; z-index: 10; box-shadow: 0 4px 10px rgba(255,0,127,0.3); text-transform: uppercase; letter-spacing: 0.5px;">✨ Você Merece Ter</span>
+            <div class="produto-img-container">
                 <img src="/assets/banner1.webp" alt="Exemplo Achadinho">
             </div>
-            <div class="card-conteudo">
-                <p class="card-cat">Boutique</p>
-                <h3>Kit Skincare Rosa Self-Care</h3>
-                <a href="#" class="btn-comprar">Ver Achadinho 💖</a>
+            <div class="produto-conteudo">
+                <span class="produto-categoria-tag">Beleza</span>
+                <h3 class="produto-titulo">Kit Skincare Rosa Self-Care Completo</h3>
+                <a href="#" class="btn-acao">Ver Achadinho 💖</a>
             </div>
         </div>
-        <div class="card-produto">
-            <span class="badge-destaque">Tendência</span>
-            <div class="card-imagem">
+        <div class="produto-card" data-categoria="beleza">
+            <span style="position: absolute; top: 12px; left: 12px; background: #FF007F; color: white; padding: 4px 12px; font-size: 0.75rem; font-weight: 700; border-radius: 9999px; z-index: 10; box-shadow: 0 4px 10px rgba(255,0,127,0.3); text-transform: uppercase; letter-spacing: 0.5px;">🔥 Queridinho Delas</span>
+            <div class="produto-img-container">
                 <img src="/assets/banner2.webp" alt="Exemplo Achadinho">
             </div>
-            <div class="card-conteudo">
-                <p class="card-cat">Make</p>
-                <h3>Paleta de Sombras Glow Pink</h3>
-                <a href="#" class="btn-comprar">Ver Achadinho 💖</a>
+            <div class="produto-conteudo">
+                <span class="produto-categoria-tag">Beleza</span>
+                <h3 class="produto-titulo">Paleta de Sombras Glow Pink Luxury</h3>
+                <a href="#" class="btn-acao">Ver Achadinho 💖</a>
             </div>
         </div>
     `;
 }
 
 function configurarBusca() {
-    const inputBusca = document.getElementById("busca-produto");
+    // Atualizado para o ID 'pesquisa' que está no seu arquivo HTML
+    const inputBusca = document.getElementById("pesquisa");
     if (!inputBusca) return;
 
     inputBusca.addEventListener("input", (e) => {
-        const termo = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll(".card-produto");
-        cards.forEach(card => {
-            const titulo = card.querySelector("h3").textContent.toLowerCase();
-            const categoria = card.querySelector(".card-cat").textContent.toLowerCase();
-            if (titulo.includes(termo) || categoria.includes(termo)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
+        termoBusca = e.target.value.toLowerCase();
+        aplicarFiltros();
+    });
+}
+
+function configurarFiltroCategorias() {
+    const botoes = document.querySelectorAll("#categorias .categoria");
+    
+    botoes.forEach(botao => {
+        botao.addEventListener("click", () => {
+            // Remove a classe ativa de todos e adiciona no clicado
+            botoes.forEach(btn => btn.classList.remove("ativa"));
+            botao.classList.add("ativa");
+            
+            // Extrai o nome da categoria com base no texto do botão (ex: "Beleza", "Casa")
+            const textoBotao = botao.textContent.trim().toLowerCase();
+            categoriaAtiva = textoBotao.includes("todos") ? "todos" : textoBotao;
+            
+            aplicarFiltros();
         });
+    });
+}
+
+function aplicarFiltros() {
+    const cards = document.querySelectorAll(".produto-card");
+    
+    cards.forEach(card => {
+        const titulo = card.querySelector(".produto-titulo").textContent.toLowerCase();
+        const categoriaCard = card.getAttribute("data-categoria") || "";
+        
+        // Verifica se atende ao termo digitado
+        const bateBusca = titulo.includes(termoBusca) || categoriaCard.includes(termoBusca);
+        // Verifica se atende à categoria selecionada
+        const bateCategoria = (categoriaAtiva === "todos" || categoriaCard.includes(categoriaAtiva));
+        
+        if (bateBusca && bateCategoria) {
+            card.style.display = "flex"; // Mantém a estrutura flex do card
+        } else {
+            card.style.display = "none";
+        }
     });
 }
