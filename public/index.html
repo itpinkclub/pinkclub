@@ -4,37 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>It Pink Club | Lifestyle & Home Decor</title>
+    <title>💖 It Pink Club | Achadinhos & Lifestyle da Shopee</title>
 
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="ouUpmd0L-F-6NngD0j5jJGvzfFvZcFHDgI5ECPSboQw">
 
     <!-- SEO -->
-    <meta name="description" content="Curadoria exclusiva de decoração, organização e lifestyle com a estética aconchegante, elegante e sofisticada do It Pink Club.">
-    <meta name="keywords" content="decoração, lifestyle, home decor, achadinhos, pinterest aesthetic, rosa sofisticado, it pink club">
+    <meta name="description" content="Os melhores achadinhos da Shopee. Moda feminina, beleza, skincare, decoração, casa, tecnologia e mimos escolhidos com curadoria exclusiva para você.">
+    <meta name="keywords" content="Shopee, achadinhos, ofertas Shopee, moda feminina, beleza, skincare, cabelos, decoração, casa, tecnologia, pets, papelaria, It Pink Club">
     <meta name="author" content="It Pink Club">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#FCE7F3">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="pt-BR">
+    <meta name="revisit-after" content="7 days">
+    <meta name="theme-color" content="#EC4899">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://pinkclub-three.vercel.app/">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / WhatsApp / Pinterest -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="It Pink Club">
-    <meta property="og:title" content="It Pink Club | Lifestyle & Home Decor">
-    <meta property="og:description" content="Curadoria exclusiva de decoração, organização e lifestyle com a identidade rosa sofisticada e acolhedora.">
+    <meta property="og:title" content="💖 It Pink Club | Os achadinhos mais lindos da Shopee">
+    <meta property="og:description" content="Descubra os achadinhos mais lindos da Shopee com ofertas imperdíveis. Moda, beleza, skincare, casa e mimos escolhidos com carinho!">
     <meta property="og:url" content="https://pinkclub-three.vercel.app/">
     <meta property="og:image" content="https://pinkclub-three.vercel.app/assets/banner1.webp">
+    <meta property="og:image:alt" content="It Pink Club">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="💖 It Pink Club">
+    <meta name="twitter:description" content="Os melhores achadinhos da Shopee escolhidos com carinho para você.">
+    <meta name="twitter:image" content="https://pinkclub-three.vercel.app/assets/banner1.webp">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+    <link rel="shortcut icon" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
 
-    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -42,30 +54,22 @@
     <!-- Preload Banner -->
     <link rel="preload" as="image" href="/assets/banner1.webp" type="image/webp">
 
-    <!-- CSS Redesenhado - Identidade Rosa Sofisticada, Premium, Cozy e Pinterest -->
+    <!-- CSS Modernizado -->
     <style>
         :root {
-            /* Paleta de Cores Baseada em Tons de Rosa e Off-White Rosado */
-            --bg-main: #FFF5F7;
+            --bg-main: #FFF9FB;
             --bg-white: #FFFFFF;
-            --rosa-pastel: #FDF2F4;
             --rosa-claro: #FCE7F3;
-            --rosa-medio: #F472B6;
-            --rosa-vibrante: #DB2777;
-            --rosa-escuro: #831843;
-            --dourado-claro: #D4AF37;
-            
-            --cinza-borda: #FBCFE8;
-            --texto-principal: #500724;
-            --texto-secundario: #9D174D;
-            --texto-suave: #BE185D;
-            
-            --sombra-premium: 0 20px 40px -12px rgba(219, 39, 119, 0.12);
-            --sombra-card: 0 12px 32px -8px rgba(219, 39, 119, 0.08);
-            --sombra-hover: 0 24px 48px -12px rgba(219, 39, 119, 0.2);
-            
-            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            --radius-box: 24px;
+            --rosa-principal: #EC4899;
+            --rosa-escuro: #DB2777;
+            --cinza-claro: #F3F4F6;
+            --cinza-borda: #E5E7EB;
+            --texto-principal: #1F2937;
+            --texto-secundario: #6B7280;
+            --sombra-suave: 0 10px 25px -5px rgba(236, 72, 153, 0.08), 0 8px 10px -6px rgba(236, 72, 153, 0.05);
+            --sombra-card: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-box: 16px;
             --radius-btn: 9999px;
         }
 
@@ -79,284 +83,159 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-main);
             color: var(--texto-principal);
-            line-height: 1.7;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
 
-        h1, h2, h3, .logo, .serif-font {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* HEADER STICKY COM BLUR E IDENTIDADE ROSA ELEGANTE */
+        /* HEADER & STICKY NAV */
         header.topo {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(255, 245, 247, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--cinza-borda);
-            padding: 18px 40px;
+            padding: 16px 24px;
+            text-align: center;
             transition: var(--transition-smooth);
-        }
-
-        .header-container {
-            max-width: 1500px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 30px;
         }
 
         .logo-container {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             text-decoration: none;
+            margin-bottom: 4px;
         }
 
         .logo {
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--rosa-escuro);
             letter-spacing: -0.5px;
         }
 
-        .logo span {
-            color: var(--rosa-vibrante);
-            position: relative;
+        header.topo p {
+            font-size: 0.875rem;
+            color: var(--texto-secundario);
+            margin-bottom: 16px;
         }
 
-        .logo span::after {
-            content: '✨';
-            font-size: 0.9rem;
+        .sticky-header {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .pesquisa-label {
             position: absolute;
-            top: -8px;
-            right: -14px;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
         }
 
-        /* BARRA DE PESQUISA MODERNA E ELEGANTE */
         .search-wrapper {
             position: relative;
             width: 100%;
-            max-width: 440px;
+            max-width: 500px;
         }
 
         .search-wrapper i {
             position: absolute;
-            left: 22px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--rosa-medio);
+            color: var(--texto-secundario);
             font-size: 0.95rem;
-            transition: var(--transition-smooth);
         }
 
         input[type="search"] {
             width: 100%;
-            padding: 14px 24px 14px 54px;
-            background-color: var(--bg-white);
-            border: 1.5px solid var(--cinza-borda);
+            padding: 12px 20px 12px 48px;
+            background-color: var(--cinza-claro);
+            border: 1px solid transparent;
             border-radius: var(--radius-btn);
             font-size: 0.95rem;
             color: var(--texto-principal);
             transition: var(--transition-smooth);
             outline: none;
-            box-shadow: 0 4px 16px rgba(244, 114, 182, 0.05);
-        }
-
-        input[type="search"]::placeholder {
-            color: #DB277788;
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         input[type="search"]:focus {
-            border-color: var(--rosa-vibrante);
             background-color: var(--bg-white);
-            box-shadow: 0 6px 24px rgba(219, 39, 119, 0.15);
+            border-color: var(--rosa-principal);
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
         }
 
-        .header-actions {
+        /* CATEGORIAS EM CARDS VISUAIS */
+        .categorias {
             display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .btn-vip-header {
-            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
-            color: white;
-            padding: 12px 26px;
-            border-radius: var(--radius-btn);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: var(--transition-smooth);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 0.3px;
-            box-shadow: 0 8px 20px rgba(219, 39, 119, 0.25);
-        }
-
-        .btn-vip-header:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(219, 39, 119, 0.35);
-        }
-
-        /* HERO SECTION REDESENHADO (ALTO IMPACTO, ILUMINAÇÃO, PROFUNDIDADE E OVERLAY ROSA) */
-        .hero {
-            position: relative;
-            height: 78vh;
-            min-height: 580px;
-            max-height: 850px;
+            gap: 10px;
+            overflow-x: auto;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-bottom: 70px;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-            transform: scale(1.05);
-            animation: slowZoom 20s infinite alternate linear;
-        }
-
-        @keyframes slowZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.12); }
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(83, 7, 36, 0.4) 0%, rgba(131, 24, 67, 0.75) 100%);
-            backdrop-filter: blur(2px);
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            color: white;
-            max-width: 850px;
-            padding: 0 20px;
-            animation: fadeInHero 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes fadeInHero {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-tag {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 6px 20px;
-            border-radius: var(--radius-btn);
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            font-weight: 600;
-            color: #FFF;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .hero-content h1 {
-            font-size: 3.8rem;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            margin-bottom: 40px;
-            color: #FCE7F3;
-            max-width: 620px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
+            padding: 4px 4px 12px 4px;
+            scrollbar-width: none;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .btn-hero-primary {
+        .categorias::-webkit-scrollbar {
+            display: none;
+        }
+
+        .categoria {
             background-color: var(--bg-white);
+            border: 1px solid var(--cinza-borda);
+            color: var(--texto-principal);
+            padding: 8px 18px;
+            border-radius: var(--radius-btn);
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            white-space: nowrap;
+        }
+
+        .categoria:hover {
+            border-color: var(--rosa-principal);
             color: var(--rosa-escuro);
-            padding: 16px 36px;
-            border-radius: var(--radius-btn);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition-smooth);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
         }
 
-        .btn-hero-primary:hover {
-            background-color: var(--rosa-vibrante);
+        .categoria.ativa {
+            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(219, 39, 119, 0.4);
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
         }
 
-        .btn-hero-secondary {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1.5px solid rgba(255, 255, 255, 0.4);
-            color: white;
-            padding: 16px 36px;
-            border-radius: var(--radius-btn);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: var(--transition-smooth);
-        }
-
-        .btn-hero-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* BANNER SECUNDÁRIO / CARROSSEL PREMIUM */
+        /* HERO BANNER */
         .banner {
-            max-width: 1500px;
-            margin: 0 auto 70px auto;
-            padding: 0 40px;
+            max-width: 1200px;
+            margin: 32px auto 0 auto;
+            padding: 0 20px;
         }
 
         .banner-slider {
             position: relative;
-            height: 500px;
-            border-radius: 32px;
+            height: 380px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: var(--sombra-premium);
-            background-color: var(--rosa-pastel);
-            border: 1px solid var(--cinza-borda);
+            box-shadow: var(--sombra-suave);
+            background-color: var(--rosa-claro);
         }
 
         .banner-slider .slide {
@@ -367,215 +246,53 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease;
-            transform: scale(1.02);
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .banner-slider .slide.active {
             opacity: 1;
-            transform: scale(1);
         }
 
-        /* CONTAINER PRINCIPAL */
+        /* MAIN & TITLES */
         main {
-            max-width: 1500px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px 90px 40px;
+            padding: 48px 20px;
         }
 
-        /* SEÇÕES EDITORIAIS ESTILO REVISTA DE DECORAÇÃO */
-        .secao-editorial {
-            background: var(--bg-white);
-            border: 1.5px solid var(--cinza-borda);
-            border-radius: 32px;
-            padding: 50px;
-            margin-bottom: 70px;
-            box-shadow: var(--sombra-card);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .secao-editorial::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(252,231,243,0.6) 0%, rgba(255,255,255,0) 70%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .secao-editorial-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 36px;
-            border-bottom: 1.5px solid var(--rosa-pastel);
-            padding-bottom: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .secao-editorial-header h2 {
-            font-size: 2.3rem;
-            font-weight: 600;
-            color: var(--rosa-escuro);
-            letter-spacing: -0.5px;
-        }
-
-        .secao-editorial-header p {
-            color: var(--texto-secundario);
-            font-size: 1.05rem;
-        }
-
-        /* CATEGORIAS EM CARTÕES VISUAIS (MANTENDO LÓGICA E FILTROS ORIGINAIS) */
-        .categorias-section {
-            margin-bottom: 70px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 30px;
-        }
-
-        .section-header h2 {
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: var(--rosa-escuro);
-            letter-spacing: -0.5px;
-        }
-
-        .section-header p {
-            color: var(--texto-secundario);
-            font-size: 1rem;
-        }
-
-        .categorias {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            width: 100%;
-        }
-
-        .categoria-card {
-            position: relative;
-            height: 150px;
-            border-radius: var(--radius-box);
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: var(--sombra-card);
-            border: 1.5px solid var(--cinza-borda);
-            transition: var(--transition-smooth);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--bg-white);
-            text-align: center;
-            padding: 16px;
-        }
-
-        .categoria-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(131,24,67,0.15) 0%, rgba(131,24,67,0.65) 100%);
-            z-index: 1;
-            transition: var(--transition-smooth);
-        }
-
-        .categoria-card img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .categoria-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .categoria-card:hover::before {
-            background: linear-gradient(180deg, rgba(131,24,67,0.25) 0%, rgba(131,24,67,0.8) 100%);
-        }
-
-        .categoria-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--sombra-hover);
-            border-color: var(--rosa-medio);
-        }
-
-        .categoria-card span {
-            position: relative;
-            z-index: 2;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 0.3px;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-            transition: var(--transition-smooth);
-        }
-
-        .categoria-card.ativa {
-            border-color: var(--rosa-vibrante);
-            box-shadow: 0 12px 30px rgba(219, 39, 119, 0.25);
-            transform: translateY(-5px);
-        }
-
-        .categoria-card.ativa::after {
-            content: '';
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 28px;
-            height: 3.5px;
-            background-color: white;
-            border-radius: 2px;
-            z-index: 2;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* TÍTULOS E VITRINE */
         .titulo {
+            text-align: center;
             margin-bottom: 40px;
-            text-align: left;
         }
 
         .titulo h1 {
-            font-size: 2.6rem;
-            font-weight: 600;
-            color: var(--rosa-escuro);
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--texto-principal);
             letter-spacing: -0.5px;
             margin-bottom: 8px;
         }
 
         .titulo p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--texto-secundario);
         }
 
+        /* VITRINE & PRODUTOS */
         .vitrine {
-            margin-bottom: 90px;
+            margin-bottom: 64px;
         }
 
         .produtos {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 36px;
-            position: relative;
-            z-index: 2;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
         }
 
-        /* CARD DE PRODUTO PREMIUM (VITRINE DE ALTO PADRÃO ROSA) */
+        /* CARD DE PRODUTO PREMIUM (Inspirado em Zara Home/Pinterest) */
         .produto-card {
             background: var(--bg-white);
+            border: 1px solid var(--cinza-borda);
             border-radius: var(--radius-box);
             overflow: hidden;
             display: flex;
@@ -583,19 +300,18 @@
             justify-content: space-between;
             transition: var(--transition-smooth);
             box-shadow: var(--sombra-card);
-            border: 1.5px solid var(--cinza-borda);
             position: relative;
         }
 
         .produto-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--sombra-hover);
-            border-color: var(--rosa-medio);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(236, 72, 153, 0.12);
+            border-color: rgba(236, 72, 153, 0.3);
         }
 
         .produto-img-container {
-            background: var(--rosa-pastel);
-            height: 380px;
+            background: var(--cinza-claro);
+            height: 240px;
             overflow: hidden;
             position: relative;
             display: flex;
@@ -607,95 +323,39 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .produto-card:hover .produto-img-container img {
             transform: scale(1.06);
         }
 
-        /* BADGES FLUTUANTES ELEGANTES */
-        .produto-badges {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            right: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .badge-tag {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            color: var(--rosa-escuro);
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            padding: 6px 14px;
-            border-radius: var(--radius-btn);
-            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.15);
-            pointer-events: auto;
-            border: 1px solid var(--cinza-borda);
-        }
-
-        .badge-tag.alta {
-            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
-            color: white;
-            border: none;
-        }
-
-        .btn-favoritar {
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--cinza-borda);
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--rosa-vibrante);
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.15);
-            transition: var(--transition-smooth);
-            pointer-events: auto;
-        }
-
-        .btn-favoritar:hover {
-            background: var(--rosa-vibrante);
-            color: white;
-            transform: scale(1.1);
-            border-color: var(--rosa-vibrante);
-        }
-
         .produto-conteudo {
-            padding: 26px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .produto-categoria-tag {
-            font-size: 0.75rem;
-            color: var(--rosa-suave);
+            font-size: 0.7rem;
+            color: var(--rosa-escuro);
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.2px;
-            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            background: var(--rosa-claro);
+            padding: 4px 10px;
+            border-radius: var(--radius-btn);
+            align-self: flex-start;
+            margin-bottom: 12px;
         }
 
         .produto-titulo {
-            font-size: 1.2rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            color: var(--rosa-escuro);
+            color: var(--texto-principal);
             line-height: 1.4;
-            margin-bottom: 24px;
-            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -703,299 +363,206 @@
             flex-grow: 1;
         }
 
+        /* BOTÕES PADRONIZADOS */
         .btn-acao {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
+            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
             color: white;
             text-align: center;
-            padding: 14px 24px;
+            padding: 12px 20px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.3px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
             transition: var(--transition-smooth);
             cursor: pointer;
             border: none;
-            box-shadow: 0 6px 20px rgba(219, 39, 119, 0.3);
         }
 
         .btn-acao:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(219, 39, 119, 0.45);
+            transform: scale(1.02);
+            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
+            filter: brightness(1.05);
         }
 
-        /* SEÇÃO DE BENEFÍCIOS / VALORES DA MARCA */
+        /* BENEFÍCIOS */
         .beneficios {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1500px;
-            margin: 0 auto 90px auto;
-            padding: 0 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto 64px auto;
+            padding: 0 20px;
         }
 
         .card-info {
             background: var(--bg-white);
-            border: 1.5px solid var(--cinza-borda);
+            border: 1px solid var(--cinza-borda);
             border-radius: var(--radius-box);
-            padding: 44px 32px;
+            padding: 32px 24px;
             text-align: center;
             box-shadow: var(--sombra-card);
             transition: var(--transition-smooth);
         }
 
         .card-info:hover {
-            transform: translateY(-5px);
-            border-color: var(--rosa-medio);
-            box-shadow: var(--sombra-hover);
+            transform: translateY(-4px);
+            border-color: rgba(236, 72, 153, 0.3);
+            box-shadow: var(--sombra-suave);
         }
 
         .card-info span {
-            font-size: 2.4rem;
+            font-size: 2rem;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .card-info h2 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: var(--rosa-escuro);
-            margin-bottom: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--texto-principal);
+            margin-bottom: 8px;
         }
 
         .card-info p {
-            font-size: 0.98rem;
+            font-size: 0.9rem;
             color: var(--texto-secundario);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        /* ÁREA VIP / NEWSLETTER SOFISTICADA EM ROSA */
+        /* ÁREA VIP */
         .vip-section {
-            background: linear-gradient(135deg, var(--rosa-claro) 0%, #F8B4D9 100%);
-            padding: 90px 40px;
+            background: linear-gradient(135deg, #FFF0F6 0%, #FFD6E7 100%);
+            padding: 56px 24px;
             text-align: center;
-            border-radius: 36px;
-            margin: 0 auto 90px auto;
-            max-width: 1420px;
-            box-shadow: var(--sombra-premium);
-            border: 1.5px solid var(--cinza-borda);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vip-section::before {
-            content: '✨';
-            position: absolute;
-            font-size: 12rem;
-            opacity: 0.08;
-            right: -30px;
-            bottom: -50px;
-            pointer-events: none;
+            border-radius: 24px;
+            margin: 0 auto 64px auto;
+            max-width: 1160px;
+            box-shadow: 0 10px 30px rgba(255, 79, 160, 0.08);
+            border: 1px solid rgba(255, 182, 217, 0.4);
         }
 
         .vip-section span {
-            font-size: 3.2rem;
+            font-size: 3rem;
             display: inline-block;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .vip-section h2 {
             color: var(--rosa-escuro);
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 16px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
             letter-spacing: -0.5px;
         }
 
         .vip-section p {
             color: var(--texto-secundario);
-            max-width: 600px;
-            margin: 0 auto 36px auto;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            font-weight: 500;
+            max-width: 540px;
+            margin: 0 auto 28px auto;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .btn-vip {
-            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
+            background-color: #25D366;
             color: white;
-            padding: 18px 40px;
+            padding: 14px 32px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: var(--transition-smooth);
-            box-shadow: 0 10px 30px rgba(131, 24, 67, 0.3);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
         }
 
         .btn-vip:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(131, 24, 67, 0.45);
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+            filter: brightness(1.05);
         }
 
-        /* RODAPÉ PREMIUM REFEITO */
+        /* RODAPÉ PREMIUM */
         footer.rodape {
             background-color: var(--bg-white);
-            border-top: 1.5px solid var(--cinza-borda);
-            padding: 90px 40px 40px 40px;
+            border-top: 1px solid var(--cinza-borda);
+            text-align: center;
+            padding: 48px 20px;
             color: var(--texto-secundario);
+            font-size: 0.9rem;
         }
 
-        .rodape-container {
-            max-width: 1500px;
+        .rodape-content {
+            max-width: 800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
-        }
-
-        .rodape-col h3 {
-            font-size: 1.3rem;
-            color: var(--rosa-escuro);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .rodape-col p {
-            font-size: 0.98rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            color: var(--texto-secundario);
-        }
-
-        .rodape-links {
-            list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-        }
-
-        .rodape-links a {
-            color: var(--texto-secundario);
-            text-decoration: none;
-            font-size: 0.98rem;
-            transition: var(--transition-smooth);
-        }
-
-        .rodape-links a:hover {
-            color: var(--rosa-vibrante);
-            padding-left: 6px;
-        }
-
-        .rodape-bottom {
-            max-width: 1500px;
-            margin: 0 auto;
-            padding-top: 30px;
-            border-top: 1.5px solid var(--rosa-pastel);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
             gap: 20px;
-            font-size: 0.9rem;
-            color: var(--texto-suave);
-        }
-
-        .rodape-socials {
-            display: flex;
-            gap: 16px;
-        }
-
-        .rodape-socials a {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--rosa-pastel);
-            color: var(--rosa-vibrante);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            text-decoration: none;
+        }
+
+        .rodape-insta {
+            font-weight: 600;
+            color: var(--rosa-escuro);
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .rodape-insta a {
+            color: var(--rosa-escuro);
+            text-decoration: underline;
             transition: var(--transition-smooth);
-            border: 1px solid var(--cinza-borda);
         }
 
-        .rodape-socials a:hover {
-            background: var(--rosa-vibrante);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(219, 39, 119, 0.3);
+        .rodape-insta a:hover {
+            color: var(--rosa-principal);
         }
 
-        /* RESPONSIVIDADE COMPLETA */
-        @media (max-width: 1024px) {
-            header.topo { padding: 16px 20px; }
-            .header-container { flex-direction: column; gap: 16px; }
-            .search-wrapper { max-width: 100%; }
-            .hero-content h1 { font-size: 2.8rem; }
-            .produtos { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
-            .rodape-container { grid-template-columns: 1fr; gap: 40px; }
-            .secao-editorial { padding: 30px; }
+        .rodape-aviso {
+            font-size: 0.85rem;
+            color: var(--texto-secundario);
+            max-width: 650px;
+            line-height: 1.6;
         }
 
+        .rodape-copy {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
-            main, .banner, .beneficios, .vip-section { padding-left: 16px; padding-right: 16px; }
-            .hero { height: 70vh; min-height: 500px; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .banner-slider { height: 320px; border-radius: 20px; }
-            .categorias { grid-template-columns: repeat(2, 1fr); }
-            .produtos { grid-template-columns: 1fr; }
-            .produto-img-container { height: 320px; }
-            .vip-section { padding: 60px 20px; border-radius: 28px; }
-            .vip-section h2 { font-size: 2.2rem; }
+            .titulo h1 {
+                font-size: 1.8rem;
+            }
+            .banner-slider {
+                height: 240px;
+                border-radius: 16px;
+            }
+            .produtos {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 16px;
+            }
+            .produto-img-container {
+                height: 160px;
+            }
+            .vip-section {
+                padding: 40px 20px;
+                margin: 0 16px 48px 16px;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- TOPO / CABEÇALHO ELEGANTE -->
-<header class="topo">
-    <div class="header-container">
-        <a class="logo-container" href="/" aria-label="It Pink Club">
-            <span class="logo">It Pink <span>Club</span></span>
-        </a>
-
-        <!-- BARRA DE PESQUISA MODERNA -->
-        <div class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-                id="pesquisa"
-                type="search"
-                oninput="filtrarVitrine()"
-                placeholder="Busque por decoração, lifestyle, achadinhos..."
-                autocomplete="off">
-        </div>
-
-        <div class="header-actions">
-            <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-vip-header">
-                <i class="fa-brands fa-whatsapp"></i> VIP Club ✨
-            </a>
-        </div>
-    </div>
-</header>
-
-<!-- HERO SECTION DE ALTO IMPACTO (COM OVERLAY ROSA E ILUMINAÇÃO) -->
-<section class="hero">
-    <img src="/assets/banner1.webp" class="hero-bg" alt="It Pink Club Home Decor">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <span class="hero-tag">Curadoria Exclusiva & Lifestyle</span>
-        <h1>Transforme sua rotina em um refúgio acolhedor ✨</h1>
-        <p>Os achadinhos mais elegantes de decoração, organização e estética Pinterest reunidos em uma identidade única.</p>
-        <div class="hero-buttons">
-            <a href="#vitrine-principal" class="btn-hero-primary">💕 Explorar Achadinhos</a>
-            <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary">✨ Entrar no VIP</a>
-        </div>
-    </div>
-</section>
-
-<!-- BANNER SECUNDÁRIO / CARROSSEL (MANTENDO LÓGICA E SISTEMA ATUAL) -->
+<!-- BANNER -->
 <section class="banner">
     <div class="banner-slider">
         <img src="assets/banner1.webp" class="slide active" alt="Banner 1">
@@ -1004,151 +571,116 @@
     </div>
 </section>
 
-<main id="vitrine-principal">
+<!-- TOPO -->
+<header class="topo">
+    <a class="logo-container" href="/" aria-label="It Pink Club">
+        <i class="fa-solid fa-heart" style="color: var(--rosa-principal);"></i>
+        <span class="logo">It Pink Club</span>
+    </a>
 
-    <!-- SEÇÃO EDITORIAL: QUARTO DOS SONHOS -->
-    <section class="secao-editorial">
-        <div class="secao-editorial-header">
-            <div>
-                <h2>Quarto dos Sonhos</h2>
-                <p>Detalhes e aconchego que elevam a atmosfera do seu refúgio particular.</p>
-            </div>
-        </div>
-        <div class="produtos" id="editorial-quarto"></div>
-    </section>
+    <p>Achadinhos escolhidos com carinho para você.</p>
 
-    <!-- CATEGORIAS EM CARTÕES VISUAIS (MANTENDO TODA A LÓGICA DE FILTRAGEM) -->
-    <section class="categorias-section">
-        <div class="section-header">
-            <div>
-                <h2>Explore por Categoria</h2>
-                <p>Navegue pelas nossas curadorias especiais de estilo de vida.</p>
-            </div>
+    <!-- NAVEGAÇÃO / BUSCA E CATEGORIAS FIXAS AO ROLAR -->
+    <div class="sticky-header">
+        <label class="pesquisa-label" for="pesquisa">
+            Encontre seu achadinho
+        </label>
+
+        <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                id="pesquisa"
+                type="search"
+                oninput="filtrarVitrine()"
+                placeholder="Pesquise um produto..."
+                autocomplete="off">
         </div>
 
         <nav class="categorias" id="categorias" aria-label="Categorias">
-            <div class="categoria-card ativa" onclick="mudarCategoria('todos', this)">
-                <img src="/assets/banner1.webp" alt="Todos">
-                <span>✨ Todos</span>
-            </div>
-            <div class="categoria-card" onclick="mudarCategoria('beleza', this)">
-                <img src="/assets/banner2.webp" alt="Beleza">
-                <span>💄 Beleza</span>
-            </div>
-            <div class="categoria-card" onclick="mudarCategoria('casa', this)">
-                <img src="/assets/banner3.webp" alt="Casa">
-                <span>🏠 Casa & Decor</span>
-            </div>
-            <div class="categoria-card" onclick="mudarCategoria('moda', this)">
-                <img src="/assets/banner1.webp" alt="Moda">
-                <span>👗 Moda</span>
-            </div>
-            <div class="categoria-card" onclick="mudarCategoria('tecnologia', this)">
-                <img src="/assets/banner2.webp" alt="Tecnologia">
-                <span>📱 Tecnologia</span>
-            </div>
-            <div class="categoria-card" onclick="mudarCategoria('papelaria', this)">
-                <img src="/assets/banner3.webp" alt="Papelaria">
-                <span>🎨 Papelaria</span>
-            </div>
-            <div class="categoria-card" onclick="mudarCategoria('pets', this)">
-                <img src="/assets/banner1.webp" alt="Pets">
-                <span>🐾 Pets</span>
-            </div>
+            <button class="categoria ativa" onclick="mudarCategoria('todos', this)"><i class="fa-solid fa-sparkles"></i> ✨ Todos</button>
+            <button class="categoria" onclick="mudarCategoria('beleza', this)"><i class="fa-solid fa-wand-magic-sparkles"></i> 💄 Beleza</button>
+            <button class="categoria" onclick="mudarCategoria('casa', this)"><i class="fa-solid fa-house"></i> 🏠 Casa</button>
+            <button class="categoria" onclick="mudarCategoria('moda', this)"><i class="fa-solid fa-shirt"></i> 👗 Moda</button>
+            <button class="categoria" onclick="mudarCategoria('tecnologia', this)"><i class="fa-solid fa-mobile-screen"></i> 📱 Tecnologia</button>
+            <button class="categoria" onclick="mudarCategoria('papelaria', this)"><i class="fa-solid fa-palette"></i> 🎨 Papelaria</button>
+            <button class="categoria" onclick="mudarCategoria('pets', this)"><i class="fa-solid fa-paw"></i> 🐾 Pets</button>
         </nav>
-    </section>
+    </div>
+</header>
 
-    <!-- SEÇÃO EDITORIAL: MAIS VENDIDOS & NOVIDADES -->
-    <section class="secao-editorial">
-        <div class="secao-editorial-header">
-            <div>
-                <h2>Mais Vendidos & Novidades</h2>
-                <p>Os queridinhos do momento escolhidos com carinho pela nossa comunidade.</p>
-            </div>
-        </div>
-        <div class="produtos" id="editorial-novidades"></div>
-    </section>
+<main>
 
-    <section class="titulo">
-        <h1>Achados da Semana</h1>
-        <p>Inspirado na estética Pinterest e Zara Home para ambientar o seu lar com elegância.</p>
-    </section>
+<section class="titulo">
+    <h1>💖 Achadinhos da Shopee | It Pink Club</h1>
+    <p>Selecionados especialmente para transformar o seu dia a dia.</p>
+</section>
 
-    <!-- VITRINE DE PRODUTOS PRINCIPAL -->
-    <section class="vitrine" aria-live="polite">
-        <p id="resultado" class="resultado" style="display: none;"></p>
+<section class="vitrine" aria-live="polite">
+    <p id="resultado" class="resultado" style="display: none;"></p>
 
-        <!-- Contêiner de produtos integrado ao banco de dados e Supabase/Firebase atual -->
-        <div id="produtos" class="produtos"></div>
-    </section>
+    <!-- Contêiner onde os produtos do Firestore vão aparecer -->
+    <div id="produtos" class="produtos"></div>
+</section>
 
 </main>
 
-<!-- SEÇÃO DE BENEFÍCIOS -->
 <section class="beneficios">
     <article class="card-info">
-        <span>🕯️</span>
-        <h2>Curadoria Manual</h2>
-        <p>Selecionamos apenas peças sofisticadas que elevam a atmosfera e o design do seu espaço.</p>
+        <span>💖</span>
+        <h2>Escolha Manual</h2>
+        <p>Selecionamos apenas produtos que realmente encantam e valem a pena.</p>
     </article>
 
     <article class="card-info">
-        <span>🌿</span>
-        <h2>Estética Cozy</h2>
-        <p>Inspirado nas principais tendências de decoração e lifestyle para transformar sua rotina com suavidade.</p>
+        <span>⭐</span>
+        <h2>Atualizações Frequentes</h2>
+        <p>Novos achadinhos exclusivos adicionados constantemente para você.</p>
     </article>
 
     <article class="card-info">
-        <span>💌</span>
-        <h2>Achadinhos Exclusivos</h2>
-        <p>As melhores oportunidades reunidas em um só lugar com total transparência e carinho.</p>
+        <span>🎀</span>
+        <h2>Curadoria It Pink</h2>
+        <p>Tudo seguindo a estética delicada, aconchegante e feminina do clube.</p>
     </article>
 </section>
 
-<!-- ÁREA VIP / NEWSLETTER SOFISTICADA -->
+<!-- ÁREA VIP / NEWSLETTER -->
 <section class="vip-section">
-    <span>✨</span>
-    <h2>Faça Parte do Clube VIP</h2>
+    <span>👑</span>
+    <h2>Entre para o Clube VIP</h2>
     <p>
-        Receba em primeira mão cupons secretos, ofertas relâmpago e lançamentos de decoração direto no seu WhatsApp.
+        Receba as melhores promoções, cupons de frete grátis e achadinhos secretos da Shopee direto no seu WhatsApp!
     </p>
-    <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-vip">
-        <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Entrar no Grupo VIP
-    </a>
+
+    <div class="vip-buttons">
+        <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-vip">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Entrar no Grupo VIP
+        </a>
+    </div>
 </section>
 
-<!-- RODAPÉ PREMIUM -->
+<!-- RODAPÉ COMPLETO -->
 <footer class="rodape">
-    <div class="rodape-container">
-        <div class="rodape-col">
-            <h3>It Pink Club</h3>
-            <p>Curadoria de decoração, organização e lifestyle inspirada na estética aconchegante e sofisticada. Transformando ambientes com delicadeza e bom gosto.</p>
-        </div>
-        <div class="rodape-col">
-            <h3>Navegação</h3>
-            <ul class="rodape-links">
-                <li><a href="#vitrine-principal" onclick="mudarCategoria('todos')">Início & Achadinhos</a></li>
-                <li><a href="#vitrine-principal" onclick="mudarCategoria('casa')">Casa & Decor</a></li>
-                <li><a href="#vitrine-principal" onclick="mudarCategoria('beleza')">Beleza & Skincare</a></li>
-                <li><a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank">Grupo VIP WhatsApp</a></li>
-            </ul>
-        </div>
-        <div class="rodape-col">
-            <h3>Transparência</h3>
-            <p>Participamos de programas de afiliados. Ao comprar através dos nossos links, recebemos comissões sem nenhum custo adicional para você.</p>
-        </div>
-    </div>
-    
-    <div class="rodape-bottom">
-        <p>© 2026 It Pink Club. Todos os direitos reservados.</p>
-        <div class="rodape-socials">
-            <a href="https://instagram.com/itpinkclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
+    <div class="rodape-content">
+        <!-- Instagram -->
+        <p class="rodape-insta">
+            💖 Siga nosso perfil: 
+            <a href="https://instagram.com/itpinkclub" target="_blank" rel="noopener noreferrer">@itpinkclub</a>
+        </p>
+
+        <!-- Aviso de Afiliados e Transparência -->
+        <p class="rodape-aviso">
+            🔒 <strong>Aviso de transparência:</strong> Participamos de programas de afiliados. Ao comprar através dos nossos links, podemos receber comissões qualificadas. Você não paga nada a mais por isso e nos ajuda a manter a curadoria do It Pink Club sempre impecável!
+        </p>
+
+        <!-- Copyright -->
+        <p class="rodape-copy">
+            © 2026 It Pink Club. Todos os direitos reservados.
+        </p>
     </div>
 </footer>
 
-<!-- SUPABASE / FIREBASE E SCRIPT DA VITRINE (PRESERVANDO 100% DA LÓGICA EXISTENTE) -->
+<!-- FIREBASE & SCRIPT DA VITRINE -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
@@ -1169,7 +701,7 @@
     let produtosGlobal = [];
     let categoriaSelecionada = 'todos';
 
-    // Carrossel de Banners Automático
+    // 1. Carrossel de Banners Automático
     let indiceAtual = 0;
     const slides = document.querySelectorAll('.banner-slider .slide');
 
@@ -1181,30 +713,22 @@
     }
 
     if (slides.length > 1) {
-        setInterval(alternarSlides, 5000);
+        setInterval(alternarSlides, 4500); // Troca a cada 4.5 segundos
     }
 
-    // Sincronização em tempo real com o banco de dados (Firestore / Supabase mantido)
+    // 2. Sincronização em tempo real com o Firestore
     onSnapshot(collection(db, "produtos"), (snapshot) => {
         produtosGlobal = [];
         snapshot.forEach((doc) => {
             produtosGlobal.push({ id: doc.id, ...doc.data() });
         });
         filtrarVitrine();
-        renderizarEditoriais();
     });
 
-    window.mudarCategoria = function(cat, cardElement) {
+    window.mudarCategoria = function(cat, btnElement) {
         categoriaSelecionada = cat;
-        document.querySelectorAll('.categoria-card').forEach(c => c.classList.remove('ativa'));
-        if(cardElement) {
-            cardElement.classList.add('ativa');
-        } else {
-            const cards = document.querySelectorAll('.categoria-card');
-            cards.forEach(c => {
-                if(c.getAttribute('onclick')?.includes(cat)) c.classList.add('ativa');
-            });
-        }
+        document.querySelectorAll('.categoria').forEach(b => b.classList.remove('ativa'));
+        if(btnElement) btnElement.classList.add('ativa');
         filtrarVitrine();
     };
 
@@ -1227,58 +751,34 @@
         renderizarVitrine(lista);
     };
 
-    function criarCardHtml(prod, index) {
-        const tagBadge = index % 3 === 0 ? '<span class="badge-tag alta">🔥 Mais Vendido</span>' : '<span class="badge-tag">✨ Novo</span>';
-        return `
-            <div class="produto-card">
-                <div>
-                    <div class="produto-img-container">
-                        <div class="produto-badges">
-                            ${tagBadge}
-                            <button class="btn-favoritar" aria-label="Favoritar" onclick="this.querySelector('i').classList.toggle('fa-solid'); this.querySelector('i').classList.toggle('fa-regular');">
-                                <i class="fa-regular fa-heart"></i>
-                            </button>
-                        </div>
-                        <img src="${prod.imagem}" alt="${prod.titulo}" loading="lazy">
-                    </div>
-                    <div class="produto-conteudo">
-                        <span class="produto-categoria-tag">${prod.categoria || 'Lifestyle'}</span>
-                        <h3 class="produto-titulo">${prod.titulo}</h3>
-                    </div>
-                </div>
-                <div style="padding: 0 26px 26px 26px;">
-                    <a href="${prod.link}" target="_blank" rel="noopener noreferrer" class="btn-acao">Ver Achadinho 🤍</a>
-                </div>
-            </div>
-        `;
-    }
-
-    function renderizarEditoriais() {
-        const containerQuarto = document.getElementById('editorial-quarto');
-        const containerNovidades = document.getElementById('editorial-novidades');
-        
-        if (!containerQuarto || !containerNovidades) return;
-
-        const listaQuarto = produtosGlobal.filter(p => (p.categoria || '').toLowerCase().includes('casa') || (p.categoria || '').toLowerCase().includes('decor')).slice(0, 3);
-        const fallbackQuarto = listaQuarto.length > 0 ? listaQuarto : produtosGlobal.slice(0, 3);
-        containerQuarto.innerHTML = fallbackQuarto.map((p, i) => criarCardHtml(p, i)).join('');
-
-        const listaNovidades = produtosGlobal.slice(-3).reverse();
-        const fallbackNovidades = listaNovidades.length > 0 ? listaNovidades : produtosGlobal.slice(0, 3);
-        containerNovidades.innerHTML = fallbackNovidades.map((p, i) => criarCardHtml(p, i + 1)).join('');
-    }
-
     function renderizarVitrine(lista) {
         const container = document.getElementById('produtos');
         container.innerHTML = '';
 
         if (lista.length === 0) {
-            container.innerHTML = '<p style="color: var(--texto-secundario); grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-size: 1.1rem; font-weight: 500;">Nenhum achadinho encontrado com esses filtros. ✨</p>';
+            container.innerHTML = '<p style="color: var(--texto-secundario); grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-size: 1rem;">Nenhum achadinho encontrado com esses filtros.</p>';
             return;
         }
 
-        lista.forEach((prod, index) => {
-            container.insertAdjacentHtml('beforeend', criarCardHtml(prod, index));
+        lista.forEach(prod => {
+            const card = document.createElement('div');
+            card.className = 'produto-card';
+            
+            card.innerHTML = `
+                <div>
+                    <div class="produto-img-container">
+                        <img src="${prod.imagem}" alt="${prod.titulo}" loading="lazy">
+                    </div>
+                    <div class="produto-conteudo">
+                        <span class="produto-categoria-tag">${prod.categoria}</span>
+                        <h3 class="produto-titulo">${prod.titulo}</h3>
+                    </div>
+                </div>
+                <div style="padding: 0 20px 20px 20px;">
+                    <a href="${prod.link}" target="_blank" rel="noopener noreferrer" class="btn-acao">Ver Achadinho 💖</a>
+                </div>
+            `;
+            container.appendChild(card);
         });
     }
 </script>
