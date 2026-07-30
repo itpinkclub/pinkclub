@@ -115,7 +115,7 @@
 
         <nav class="categorias" id="categorias" aria-label="Categorias">
             <button class="categoria ativa" onclick="mudarCategoria('todos', this)">✨ Todos</button>
-            <button class="categoria" onclick="mudarCategoria('skincare', this)">💄 Beleza</button>
+            <button class="categoria" onclick="mudarCategoria('beleza', this)">💄 Beleza</button>
             <button class="categoria" onclick="mudarCategoria('casa', this)">🏠 Casa</button>
             <button class="categoria" onclick="mudarCategoria('moda', this)">👗 Moda</button>
             <button class="categoria" onclick="mudarCategoria('tecnologia', this)">📱 Tecnologia</button>
@@ -254,11 +254,15 @@
     };
 
     window.filtrarVitrine = function() {
-        const termo = document.getElementById('pesquisa').value.toLowerCase();
+        const termo = document.getElementById('pesquisa').value.toLowerCase().trim();
         let lista = produtosGlobal;
 
         if (categoriaSelecionada !== 'todos') {
-            lista = lista.filter(p => p.categoria === categoriaSelecionada);
+            lista = lista.filter(p => {
+                const catProd = (p.categoria || '').toLowerCase().trim();
+                const catSel = categoriaSelecionada.toLowerCase().trim();
+                return catProd === catSel;
+            });
         }
 
         if (termo) {
