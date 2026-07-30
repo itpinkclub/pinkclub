@@ -3,494 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>🌸 It Pink Club | Painel Admin</title>
+    <title>💖 Painel Admin | It Pink Club</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #ec4899;
-            --primary-dark: #db2777;
-            --bg-light: #fff5f8;
-            --sidebar-width: 260px;
-            --text-main: #333;
-            --border-pink: #ffccd5;
-        }
-
-        * { box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: var(--bg-light); color: var(--text-main); margin: 0; display: flex; min-height: 100vh; }
-
-        /* Sidebar */
-        aside { width: var(--sidebar-width); background: white; border-right: 1px solid var(--border-pink); display: flex; flex-direction: column; position: fixed; height: 100vh; overflow-y: auto; z-index: 10; }
-        .sidebar-brand { padding: 20px; font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); border-bottom: 1px solid #ffe3f0; display: flex; align-items: center; gap: 8px; }
-        .sidebar-menu { list-style: none; padding: 15px; margin: 0; flex: 1; }
-        .sidebar-menu li { margin-bottom: 5px; }
-        .sidebar-menu a, .sidebar-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px 15px; color: #555; text-decoration: none; border-radius: 8px; font-weight: 500; font-size: 0.9rem; background: none; border: none; cursor: pointer; transition: all 0.2s; text-align: left; font-family: 'Poppins', sans-serif; }
-        .sidebar-menu a:hover, .sidebar-menu button:hover, .sidebar-menu .active { background: #fff0f6; color: var(--primary-dark); font-weight: 600; }
-        .sidebar-menu .sub-menu { padding-left: 25px; list-style: none; margin: 5px 0 10px 0; }
-        .sidebar-menu .sub-menu a { padding: 6px 15px; font-size: 0.85rem; color: #666; }
-
-        /* Main Content */
-        main { margin-left: var(--sidebar-width); flex: 1; padding: 30px; max-width: calc(100% - var(--sidebar-width)); }
-        
-        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .header-top h1 { font-size: 1.5rem; color: var(--primary-dark); margin: 0; }
-        .user-greeting { font-weight: 600; color: #555; }
-
-        /* Stats Grid */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .stat-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.05); border: 1px solid var(--border-pink); }
-        .stat-card h3 { font-size: 0.85rem; color: #777; margin: 0 0 8px 0; }
-        .stat-card .value { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); }
-
-        /* Content Sections */
-        .admin-section { display: none; background: white; padding: 25px; border-radius: 1rem; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.05); border: 1px solid var(--border-pink); }
-        .admin-section.active { display: block; }
-        
-        h2 { color: var(--primary-dark); font-size: 1.2rem; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #ffe3f0; padding-bottom: 8px; }
-
-        /* Forms & Inputs */
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        body { font-family: 'Poppins', sans-serif; background: #fff5f8; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 25px; border-radius: 1rem; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.1); }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        h1 { color: #d63384; font-size: 1.5rem; margin: 0; }
+        .btn-sair { background: #6b7280; width: auto; padding: 6px 12px; font-size: 0.8rem; border-radius: 6px; box-shadow: none; border: none; color: white; cursor: pointer; }
+        .btn-sair:hover { background: #4b5563; }
         .form-group { margin-bottom: 15px; }
-        .form-group.full { grid-column: 1 / -1; }
-        label { display: block; font-weight: 600; color: #555; margin-bottom: 6px; font-size: 0.9rem; }
-        input, select, textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--border-pink); border-radius: 8px; font-size: 0.9rem; font-family: 'Poppins', sans-serif; background: #fffdfd; outline: none; }
-        input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1); }
+        label { display: block; font-weight: 600; color: #555; margin-bottom: 5px; font-size: 0.9rem; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ffccd5; border-radius: 8px; font-size: 0.95rem; box-sizing: border-box; }
         
-        /* Dropzone */
-        .drop-zone { border: 2px dashed var(--primary); padding: 25px; text-align: center; border-radius: 8px; background: #fff0f6; cursor: pointer; transition: background 0.2s; }
+        /* Área de arrastar imagem */
+        .drop-zone { border: 2px dashed #f43f5e; padding: 20px; text-align: center; border-radius: 8px; background: #fff0f6; cursor: pointer; margin-bottom: 5px; transition: background 0.2s; }
         .drop-zone.dragover { background: #ffe1ec; }
-        .drop-zone p { margin: 0; color: var(--primary-dark); font-size: 0.9rem; font-weight: 500; }
-        .preview-img { max-width: 100px; max-height: 100px; border-radius: 8px; margin-top: 10px; object-fit: cover; display: none; }
+        .drop-zone p { margin: 0; color: #db2777; font-size: 0.9rem; font-weight: 500; }
 
-        /* Buttons */
-        .btn-primary { background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2); transition: opacity 0.2s; }
-        .btn-primary:hover { opacity: 0.9; }
-        .btn-warning { background: #f59e0b; color: white; border: none; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; margin-right: 5px; font-family: 'Poppins', sans-serif; font-weight: 500; }
-        .btn-warning:hover { background: #d97706; }
-        .btn-danger { background: #ef4444; color: white; border: none; padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 500; }
-        .btn-danger:hover { background: #dc2626; }
-
-        /* Table */
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ffe3f0; font-size: 0.9rem; }
-        th { color: var(--primary-dark); font-weight: 600; background: #fff0f6; }
-        td img { width: 40px; height: 40px; border-radius: 6px; object-fit: cover; vertical-align: middle; margin-right: 10px; }
-
-        /* Responsive Mobile */
-        @media(max-width: 768px) {
-            aside { transform: translateX(-100%); transition: transform 0.3s; }
-            aside.open { transform: translateX(0); }
-            main { margin-left: 0; max-width: 100%; padding: 15px; }
-            .form-grid { grid-template-columns: 1fr; }
-        }
+        button { background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2); }
+        button:hover { opacity: 0.9; }
+        .lista-produtos { margin-top: 30px; }
+        h2 { color: #d63384; font-size: 1.2rem; margin-bottom: 15px; }
+        .item-admin { display: flex; justify-content: space-between; align-items: center; background: #fff0f6; padding: 10px 15px; border-radius: 8px; margin-bottom: 10px; }
+        .btn-excluir { background: #ef4444; width: auto; padding: 6px 12px; font-size: 0.8rem; border-radius: 6px; box-shadow: none; border: none; color: white; cursor: pointer; }
+        .btn-excluir:hover { background: #dc2626; }
     </style>
 </head>
 <body>
 
-    <!-- Menu Lateral -->
-    <aside id="sidebar">
-        <div class="sidebar-brand">
-            🌸 It Pink Club Admin
+<div class="container">
+    <div class="header-top">
+        <h1>💖 Cadastrar Achadinho</h1>
+        <button type="button" class="btn-sair" onclick="fazerLogout()">Sair 🚪</button>
+    </div>
+    
+    <form id="form-produto">
+        <div class="form-group">
+            <label>Título do Produto</label>
+            <input type="text" id="titulo" required placeholder="Ex: Organizador de Maquiagem">
         </div>
-        <ul class="sidebar-menu">
-            <li><button onclick="mudarSecao('dashboard')" class="active" id="menu-dashboard">🏠 Dashboard</button></li>
-            <li>
-                <button onclick="mudarSecao('produtos')">🛍 Produtos</button>
-                <ul class="sub-menu">
-                    <li><a href="#" onclick="mudarSecao('produtos')">Todos</a></li>
-                    <li><a href="#" onclick="prepararNovoProduto()">+ Adicionar</a></li>
-                </ul>
-            </li>
-            <li><button onclick="mudarSecao('categorias')">📂 Categorias</button></li>
-            <li><button onclick="mudarSecao('carrosseis')">🎠 Carrosséis</button></li>
-            <li><button onclick="mudarSecao('destaques')">🏷 Destaques</button></li>
-            <li><button onclick="mudarSecao('estatisticas')">📈 Estatísticas</button></li>
-            <li><button onclick="mudarSecao('configuracoes')">⚙ Configurações</button></li>
-            <li><button onclick="fazerLogout()" style="color: #ef4444; margin-top: 20px;">🚪 Sair</button></li>
-        </ul>
-    </aside>
-
-    <!-- Conteúdo Principal -->
-    <main>
-        <div class="header-top">
-            <h1 id="titulo-pagina">Dashboard</h1>
-            <div class="user-greeting">👋 Olá, Luma</div>
+        
+        <div class="form-group">
+            <label>Categoria</label>
+            <select id="categoria">
+                <option value="skincare">Beleza</option>
+                <option value="casa">Casa</option>
+                <option value="moda">Moda</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="papelaria">Papelaria</option>
+                <option value="pets">Pets</option>
+            </select>
         </div>
 
-        <!-- 1. DASHBOARD -->
-        <section id="sec-dashboard" class="admin-section active">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>Produtos na Nuvem</h3>
-                    <div class="value" id="stat-produtos">0</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Categorias</h3>
-                    <div class="value">6</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Visualizações Hoje</h3>
-                    <div class="value">824</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Cliques Shopee Hoje</h3>
-                    <div class="value">96</div>
-                </div>
+        <div class="form-group">
+            <label>Link da Imagem (URL ou Arraste a Foto)</label>
+            <div id="drop-zone" class="drop-zone">
+                <p>📁 Clique aqui ou arraste uma imagem para cá</p>
             </div>
-            <div style="background: #fff0f6; padding: 20px; border-radius: 12px; border: 1px dashed var(--primary);">
-                <h3 style="color: var(--primary-dark); margin-top:0;">🚀 Atalho Rápido</h3>
-                <p style="font-size: 0.9rem; color: #555;">Use o menu lateral para gerenciar achadinhos, cadastrar novos produtos e editar itens direto pelo painel.</p>
-                <button class="btn-primary" onclick="prepararNovoProduto()">+ Novo Produto</button>
-            </div>
-        </section>
+            <input type="text" id="imagem" required placeholder="Cole o link ou a imagem convertida aqui">
+        </div>
 
-        <!-- 2. TODOS OS PRODUTOS -->
-        <section id="sec-produtos" class="admin-section">
-            <h2>Gerenciar Produtos Cadastrados</h2>
-            <div style="overflow-x: auto;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Categoria</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabela-produtos">
-                        <tr><td colspan="4" style="text-align:center; color:#777;">Carregando produtos...</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <div class="form-group">
+            <label>Link de Afiliado da Shopee</label>
+            <input type="url" id="link" required placeholder="https://shope.ee/...">
+        </div>
 
-        <!-- 3. ADICIONAR / EDITAR PRODUTO -->
-        <section id="sec-novo-produto" class="admin-section">
-            <h2 id="form-titulo">Cadastrar Novo Achadinho</h2>
-            <form id="form-produto">
-                <input type="hidden" id="produto-id">
-                <div class="form-grid">
-                    <div class="form-group full">
-                        <label>🖼 Foto do Produto (Arraste ou Clique)</label>
-                        <div id="drop-zone" class="drop-zone">
-                            <p>📁 Clique aqui ou arraste a imagem do produto</p>
-                            <img id="preview" class="preview-img" alt="Pré-visualização">
-                        </div>
-                        <input type="text" id="imagem" required placeholder="URL da imagem ou gerada por upload" style="margin-top: 10px;">
-                    </div>
+        <button type="submit">Cadastrar Achadinho 🚀</button>
+    </form>
 
-                    <div class="form-group">
-                        <label>Título do Produto</label>
-                        <input type="text" id="titulo" required placeholder="Ex: Espelho LED com Suporte">
-                    </div>
+    <div class="lista-produtos">
+        <h2>Gerenciar Produtos Cadastrados</h2>
+        <div id="container-admin"></div>
+    </div>
+</div>
 
-                    <div class="form-group">
-                        <label>Categoria</label>
-                        <select id="categoria">
-                            <option value="beleza">💄 Beleza</option>
-                            <option value="casa">🏠 Casa & Quarto</option>
-                            <option value="moda">👗 Moda</option>
-                            <option value="tecnologia">📱 Tecnologia</option>
-                            <option value="papelaria">🎨 Papelaria</option>
-                            <option value="pets">🐾 Pets</option>
-                        </select>
-                    </div>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-                    <div class="form-group">
-                        <label>Preço (Opcional)</label>
-                        <input type="text" id="preco" placeholder="Ex: R$ 49,90">
-                    </div>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD9ojNdDkM9M6iO16SW8k7wfWnnJbvHS40",
+      authDomain: "itpinkclub-a786e.firebaseapp.com",
+      projectId: "itpinkclub-a786e",
+      storageBucket: "itpinkclub-a786e.firebasestorage.app",
+      messagingSenderId: "716111814812",
+      appId: "1:716111814812:web:06e1c76950d39021698d59",
+      measurementId: "G-3XSF7CYT1D"
+    };
 
-                    <div class="form-group">
-                        <label>Link de Afiliado da Shopee</label>
-                        <input type="url" id="link" required placeholder="https://shope.ee/...">
-                    </div>
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-                    <div class="form-group full">
-                        <label>Descrição (Opcional)</label>
-                        <textarea id="descricao" rows="3" placeholder="Detalhes do achadinho..."></textarea>
-                    </div>
+    const form = document.getElementById('form-produto');
+    const containerAdmin = document.getElementById('container-admin');
+    const dropZone = document.getElementById('drop-zone');
+    const inputImagem = document.getElementById('imagem');
 
-                    <div class="form-group full" style="display: flex; gap: 20px; align-items: center;">
-                        <label><input type="checkbox" id="destaque" checked> [✓] Produto em destaque</label>
-                        <label><input type="checkbox" id="mostrarHome" checked> [✓] Mostrar na Home</label>
-                    </div>
-                </div>
-                <button type="submit" id="btn-salvar" class="btn-primary" style="width: 100%; margin-top: 15px;">Salvar Achadinho 🚀</button>
-            </form>
-        </section>
+    // Funcionalidade de arrastar/colar imagem
+    dropZone.addEventListener('click', () => inputImagem.focus());
 
-        <!-- 4. OUTRAS SEÇÕES -->
-        <section id="sec-categorias" class="admin-section">
-            <h2>Categorias Cadastradas</h2>
-            <p>Beleza, Casa, Moda, Tecnologia, Papelaria, Pets.</p>
-        </section>
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
 
-        <section id="sec-carrosseis" class="admin-section">
-            <h2>Gerenciamento de Carrosséis</h2>
-            <p>Crie slides e banners em destaque para a página inicial.</p>
-        </section>
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
 
-        <section id="sec-destaques" class="admin-section">
-            <h2>Destaques da Home</h2>
-            <p>Organize os blocos que aparecem na página principal.</p>
-        </section>
-
-        <section id="sec-estatisticas" class="admin-section">
-            <h2>Estatísticas Detalhadas</h2>
-            <p>🔥 Produtos mais clicados e gráficos de acesso diário.</p>
-        </section>
-
-        <section id="sec-configuracoes" class="admin-section">
-            <h2>Configurações do Site</h2>
-            <p>Ajustes gerais de SEO, redes sociais e chaves de acesso.</p>
-        </section>
-    </main>
-
-    <!-- Script Firebase e Lógica do Painel -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-          apiKey: "AIzaSyD9ojNdDkM9M6iO16SW8k7wfWnnJbvHS40",
-          authDomain: "itpinkclub-a786e.firebaseapp.com",
-          projectId: "itpinkclub-a786e",
-          storageBucket: "itpinkclub-a786e.firebasestorage.app",
-          messagingSenderId: "716111814812",
-          appId: "1:716111814812:web:06e1c76950d39021698d59",
-          measurementId: "G-3XSF7CYT1D"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Alternar abas do menu
-        window.mudarSecao = function(secaoId) {
-            document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById('sec-' + secaoId).classList.add('active');
-            
-            const titles = {
-                'dashboard': 'Dashboard',
-                'produtos': 'Gerenciar Produtos',
-                'novo-produto': 'Novo Achadinho',
-                'categorias': 'Categorias',
-                'carrosseis': 'Carrosséis',
-                'destaques': 'Destaques',
-                'estatisticas': 'Estatísticas',
-                'configuracoes': 'Configurações'
-            };
-            document.getElementById('titulo-pagina').textContent = titles[secaoId] || 'Painel Admin';
-        };
-
-        window.fazerLogout = function() {
-            localStorage.removeItem('logado_pink');
-            alert('Você saiu do painel.');
-            window.location.href = 'login.html';
-        };
-
-        // Preparar formulário para novo produto (limpar modo de edição)
-        window.prepararNovoProduto = function() {
-            document.getElementById('form-produto').reset();
-            document.getElementById('produto-id').value = '';
-            document.getElementById('form-titulo').textContent = 'Cadastrar Novo Achadinho';
-            document.getElementById('btn-salvar').textContent = 'Salvar Achadinho 🚀';
-            document.getElementById('preview').style.display = 'none';
-            document.getElementById('drop-zone').querySelector('p').textContent = '📁 Clique aqui ou arraste a imagem do produto';
-            mudarSecao('novo-produto');
-        };
-
-        // Compactador de imagem automático
-        const dropZone = document.getElementById('drop-zone');
-        const inputImagem = document.getElementById('imagem');
-        const preview = document.getElementById('preview');
-
-        function comprimirImagem(file, callback) {
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    let width = img.width;
-                    let height = img.height;
-                    const maxWidth = 500;
-                    const maxHeight = 500;
-                    
-                    if (width > height) {
-                        if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; }
-                    } else {
-                        if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; }
-                    }
-                    
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-                    const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
-                    callback(dataUrl);
-                };
-                img.src = e.target.result;
+            reader.onload = function(event) {
+                inputImagem.value = event.target.result;
+                dropZone.innerHTML = `<p>✅ Imagem carregada com sucesso!</p>`;
             };
             reader.readAsDataURL(file);
         }
+    });
 
-        dropZone.addEventListener('click', () => {
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = 'image/*';
-            fileInput.onchange = e => {
-                const file = e.target.files[0];
-                if (file) {
-                    comprimirImagem(file, (dataUrl) => {
-                        inputImagem.value = dataUrl;
-                        preview.src = dataUrl;
-                        preview.style.display = 'block';
-                        dropZone.querySelector('p').textContent = '✅ Upload concluído com sucesso!';
-                    });
-                }
-            };
-            fileInput.click();
-        });
+    inputImagem.addEventListener('input', () => {
+        if(inputImagem.value.startsWith('data:image')) {
+            dropZone.innerHTML = `<p>✅ Imagem carregada com sucesso!</p>`;
+        }
+    });
 
-        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
-            const file = e.dataTransfer.files[0];
-            if (file && file.type.startsWith('image/')) {
-                comprimirImagem(file, (dataUrl) => {
-                    inputImagem.value = dataUrl;
-                    preview.src = dataUrl;
-                    preview.style.display = 'block';
-                    dropZone.querySelector('p').textContent = '✅ Upload concluído com sucesso!';
-                });
-            }
-        });
+    // Função de Sair / Logout
+    window.fazerLogout = function() {
+        localStorage.removeItem('logado_pink');
+        alert('Você saiu do painel.');
+        window.location.href = 'index.html';
+    };
 
-        inputImagem.addEventListener('input', () => {
-            if(inputImagem.value.startsWith('data:image') || inputImagem.value.startsWith('http')) {
-                preview.src = inputImagem.value;
-                preview.style.display = 'block';
-            }
-        });
-
-        // Salvar ou Atualizar Produto no Firebase
-        const form = document.getElementById('form-produto');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const idProduto = document.getElementById('produto-id').value;
-            
-            const dadosProduto = {
-                titulo: document.getElementById('titulo').value,
-                categoria: document.getElementById('categoria').value,
-                preco: document.getElementById('preco').value || '',
-                imagem: inputImagem.value,
-                link: document.getElementById('link').value,
-                descricao: document.getElementById('descricao').value || '',
-                destaque: document.getElementById('destaque').checked,
-                mostrarHome: document.getElementById('mostrarHome').checked,
-                atualizadoEm: new Date()
-            };
-
-            try {
-                if (idProduto) {
-                    // Atualizar produto existente
-                    await updateDoc(doc(db, "produtos", idProduto), dadosProduto);
-                    alert('Achadinho atualizado com sucesso! 💖');
-                } else {
-                    // Criar novo produto
-                    dadosProduto.criadoEm = new Date();
-                    await addDoc(collection(db, "produtos"), dadosProduto);
-                    alert('Achadinho cadastrado com sucesso na nuvem! 💖');
-                }
-                prepararNovoProduto();
-                mudarSecao('produtos');
-            } catch (error) {
-                console.error("Erro ao salvar: ", error);
-                alert('Erro ao salvar produto. A imagem pode estar muito pesada.');
-            }
-        });
-
-        // Listar Produtos na Tabela com Botões de Ação Completa
-        const tabelaProdutos = document.getElementById('tabela-produtos');
-        const statProdutos = document.getElementById('stat-produtos');
-
-        onSnapshot(collection(db, "produtos"), (snapshot) => {
-            statProdutos.textContent = snapshot.size;
-            tabelaProdutos.innerHTML = '';
-            
-            if (snapshot.empty) {
-                tabelaProdutos.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#777;">Nenhum produto cadastrado na nuvem.</td></tr>`;
-                return;
-            }
-
-            snapshot.forEach((documento) => {
-                const prod = documento.data();
-                const id = documento.id;
-
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>
-                        <img src="${prod.imagem || 'https://via.placeholder.com/40'}" alt="">
-                        <strong>${prod.titulo}</strong>
-                    </td>
-                    <td style="text-transform: capitalize;">${prod.categoria}</td>
-                    <td>✅ Ativo</td>
-                    <td>
-                        <button class="btn-warning" onclick="window.editarProduto('${id}')">✏️ Editar</button>
-                        <button class="btn-danger" onclick="window.excluirProduto('${id}')">🗑️ Excluir</button>
-                    </td>
-                `;
-                tabelaProdutos.appendChild(tr);
-            });
-        });
-
-        // Carregar dados no formulário para edição
-        window.editarProduto = async function(id) {
-            try {
-                const docRef = doc(db, "produtos", id);
-                const docSnap = await getDoc(docRef);
-
-                if (docSnap.exists()) {
-                    const prod = docSnap.data();
-                    document.getElementById('produto-id').value = id;
-                    document.getElementById('titulo').value = prod.titulo || '';
-                    document.getElementById('categoria').value = prod.categoria || 'beleza';
-                    document.getElementById('preco').value = prod.preco || '';
-                    document.getElementById('link').value = prod.link || '';
-                    document.getElementById('descricao').value = prod.descricao || '';
-                    document.getElementById('destaque').checked = prod.destaque !== false;
-                    document.getElementById('mostrarHome').checked = prod.mostrarHome !== false;
-                    
-                    document.getElementById('imagem').value = prod.imagem || '';
-                    if (prod.imagem) {
-                        preview.src = prod.imagem;
-                        preview.style.display = 'block';
-                        dropZone.querySelector('p').textContent = '✅ Imagem carregada!';
-                    }
-
-                    document.getElementById('form-titulo').textContent = 'Editar Achadinho';
-                    document.getElementById('btn-salvar').textContent = 'Atualizar Achadinho 🔄';
-                    
-                    mudarSecao('novo-produto');
-                } else {
-                    alert('Produto não encontrado.');
-                }
-            } catch (error) {
-                console.error("Erro ao carregar para edição:", error);
-                alert('Erro ao carregar dados do produto.');
-            }
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const novoProduto = {
+            titulo: document.getElementById('titulo').value,
+            categoria: document.getElementById('categoria').value,
+            imagem: inputImagem.value,
+            link: document.getElementById('link').value,
+            criadoEm: new Date()
         };
 
-        window.excluirProduto = async function(id) {
-            if (confirm('Deseja realmente excluir este produto?')) {
-                try {
-                    await deleteDoc(doc(db, "produtos", id));
-                } catch (error) {
-                    console.error("Erro ao excluir: ", error);
-                }
+        try {
+            await addDoc(collection(db, "produtos"), novoProduto);
+            alert('Achadinho cadastrado com sucesso na nuvem! 💖');
+            form.reset();
+            dropZone.innerHTML = `<p>📁 Clique aqui ou arraste uma imagem para cá</p>`;
+        } catch (error) {
+            console.error("Erro ao cadastrar: ", error);
+            alert('Erro ao cadastrar produto.');
+        }
+    });
+
+    onSnapshot(collection(db, "produtos"), (snapshot) => {
+        containerAdmin.innerHTML = '';
+        if (snapshot.empty) {
+            containerAdmin.innerHTML = '<p style="color: #666; font-size: 0.9rem;">Nenhum produto cadastrado na nuvem.</p>';
+            return;
+        }
+
+        snapshot.forEach((documento) => {
+            const prod = documento.data();
+            const id = documento.id;
+
+            const div = document.createElement('div');
+            div.className = 'item-admin';
+            div.innerHTML = `
+                <span style="font-size: 0.9rem; font-weight: 500;">${prod.titulo}</span>
+                <button class="btn-excluir" onclick="window.excluirProduto('${id}')">Excluir</button>
+            `;
+            containerAdmin.appendChild(div);
+        });
+    });
+
+    window.excluirProduto = async function(id) {
+        if (confirm('Deseja realmente excluir este achadinho?')) {
+            try {
+                await deleteDoc(doc(db, "produtos", id));
+            } catch (error) {
+                console.error("Erro ao excluir: ", error);
             }
-        };
-    </script>
+        }
+    };
+</script>
+
 </body>
 </html>
