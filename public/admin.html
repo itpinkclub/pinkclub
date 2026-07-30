@@ -279,10 +279,11 @@
             document.getElementById('titulo-pagina').textContent = titles[secaoId] || 'Painel Admin';
         };
 
+        // Redireciona corretamente para a página de login ao sair
         window.fazerLogout = function() {
             localStorage.removeItem('logado_pink');
             alert('Você saiu do painel.');
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';
         };
 
         // Drag and drop imagem
