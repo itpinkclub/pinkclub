@@ -355,23 +355,20 @@ body {
         font-size: .8rem
     }
 
-    /* Ajuste para navegação mobile com scroll horizontal suave */
+    /* Ajuste para categorias em duas linhas (wrap) no mobile */
     .categorias {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding-bottom: 5px;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        justify-content: center;
         padding-inline: 1rem;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .categorias::-webkit-scrollbar {
-        display: none;
+        gap: 0.4rem;
     }
 
     .categoria {
         white-space: nowrap;
         flex-shrink: 0;
+        font-size: 0.82rem;
+        padding: 0.5rem 0.85rem;
     }
 }
 
