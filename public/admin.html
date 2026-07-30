@@ -203,7 +203,7 @@
                     </div>
 
                     <div class="form-group full">
-                        <label>Descrição</label>
+                        <label>Descrição (Opcional)</label>
                         <textarea id="descricao" rows="3" placeholder="Detalhes do achadinho..."></textarea>
                     </div>
 
@@ -279,19 +279,74 @@
             document.getElementById('titulo-pagina').textContent = titles[secaoId] || 'Painel Admin';
         };
 
-        // Redireciona corretamente para a página de login ao sair
         window.fazerLogout = function() {
             localStorage.removeItem('logado_pink');
             alert('Você saiu do painel.');
             window.location.href = 'login.html';
         };
 
-        // Drag and drop imagem
+        // Redimensionar imagem automaticamente para evitar estouro de tamanho no Firebase
         const dropZone = document.getElementById('drop-zone');
         const inputImagem = document.getElementById('imagem');
         const preview = document.getElementById('preview');
 
-        dropZone.addEventListener('click', () => inputImagem.focus());
+        function comprimirImagem(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Limita o tamanho máximo para otimizar o banco de dados
+                    let width = img.width;
+                    let height = img.height;
+                    const maxWidth = 500;
+                    const maxHeight = 500;
+                    
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height *= maxWidth / width;
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width *= maxHeight / height;
+                            height = maxHeight;
+                        }
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // Converte para JPEG comprimido
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                    callback(dataUrl);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        dropZone.addEventListener('click', () => {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = 'image/*';
+            fileInput.onchange = e => {
+                const file = e.target.files[0];
+                if (file) {
+                    comprimirImagem(file, (dataUrl) => {
+                        inputImagem.value = dataUrl;
+                        preview.src = dataUrl;
+                        preview.style.display = 'block';
+                        dropZone.querySelector('p').textContent = '✅ Upload concluído com sucesso!';
+                    });
+                }
+            };
+            fileInput.click();
+        });
+
         dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
         dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
         dropZone.addEventListener('drop', (e) => {
@@ -299,14 +354,12 @@
             dropZone.classList.remove('dragover');
             const file = e.dataTransfer.files[0];
             if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    inputImagem.value = event.target.result;
-                    preview.src = event.target.result;
+                comprimirImagem(file, (dataUrl) => {
+                    inputImagem.value = dataUrl;
+                    preview.src = dataUrl;
                     preview.style.display = 'block';
                     dropZone.querySelector('p').textContent = '✅ Upload concluído com sucesso!';
-                };
-                reader.readAsDataURL(file);
+                });
             }
         });
 
@@ -317,17 +370,17 @@
             }
         });
 
-        // Salvar Produto no Firebase
+        // Salvar Produto no Firebase com descrição opcional
         const form = document.getElementById('form-produto');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const novoProduto = {
                 titulo: document.getElementById('titulo').value,
                 categoria: document.getElementById('categoria').value,
-                preco: document.getElementById('preco').value,
+                preco: document.getElementById('preco').value || '',
                 imagem: inputImagem.value,
                 link: document.getElementById('link').value,
-                descricao: document.getElementById('descricao').value,
+                descricao: document.getElementById('descricao').value || '',
                 destaque: document.getElementById('destaque').checked,
                 mostrarHome: document.getElementById('mostrarHome').checked,
                 criadoEm: new Date()
@@ -342,7 +395,7 @@
                 mudarSecao('produtos');
             } catch (error) {
                 console.error("Erro ao cadastrar: ", error);
-                alert('Erro ao salvar produto.');
+                alert('Erro ao salvar produto. A imagem pode estar muito pesada.');
             }
         });
 
