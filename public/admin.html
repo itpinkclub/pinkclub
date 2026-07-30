@@ -8,9 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="topo">
-        <a href="/" class="logo">💖 Painel Admin | It Pink Club</a>
-        <p>Gerencie todos os achadinhos</p>
+    <header class="topo" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
+        <div>
+            <a href="/" class="logo">💖 Painel Admin | It Pink Club</a>
+            <p style="margin: 0;">Gerencie todos os achadinhos</p>
+        </div>
+        <!-- Botão de Sair -->
+        <button onclick="fazerLogout()" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 0.5rem 1rem; border-radius: 9999px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">
+            🚪 Sair
+        </button>
     </header>
 
     <main class="vitrine" style="max-width: 900px; margin: 0 auto; padding: 2rem 1rem;">
@@ -73,6 +79,11 @@
         }
         function abrirModalAdicionar() {
             alert("Abrir formulário de cadastro de produto.");
+        }
+        function fazerLogout() {
+            // Limpa o estado de login se houver e redireciona para a tela de login ou página inicial
+            localStorage.removeItem("logado");
+            window.location.href = "/";
         }
     </script>
 </body>
