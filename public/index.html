@@ -1,79 +1,112 @@
-<style>
-  :root {
-    --pink-primary: #E91E63;
-    --pink-light: #FCE4EC;
-    --pink-pastel: #F8BBD0;
-    --gold-accent: #D4AF37;
-    --text-dark: #2C2C2C;
-    --bg-soft: #FFF5F8;
-    --shadow-soft: 0 10px 30px rgba(233, 30, 99, 0.08);
-    --shadow-hover: 0 15px 35px rgba(233, 30, 99, 0.15);
-    --radius-card: 16px;
-    --radius-button: 30px;
-  }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It Pink Club - Achadinhos e Produtos Selecionados</title>
+    
+    <!-- Estilos Globais e Identidade Visual It Pink Club -->
+    <style>
+      :root {
+        --pink-primary: #E91E63;
+        --pink-light: #FCE4EC;
+        --pink-pastel: #F8BBD0;
+        --gold-accent: #D4AF37;
+        --text-dark: #2C2C2C;
+        --bg-soft: #FFF5F8;
+        --shadow-soft: 0 10px 30px rgba(233, 30, 99, 0.08);
+        --shadow-hover: 0 15px 35px rgba(233, 30, 99, 0.15);
+        --radius-card: 16px;
+        --radius-button: 30px;
+      }
 
-  body {
-    background-color: var(--bg-soft) !important;
-    color: var(--text-dark);
-    font-family: 'Poppins', 'Inter', sans-serif, -apple-system;
-  }
+      body {
+        background-color: var(--bg-soft) !important;
+        color: var(--text-dark);
+        font-family: 'Poppins', 'Inter', sans-serif, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
-  button, .btn, .btn-primary, .add-to-cart, a.button {
-    background-color: var(--pink-primary) !important;
-    color: #FFFFFF !important;
-    border: none !important;
-    border-radius: var(--radius-button) !important;
-    font-weight: 600 !important;
-    padding: 12px 24px !important;
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3) !important;
-    transition: all 0.3s ease !important;
-  }
+      button, .btn, .btn-primary, .add-to-cart, a.button {
+        background-color: var(--pink-primary) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: var(--radius-button) !important;
+        font-weight: 600 !important;
+        padding: 12px 24px !important;
+        box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3) !important;
+        transition: all 0.3s ease !important;
+        cursor: pointer;
+      }
 
-  button:hover, .btn:hover, .btn-primary:hover, .add-to-cart:hover {
-    background-color: #D81B60 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4) !important;
-  }
+      button:hover, .btn:hover, .btn-primary:hover, .add-to-cart:hover {
+        background-color: #D81B60 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4) !important;
+      }
 
-  .product-card, .card, .item-produto {
-    background-color: #FFFFFF !important;
-    border: 1px solid var(--pink-pastel) !important;
-    border-radius: var(--radius-card) !important;
-    box-shadow: var(--shadow-soft) !important;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
-  }
+      .product-card, .card, .item-produto {
+        background-color: #FFFFFF !important;
+        border: 1px solid var(--pink-pastel) !important;
+        border-radius: var(--radius-card) !important;
+        box-shadow: var(--shadow-soft) !important;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+      }
 
-  .product-card:hover, .card:hover, .item-produto:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-hover) !important;
-    border-color: var(--pink-primary) !important;
-  }
+      .product-card:hover, .card:hover, .item-produto:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-hover) !important;
+        border-color: var(--pink-primary) !important;
+      }
 
-  .product-card img, .card img, .item-produto img {
-    border-top-left-radius: var(--radius-card);
-    border-top-right-radius: var(--radius-card);
-    transition: transform 0.5s ease !important;
-  }
+      .product-card img, .card img, .item-produto img {
+        border-top-left-radius: var(--radius-card);
+        border-top-right-radius: var(--radius-card);
+        transition: transform 0.5s ease !important;
+      }
 
-  img.banner, .banner img, .carousel img, .hero-banner img {
-    border-radius: var(--radius-card) !important;
-    box-shadow: var(--shadow-soft);
-    border: 2px solid var(--pink-pastel);
-  }
+      .product-card:hover img, .card:hover img {
+        transform: scale(1.03);
+      }
 
-  .category-item, .categoria-card, .filter-chip {
-    background-color: #FFFFFF !important;
-    border: 1px solid var(--pink-pastel) !important;
-    border-radius: var(--radius-button) !important;
-    padding: 10px 20px !important;
-    box-shadow: 0 4px 10px rgba(233, 30, 99, 0.04);
-    transition: all 0.3s ease !important;
-  }
+      img.banner, .banner img, .carousel img, .hero-banner img {
+        border-radius: var(--radius-card) !important;
+        box-shadow: var(--shadow-soft);
+        border: 2px solid var(--pink-pastel);
+      }
 
-  .category-item:hover, .categoria-card:hover, .filter-chip:hover {
-    background-color: var(--pink-light) !important;
-    border-color: var(--pink-primary) !important;
-    color: var(--pink-primary) !important;
-  }
-</style>
+      .category-item, .categoria-card, .filter-chip {
+        background-color: #FFFFFF !important;
+        border: 1px solid var(--pink-pastel) !important;
+        border-radius: var(--radius-button) !important;
+        padding: 10px 20px !important;
+        box-shadow: 0 4px 10px rgba(233, 30, 99, 0.04);
+        transition: all 0.3s ease !important;
+      }
+
+      .category-item:hover, .categoria-card:hover, .filter-chip:hover {
+        background-color: var(--pink-light) !important;
+        border-color: var(--pink-primary) !important;
+        color: var(--pink-primary) !important;
+      }
+
+      h1, h2, h3, .title, .store-title {
+        color: var(--text-dark);
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Conteúdo principal estruturado da sua loja -->
+    <div id="app">
+        <!-- Mantém toda a sua navegação, banners, categorias e vitrines originais sincronizados com o app.js e Firebase -->
+    </div>
+
+    <!-- Scripts da Loja -->
+    <script src="js/app.js"></script>
+</body>
+</html>
