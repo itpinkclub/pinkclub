@@ -27,13 +27,10 @@
             background: var(--pink-soft);
         }
 
-        .topo, .titulo, .vitrine, .beneficios {
-            padding-inline: clamp(1.25rem, 5vw, 5rem);
-        }
-
+        /* 1. TOPO E BUSCA */
         .topo {
             text-align: center;
-            padding-block: 3.5rem 2rem;
+            padding: 3rem 1rem 2rem;
             background: linear-gradient(150deg, #fff 0%, #fff0f7 100%);
             border-bottom: 1px solid #ffe3f0;
         }
@@ -85,6 +82,7 @@
             box-shadow: 0 4px 20px rgba(255, 63, 155, 0.25);
         }
 
+        /* 2. MENU STICKY DE CATEGORIAS */
         .sticky-header {
             position: sticky;
             top: 0;
@@ -92,7 +90,7 @@
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 12px 0 16px;
+            padding: 12px 0;
             box-shadow: 0 4px 20px rgba(196, 49, 119, 0.08);
         }
 
@@ -125,11 +123,11 @@
             transform: translateY(-2px);
         }
 
-        /* Seção do Carrossel de Banners Oficiais */
+        /* 3. BANNER ROTATIVO ABAIXO DO MENU */
         .banner {
             width: 100%;
             background: var(--pink-soft);
-            padding: 1.5rem 0;
+            padding: 1.5rem 0 0;
         }
 
         .banner-slider {
@@ -160,9 +158,16 @@
             visibility: visible;
         }
 
+        /* 4. VITRINE DE PRODUTOS */
+        .vitrine {
+            max-width: 1440px;
+            margin: auto;
+            padding: 2rem clamp(1.25rem, 5vw, 5rem) 4rem;
+        }
+
         .titulo {
             text-align: center;
-            padding-top: 2rem;
+            margin-bottom: 2rem;
         }
 
         .titulo h1 {
@@ -173,13 +178,7 @@
 
         .titulo p {
             color: var(--muted);
-            margin: .4rem auto 1.5rem;
-        }
-
-        .vitrine {
-            max-width: 1440px;
-            margin: auto;
-            padding-block: 1rem 4rem;
+            margin: .4rem auto 0;
         }
 
         #produtos-container {
@@ -195,13 +194,12 @@
             border-radius: 1.5rem;
             border: 1px solid #ffe3f0;
             box-shadow: var(--shadow);
-            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease, border-color 0.25s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .card-produto:hover {
-            transform: translateY(-6px) scale(1.01);
+            transform: translateY(-6px);
             box-shadow: 0 20px 35px rgba(196, 49, 119, 0.22);
-            border-color: #ffb3d9;
         }
 
         .card-imagem {
@@ -217,11 +215,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .card-produto:hover .card-imagem img {
-            transform: scale(1.03);
         }
 
         .card-conteudo {
@@ -234,7 +227,6 @@
             font-size: .78rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: .04em;
         }
 
         .card-produto h3 {
@@ -251,17 +243,9 @@
             color: #fff;
             font-size: .92rem;
             font-weight: 700;
-            letter-spacing: 0.3px;
             text-align: center;
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(220, 37, 123, 0.35);
-            transition: all 0.2s ease;
-        }
-
-        .btn-comprar:hover {
-            background: linear-gradient(135deg, #dc257b 0%, #c41e6c 100%);
-            transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 6px 20px rgba(220, 37, 123, 0.5);
         }
 
         .badge-destaque {
@@ -271,14 +255,12 @@
             left: .8rem;
             padding: .35rem .75rem;
             border-radius: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, #fff0f7 100%);
+            background: #fff;
             border: 1px solid #ffb3d9;
             color: var(--pink-dark);
             font-size: .72rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .vazio {
@@ -286,9 +268,9 @@
             text-align: center;
             color: var(--muted);
             padding: 2.5rem;
-            font-size: 1rem;
         }
 
+        /* 5. BENEFÍCIOS E RODAPÉ */
         .beneficios {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -304,28 +286,11 @@
             border-radius: 1.2rem;
             background: var(--pink-soft);
             border: 1px solid #ffd8ea;
-            transition: transform 0.2s ease;
         }
 
-        .card-info:hover {
-            transform: translateY(-3px);
-        }
-
-        .card-info span {
-            font-size: 1.7rem;
-        }
-
-        .card-info h2 {
-            margin: .5rem 0;
-            color: var(--pink);
-            font-size: 1rem;
-        }
-
-        .card-info p {
-            margin: 0;
-            color: var(--muted);
-            font-size: .87rem;
-        }
+        .card-info span { font-size: 1.7rem; }
+        .card-info h2 { margin: .5rem 0; color: var(--pink); font-size: 1rem; }
+        .card-info p { margin: 0; color: var(--muted); font-size: .87rem; }
 
         footer {
             text-align: center;
@@ -340,13 +305,13 @@
         @media(max-width:768px) {
             .beneficios { grid-template-columns: 1fr; }
             #produtos-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; }
-            .banner-slider { width: 100%; border-radius: 0; aspect-ratio: 16/9; margin: 0; }
+            .banner-slider { width: 100%; border-radius: 0; aspect-ratio: 16/9; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Cabeçalho Principal -->
+    <!-- 1. Topo & Barra de Pesquisa -->
     <header class="topo">
         <a href="#" class="logo">It Pink Club 💖</a>
         <p>Sua comunidade exclusiva de achadinhos e boutique feminina</p>
@@ -356,14 +321,14 @@
         </div>
     </header>
 
-    <!-- Menu Sticky de Categorias -->
+    <!-- 2. Menu de Categorias Sticky -->
     <div class="sticky-header">
         <nav id="filtros-categorias">
-            <!-- Renderizado dinamicamente pelo app.js -->
+            <!-- Preenchido via app.js -->
         </nav>
     </div>
 
-    <!-- Seção de Banners Rotativos Oficiais -->
+    <!-- 3. Banners Oficiais Rotativos -->
     <section class="banner">
         <div class="banner-slider" id="bannerSlider">
             <img src="/assets/banner1.webp" class="slide active" alt="Banner 1">
@@ -372,18 +337,18 @@
         </div>
     </section>
 
-    <!-- Vitrine de Produtos -->
+    <!-- 4. Vitrine de Produtos -->
     <main class="vitrine">
         <div class="titulo">
             <h1>Achadinhos Selecionados</h1>
             <p>Os melhores achados da internet reunidos para você</p>
         </div>
         <div id="produtos-container">
-            <!-- Produtos injetados dinamicamente via app.js -->
+            <!-- Produtos carregados do Firebase via app.js -->
         </div>
     </main>
 
-    <!-- Seção de Benefícios -->
+    <!-- 5. Benefícios -->
     <section class="beneficios">
         <div class="card-info">
             <span>✨</span>
@@ -402,7 +367,7 @@
         </div>
     </section>
 
-    <!-- Rodapé Oficial -->
+    <!-- Rodapé -->
     <footer>
         <p>It Pink Club © 2026 — Todos os direitos reservados. Feito com muito amor e rosa 💖</p>
     </footer>
@@ -422,7 +387,7 @@
         });
     </script>
 
-    <!-- Script principal com type="module" -->
+    <!-- Script Principal -->
     <script type="module" src="js/app.js"></script>
 </body>
 </html>
