@@ -128,13 +128,15 @@
                 </div>
 
                 <div>
-                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Link da Imagem (URL)</label>
-                    <input type="url" id="imagem-prod" required oninput="atualizarPreview()" placeholder="https://..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
-                </div>
-
-                <!-- Preview da Imagem -->
-                <div id="preview-container" style="background: var(--pink-light); height: 110px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px dashed var(--pink-border);">
-                    <span style="font-size: 0.8rem; color: var(--pink);">📷 Preview da Imagem</span>
+                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Imagem do Produto</label>
+                    <!-- Input de arquivo oculto -->
+                    <input type="file" id="input-arquivo-img" accept="image/*" style="display: none;" onchange="processarArquivo(this.files[0])">
+                    
+                    <!-- Área de Arrastar e Soltar (Dropzone) -->
+                    <div id="drop-zone" onclick="document.getElementById('input-arquivo-img').click()" ondragover="event.preventDefault(); this.style.borderColor='var(--pink)';" ondragleave="this.style.borderColor='var(--pink-border)';" ondrop="tratarDrop(event)" style="background: var(--pink-light); height: 110px; border-radius: 0.6rem; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; border: 2px dashed var(--pink-border); cursor: pointer; text-align: center; padding: 0.5rem; box-sizing: border-box;">
+                        <span style="font-size: 0.85rem; color: var(--pink); font-weight: 500;">📷 Arraste a imagem ou clique aqui</span>
+                        <span style="font-size: 0.7rem; color: #888; margin-top: 0.2rem;">PNG, JPG ou WEBP</span>
+                    </div>
                 </div>
 
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
@@ -173,12 +175,29 @@
     <div id="toast">✅ Produto cadastrado com sucesso!</div>
 
     <script>
-        let produtos = JSON.parse(localStorage.getItem('produtos_pink')) || [
-            { id: 1, titulo: "Organizador Giratório de Maquiagem", categoria: "skincare", imagem: "" },
-            { id: 2, titulo: "Difusor de Aromas Efeito Chama", categoria: "casa", imagem: "" }
-        ];
-
+        let produtos = JSON.parse(localStorage.getItem('produtos_pink')) || [];
         let categoriaAtual = 'todos';
+        let imagemBase64Temp = '';
+
+        function processarArquivo(arquivo) {
+            if (!arquivo || !arquivo.type.startsWith('image/')) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagemBase64Temp = e.target.result;
+                const dropZone = document.getElementById('drop-zone');
+                dropZone.innerHTML = `<img src="${imagemBase64Temp}" style="width:100%; height:100%; object-fit:cover; border-radius:0.5rem;">`;
+            };
+            reader.readAsDataURL(arquivo);
+        }
+
+        function tratarDrop(event) {
+            event.preventDefault();
+            document.getElementById('drop-zone').style.borderColor = 'var(--pink-border)';
+            if (event.dataTransfer.files && event.dataTransfer.files[0]) {
+                processarArquivo(event.dataTransfer.files[0]);
+            }
+        }
 
         function renderizarProdutos(lista) {
             const container = document.getElementById('lista-produtos-admin');
@@ -209,24 +228,19 @@
             });
         }
 
-        function atualizarPreview() {
-            const url = document.getElementById('imagem-prod').value;
-            const container = document.getElementById('preview-container');
-            if (url) {
-                container.innerHTML = `<img src="${url}" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.parentNode.innerHTML='<span style=\'font-size:0.8rem; color:red;\'>Link inválido</span>';">`;
-            } else {
-                container.innerHTML = `<span style="font-size: 0.8rem; color: var(--pink);">📷 Preview da Imagem</span>`;
-            }
-        }
-
         function salvarProduto(event) {
             event.preventDefault();
+
+            if (!imagemBase64Temp) {
+                alert("Por favor, adicione uma imagem para o produto!");
+                return;
+            }
 
             const novoProduto = {
                 titulo: document.getElementById('titulo-prod').value,
                 categoria: document.getElementById('categoria-prod').value,
                 link: document.getElementById('link-prod').value,
-                imagem: document.getElementById('imagem-prod').value
+                imagem: imagemBase64Temp
             };
 
             produtos.unshift(novoProduto);
@@ -239,7 +253,11 @@
 
         function limparFormulario() {
             document.getElementById('form-produto').reset();
-            document.getElementById('preview-container').innerHTML = `<span style="font-size: 0.8rem; color: var(--pink);">📷 Preview da Imagem</span>`;
+            imagemBase64Temp = '';
+            document.getElementById('drop-zone').innerHTML = `
+                <span style="font-size: 0.85rem; color: var(--pink); font-weight: 500;">📷 Arraste a imagem ou clique aqui</span>
+                <span style="font-size: 0.7rem; color: #888; margin-top: 0.2rem;">PNG, JPG ou WEBP</span>
+            `;
         }
 
         function excluirProduto(index) {
