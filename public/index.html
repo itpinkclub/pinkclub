@@ -195,6 +195,8 @@
             border: 1px solid #ffe3f0;
             box-shadow: var(--shadow);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card-produto:hover {
@@ -220,6 +222,9 @@
 
         .card-conteudo {
             padding: 1.1rem 1.2rem 1.3rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-cat {
@@ -233,6 +238,7 @@
         .card-produto h3 {
             margin: .35rem 0 .55rem;
             font-size: 1.05rem;
+            flex-grow: 1;
         }
 
         .btn-comprar {
@@ -393,7 +399,7 @@
             <p>Os melhores achados da internet reunidos para você</p>
         </div>
         <div id="produtos-container">
-            <!-- Produtos carregados do Firebase via app.js -->
+            <!-- Vazio propositalmente para o app.js puxar os produtos reais do Firebase -->
         </div>
     </main>
 
