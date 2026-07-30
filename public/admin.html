@@ -19,7 +19,6 @@
             margin: 0;
             color: #333;
         }
-        /* Layout de duas colunas fixas */
         .admin-layout {
             display: grid;
             grid-template-columns: 350px 1fr;
@@ -30,7 +29,6 @@
                 grid-template-columns: 1fr;
             }
         }
-        /* Coluna Esquerda: Formulário Fixo */
         .admin-sidebar {
             background: white;
             border-right: 1px solid #ffe3f0;
@@ -41,19 +39,16 @@
             overflow-y: auto;
             box-sizing: border-box;
         }
-        /* Coluna Direita: Vitrine */
         .admin-content {
             padding: 2rem;
             box-sizing: border-box;
             background: #fffbfe;
         }
-        /* Cards menores (4 por linha) */
         .grid-produtos {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1rem;
         }
-        /* Botões de Categoria com ícones */
         .cat-btn {
             padding: 0.4rem 0.8rem;
             border-radius: 9999px;
@@ -69,7 +64,6 @@
             color: white;
             border-color: var(--pink);
         }
-        /* Toast de sucesso */
         #toast {
             visibility: hidden;
             min-width: 250px;
@@ -143,11 +137,6 @@
                     <span style="font-size: 0.8rem; color: var(--pink);">📷 Preview da Imagem</span>
                 </div>
 
-                <div>
-                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Preço</label>
-                    <input type="text" id="preco-prod" placeholder="Ex: R$ 49,90" style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
-                </div>
-
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
                     <button type="submit" style="flex: 2; background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 0.7rem; border-radius: 9999px; font-weight: 600; cursor: pointer; font-size: 0.9rem; box-shadow: var(--shadow);">💾 Cadastrar</button>
                     <button type="button" onclick="limparFormulario()" style="flex: 1; background: #f3f4f6; border: 1px solid #d1d5db; color: #4b5563; padding: 0.7rem; border-radius: 9999px; font-weight: 600; cursor: pointer; font-size: 0.9rem;">🧹 Limpar</button>
@@ -185,8 +174,8 @@
 
     <script>
         let produtos = JSON.parse(localStorage.getItem('produtos_pink')) || [
-            { id: 1, titulo: "Organizador Giratório de Maquiagem", categoria: "skincare", preco: "R$ 49,90", imagem: "" },
-            { id: 2, titulo: "Difusor de Aromas Efeito Chama", categoria: "casa", preco: "R$ 79,90", imagem: "" }
+            { id: 1, titulo: "Organizador Giratório de Maquiagem", categoria: "skincare", imagem: "" },
+            { id: 2, titulo: "Difusor de Aromas Efeito Chama", categoria: "casa", imagem: "" }
         ];
 
         let categoriaAtual = 'todos';
@@ -212,7 +201,6 @@
                     </div>
                     <h3 style="font-size: 0.9rem; margin: 0.2rem 0; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${prod.titulo}">${prod.titulo}</h3>
                     <span style="font-size: 0.75rem; color: #db2777; font-weight: 500;">${prod.categoria}</span>
-                    <strong style="color: #111; font-size: 0.95rem;">${prod.preco || ''}</strong>
                     <div style="display: flex; gap: 0.4rem; margin-top: 0.4rem;">
                         <button onclick="excluirProduto(${index})" style="width: 100%; padding: 0.4rem; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; border-radius: 0.4rem; cursor: pointer; font-size: 0.8rem; font-weight: 500;">🗑 Excluir</button>
                     </div>
@@ -238,8 +226,7 @@
                 titulo: document.getElementById('titulo-prod').value,
                 categoria: document.getElementById('categoria-prod').value,
                 link: document.getElementById('link-prod').value,
-                imagem: document.getElementById('imagem-prod').value,
-                preco: document.getElementById('preco-prod').value
+                imagem: document.getElementById('imagem-prod').value
             };
 
             produtos.unshift(novoProduto);
