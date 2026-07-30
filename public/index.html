@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>It Pink Club | Achadinhos e Boutique Feminina</title>
+    <title>It Pink Club | Sua comunidade exclusiva de achadinhos e boutique feminina</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -123,7 +123,7 @@
             transform: translateY(-2px);
         }
 
-        /* 3. BANNER ROTATIVO ABAIXO DO MENU */
+        /* 3. BANNERS ROTATIVOS */
         .banner {
             width: 100%;
             background: var(--pink-soft);
@@ -270,14 +270,61 @@
             padding: 2.5rem;
         }
 
-        /* 5. BENEFÍCIOS E RODAPÉ */
+        /* 5. SEÇÃO DO GRUPO DE WHATSAPP */
+        .whatsapp-section {
+            background: linear-gradient(135deg, #fff0f7 0%, #ffe1ef 100%);
+            border-top: 1px solid #ffd8ea;
+            border-bottom: 1px solid #ffd8ea;
+            padding: 3.5rem 1rem;
+            text-align: center;
+        }
+
+        .whatsapp-card {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 15px 35px rgba(255, 63, 155, 0.15);
+            border: 1px solid #ffb3d9;
+        }
+
+        .whatsapp-card h2 {
+            color: var(--pink);
+            margin-top: 0;
+            font-size: 1.6rem;
+        }
+
+        .whatsapp-card p {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25d366;
+            color: #fff;
+            padding: 0.9rem 2rem;
+            border-radius: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background: #22bf5b;
+            transform: translateY(-2px);
+        }
+
+        /* 6. BENEFÍCIOS */
         .beneficios {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.25rem;
             padding: 3rem clamp(1.25rem, 5vw, 5rem);
             background: #fff;
-            border-top: 1px solid #ffe3f0;
         }
 
         .card-info {
@@ -292,6 +339,7 @@
         .card-info h2 { margin: .5rem 0; color: var(--pink); font-size: 1rem; }
         .card-info p { margin: 0; color: var(--muted); font-size: .87rem; }
 
+        /* 7. RODAPÉ */
         footer {
             text-align: center;
             padding: 2.5rem;
@@ -348,7 +396,18 @@
         </div>
     </main>
 
-    <!-- 5. Benefícios -->
+    <!-- 5. Seção do Grupo de WhatsApp -->
+    <section class="whatsapp-section">
+        <div class="whatsapp-card">
+            <h2>Entre no nosso Grupo VIP do WhatsApp 💚</h2>
+            <p>Receba os melhores achadinhos em primeira mão, cupons secretos e promoções relâmpago direto no seu celular!</p>
+            <a href="https://chat.whatsapp.com/SEU_LINK_AQUI" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+                Entrar no Grupo VIP 💬
+            </a>
+        </div>
+    </section>
+
+    <!-- 6. Benefícios -->
     <section class="beneficios">
         <div class="card-info">
             <span>✨</span>
@@ -367,12 +426,12 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
+    <!-- 7. Rodapé -->
     <footer>
         <p>It Pink Club © 2026 — Todos os direitos reservados. Feito com muito amor e rosa 💖</p>
     </footer>
 
-    <!-- Script de Rotação Automática dos 3 Banners -->
+    <!-- Script de Rotação Automática dos Banners -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const slides = document.querySelectorAll(".banner-slider .slide");
