@@ -4,49 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>💖 It Pink Club | Achadinhos & Lifestyle da Shopee</title>
+    <title>It Pink Club | Lifestyle & Home Decor</title>
 
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="ouUpmd0L-F-6NngD0j5jJGvzfFvZcFHDgI5ECPSboQw">
 
     <!-- SEO -->
-    <meta name="description" content="Os melhores achadinhos da Shopee. Moda feminina, beleza, skincare, decoração, casa, tecnologia e mimos escolhidos com curadoria exclusiva para você.">
-    <meta name="keywords" content="Shopee, achadinhos, ofertas Shopee, moda feminina, beleza, skincare, cabelos, decoração, casa, tecnologia, pets, papelaria, It Pink Club">
+    <meta name="description" content="Curadoria exclusiva de decoração, organização e lifestyle com a estética aconchegante do Pinterest e Zara Home.">
+    <meta name="keywords" content="decoração, lifestyle, home decor, achadinhos, pinterest aesthetic, zara home, it pink club">
     <meta name="author" content="It Pink Club">
     <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="language" content="pt-BR">
-    <meta name="revisit-after" content="7 days">
-    <meta name="theme-color" content="#EC4899">
+    <meta name="theme-color" content="#1C1917">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://pinkclub-three.vercel.app/">
 
-    <!-- Open Graph / WhatsApp / Pinterest -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="It Pink Club">
-    <meta property="og:title" content="💖 It Pink Club | Os achadinhos mais lindos da Shopee">
-    <meta property="og:description" content="Descubra os achadinhos mais lindos da Shopee com ofertas imperdíveis. Moda, beleza, skincare, casa e mimos escolhidos com carinho!">
+    <meta property="og:title" content="It Pink Club | Lifestyle & Home Decor">
+    <meta property="og:description" content="Curadoria exclusiva de decoração, organização e lifestyle inspirada no Pinterest.">
     <meta property="og:url" content="https://pinkclub-three.vercel.app/">
     <meta property="og:image" content="https://pinkclub-three.vercel.app/assets/banner1.webp">
-    <meta property="og:image:alt" content="It Pink Club">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="💖 It Pink Club">
-    <meta name="twitter:description" content="Os melhores achadinhos da Shopee escolhidos com carinho para você.">
-    <meta name="twitter:image" content="https://pinkclub-three.vercel.app/assets/banner1.webp">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
-    <link rel="shortcut icon" href="/assets/favicon.png">
-    <link rel="apple-touch-icon" href="/assets/favicon.png">
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -54,22 +42,25 @@
     <!-- Preload Banner -->
     <link rel="preload" as="image" href="/assets/banner1.webp" type="image/webp">
 
-    <!-- CSS Modernizado -->
+    <!-- CSS Redesenhado - Conceito Premium & Pinterest Style -->
     <style>
         :root {
-            --bg-main: #FFF9FB;
+            --bg-main: #FBF9F7; /* Off-white acolhedor */
             --bg-white: #FFFFFF;
-            --rosa-claro: #FCE7F3;
-            --rosa-principal: #EC4899;
-            --rosa-escuro: #DB2777;
-            --cinza-claro: #F3F4F6;
-            --cinza-borda: #E5E7EB;
-            --texto-principal: #1F2937;
-            --texto-secundario: #6B7280;
-            --sombra-suave: 0 10px 25px -5px rgba(236, 72, 153, 0.08), 0 8px 10px -6px rgba(236, 72, 153, 0.05);
-            --sombra-card: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --bege-suave: #F4EFEB;
+            --cinza-claro: #EFECE6;
+            --cinza-borda: #E5E0D8;
+            --texto-principal: #1C1917; /* Off-black */
+            --texto-secundario: #78716C;
+            --rosa-acao: #E11D48; /* Pink elegante e sofisticado */
+            --rosa-claro-hover: #FFF1F2;
+            --madeira-clara: #D7CCC8;
+            
+            --sombra-premium: 0 20px 40px -15px rgba(28, 25, 23, 0.07);
+            --sombra-card: 0 10px 30px -10px rgba(28, 25, 23, 0.05);
+            --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --radius-box: 16px;
+            --radius-box: 20px;
             --radius-btn: 9999px;
         }
 
@@ -83,159 +74,262 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-main);
             color: var(--texto-principal);
-            line-height: 1.6;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        /* HEADER & STICKY NAV */
+        h1, h2, h3, .logo, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* HEADER STICKY COM BLUR PREMIUM */
         header.topo {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(251, 249, 247, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--cinza-borda);
-            padding: 16px 24px;
-            text-align: center;
+            padding: 20px 40px;
             transition: var(--transition-smooth);
+        }
+
+        .header-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
         }
 
         .logo-container {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             text-decoration: none;
-            margin-bottom: 4px;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--rosa-escuro);
+            color: var(--texto-principal);
             letter-spacing: -0.5px;
         }
 
-        header.topo p {
-            font-size: 0.875rem;
-            color: var(--texto-secundario);
-            margin-bottom: 16px;
+        .logo span {
+            color: var(--rosa-acao);
         }
 
-        .sticky-header {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .pesquisa-label {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            border: 0;
-        }
-
+        /* BARRA DE PESQUISA ELEGANTE */
         .search-wrapper {
             position: relative;
             width: 100%;
-            max-width: 500px;
+            max-width: 420px;
         }
 
         .search-wrapper i {
             position: absolute;
-            left: 18px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--texto-secundario);
             font-size: 0.95rem;
+            transition: var(--transition-smooth);
         }
 
         input[type="search"] {
             width: 100%;
-            padding: 12px 20px 12px 48px;
-            background-color: var(--cinza-claro);
-            border: 1px solid transparent;
+            padding: 14px 24px 14px 52px;
+            background-color: var(--bg-white);
+            border: 1px solid var(--cinza-borda);
             border-radius: var(--radius-btn);
             font-size: 0.95rem;
             color: var(--texto-principal);
             transition: var(--transition-smooth);
             outline: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        input[type="search"]::placeholder {
+            color: #A8A29E;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         input[type="search"]:focus {
+            border-color: var(--texto-principal);
             background-color: var(--bg-white);
-            border-color: var(--rosa-principal);
-            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
+            box-shadow: 0 4px 20px rgba(28, 25, 23, 0.08);
         }
 
-        /* CATEGORIAS EM CARDS VISUAIS */
-        .categorias {
+        .header-actions {
             display: flex;
-            gap: 10px;
-            overflow-x: auto;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-vip-header {
+            background-color: var(--texto-principal);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-btn);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-vip-header:hover {
+            background-color: var(--rosa-acao);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.25);
+        }
+
+        /* HERO SECTION (70-80vh COM IMAGEM DE FUNDO E OVERLAY) */
+        .hero {
+            position: relative;
+            height: 75vh;
+            min-height: 550px;
+            max-height: 800px;
             width: 100%;
-            padding: 4px 4px 12px 4px;
-            scrollbar-width: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            transform: scale(1.05);
+            animation: slowZoom 20s infinite alternate linear;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.12); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(28,25,23,0.3) 0%, rgba(28,25,23,0.65) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 18px;
+            border-radius: var(--radius-btn);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            font-weight: 300;
+            margin-bottom: 36px;
+            color: #F5F5F4;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .categorias::-webkit-scrollbar {
-            display: none;
-        }
-
-        .categoria {
+        .btn-hero-primary {
             background-color: var(--bg-white);
-            border: 1px solid var(--cinza-borda);
             color: var(--texto-principal);
-            padding: 8px 18px;
+            padding: 14px 32px;
             border-radius: var(--radius-btn);
-            font-size: 0.875rem;
+            text-decoration: none;
             font-weight: 600;
-            cursor: pointer;
+            font-size: 0.95rem;
             transition: var(--transition-smooth);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            white-space: nowrap;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        .categoria:hover {
-            border-color: var(--rosa-principal);
-            color: var(--rosa-escuro);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
-        }
-
-        .categoria.ativa {
-            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
+        .btn-hero-primary:hover {
+            background-color: var(--rosa-acao);
             color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+            transform: translateY(-3px);
         }
 
-        /* HERO BANNER */
+        .btn-hero-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 14px 32px;
+            border-radius: var(--radius-btn);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* BANNER SECUNDÁRIO / SLIDER */
         .banner {
-            max-width: 1200px;
-            margin: 32px auto 0 auto;
-            padding: 0 20px;
+            max-width: 1400px;
+            margin: 0 auto 60px auto;
+            padding: 0 40px;
         }
 
         .banner-slider {
             position: relative;
-            height: 380px;
-            border-radius: 24px;
+            height: 480px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: var(--sombra-suave);
-            background-color: var(--rosa-claro);
+            box-shadow: var(--sombra-premium);
+            background-color: var(--bege-suave);
         }
 
         .banner-slider .slide {
@@ -246,53 +340,159 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease;
+            transform: scale(1.02);
         }
 
         .banner-slider .slide.active {
             opacity: 1;
+            transform: scale(1);
         }
 
-        /* MAIN & TITLES */
+        /* CONTAINER PRINCIPAL */
         main {
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 0 auto;
-            padding: 48px 20px;
+            padding: 0 40px 80px 40px;
         }
 
-        .titulo {
+        /* CATEGORIAS EM CARTÓBIOS VISUAIS (ESTILO PINTEREST) */
+        .categorias-section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 28px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--texto-principal);
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: var(--texto-secundario);
+            font-size: 0.95rem;
+        }
+
+        .categorias {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .categoria-card {
+            position: relative;
+            height: 130px;
+            border-radius: var(--radius-box);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--sombra-card);
+            border: 1px solid var(--cinza-borda);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-white);
             text-align: center;
+            padding: 16px;
+        }
+
+        .categoria-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(28,25,23,0.1) 0%, rgba(28,25,23,0.65) 100%);
+            z-index: 1;
+            transition: var(--transition-smooth);
+        }
+
+        .categoria-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .categoria-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .categoria-card:hover::before {
+            background: linear-gradient(180deg, rgba(28,25,23,0.2) 0%, rgba(28,25,23,0.8) 100%);
+        }
+
+        .categoria-card span {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-weight: 600;
+            font-size: 1.05rem;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.3px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .categoria-card.ativa {
+            border-color: var(--texto-principal);
+            box-shadow: 0 10px 25px rgba(28, 25, 23, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .categoria-card.ativa::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        /* VITRINE & PRODUTOS ESTILO PINTEREST / ZARA HOME */
+        .titulo {
             margin-bottom: 40px;
+            text-align: left;
         }
 
         .titulo h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 600;
             color: var(--texto-principal);
             letter-spacing: -0.5px;
             margin-bottom: 8px;
         }
 
         .titulo p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: var(--texto-secundario);
         }
 
-        /* VITRINE & PRODUTOS */
         .vitrine {
-            margin-bottom: 64px;
+            margin-bottom: 80px;
         }
 
         .produtos {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
         }
 
-        /* CARD DE PRODUTO PREMIUM (Inspirado em Zara Home/Pinterest) */
+        /* CARD DE PRODUTO PREMIUM */
         .produto-card {
             background: var(--bg-white);
-            border: 1px solid var(--cinza-borda);
             border-radius: var(--radius-box);
             overflow: hidden;
             display: flex;
@@ -300,18 +500,19 @@
             justify-content: space-between;
             transition: var(--transition-smooth);
             box-shadow: var(--sombra-card);
+            border: 1px solid var(--cinza-borda);
             position: relative;
         }
 
         .produto-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -10px rgba(236, 72, 153, 0.12);
-            border-color: rgba(236, 72, 153, 0.3);
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-premium);
+            border-color: #D1CBC0;
         }
 
         .produto-img-container {
             background: var(--cinza-claro);
-            height: 240px;
+            height: 380px;
             overflow: hidden;
             position: relative;
             display: flex;
@@ -323,39 +524,92 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .produto-card:hover .produto-img-container img {
-            transform: scale(1.06);
+            transform: scale(1.05);
+        }
+
+        /* BADGES FLUTUANTES NO CARD */
+        .produto-badges {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .badge-tag {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--texto-principal);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 6px 14px;
+            border-radius: var(--radius-btn);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            pointer-events: auto;
+        }
+
+        .badge-tag.alta {
+            background: var(--rosa-acao);
+            color: white;
+        }
+
+        .btn-favoritar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--texto-principal);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: var(--transition-smooth);
+            pointer-events: auto;
+        }
+
+        .btn-favoritar:hover {
+            background: white;
+            color: var(--rosa-acao);
+            transform: scale(1.1);
         }
 
         .produto-conteudo {
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .produto-categoria-tag {
-            font-size: 0.7rem;
-            color: var(--rosa-escuro);
-            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--texto-secundario);
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            background: var(--rosa-claro);
-            padding: 4px 10px;
-            border-radius: var(--radius-btn);
-            align-self: flex-start;
-            margin-bottom: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
         }
 
         .produto-titulo {
-            font-size: 0.95rem;
-            font-weight: 600;
+            font-size: 1.15rem;
+            font-weight: 500;
             color: var(--texto-principal);
             line-height: 1.4;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            font-family: 'Playfair Display', serif;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -363,45 +617,44 @@
             flex-grow: 1;
         }
 
-        /* BOTÕES PADRONIZADOS */
         .btn-acao {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, var(--rosa-principal), var(--rosa-escuro));
+            background-color: var(--texto-principal);
             color: white;
             text-align: center;
-            padding: 12px 20px;
+            padding: 14px 24px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
+            letter-spacing: 0.3px;
             transition: var(--transition-smooth);
             cursor: pointer;
             border: none;
         }
 
         .btn-acao:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 16px rgba(236, 72, 153, 0.3);
-            filter: brightness(1.05);
+            background-color: var(--rosa-acao);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.25);
         }
 
-        /* BENEFÍCIOS */
+        /* SEÇÃO DE BENEFÍCIOS / VALORES DA MARCA */
         .beneficios {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto 64px auto;
-            padding: 0 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1500px;
+            margin: 0 auto 80px auto;
+            padding: 0 40px;
         }
 
         .card-info {
             background: var(--bg-white);
             border: 1px solid var(--cinza-borda);
             border-radius: var(--radius-box);
-            padding: 32px 24px;
+            padding: 40px 32px;
             text-align: center;
             box-shadow: var(--sombra-card);
             transition: var(--transition-smooth);
@@ -409,160 +662,239 @@
 
         .card-info:hover {
             transform: translateY(-4px);
-            border-color: rgba(236, 72, 153, 0.3);
-            box-shadow: var(--sombra-suave);
+            border-color: #D1CBC0;
+            box-shadow: var(--sombra-premium);
         }
 
         .card-info span {
-            font-size: 2rem;
+            font-size: 2.2rem;
             display: inline-block;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .card-info h2 {
-            font-size: 1.15rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 600;
             color: var(--texto-principal);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .card-info p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--texto-secundario);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        /* ÁREA VIP */
+        /* ÁREA VIP / NEWSLETTER SOFISTICADA */
         .vip-section {
-            background: linear-gradient(135deg, #FFF0F6 0%, #FFD6E7 100%);
-            padding: 56px 24px;
+            background: linear-gradient(135deg, var(--bege-suave) 0%, #EAE3DC 100%);
+            padding: 80px 40px;
             text-align: center;
-            border-radius: 24px;
-            margin: 0 auto 64px auto;
-            max-width: 1160px;
-            box-shadow: 0 10px 30px rgba(255, 79, 160, 0.08);
-            border: 1px solid rgba(255, 182, 217, 0.4);
+            border-radius: 32px;
+            margin: 0 auto 80px auto;
+            max-width: 1420px;
+            box-shadow: var(--sombra-premium);
+            border: 1px solid var(--cinza-borda);
+            position: relative;
+            overflow: hidden;
         }
 
         .vip-section span {
             font-size: 3rem;
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
         }
 
         .vip-section h2 {
-            color: var(--rosa-escuro);
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
+            color: var(--texto-principal);
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
             letter-spacing: -0.5px;
         }
 
         .vip-section p {
             color: var(--texto-secundario);
-            max-width: 540px;
-            margin: 0 auto 28px auto;
-            font-size: 1rem;
-            line-height: 1.6;
+            max-width: 580px;
+            margin: 0 auto 36px auto;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
         .btn-vip {
-            background-color: #25D366;
+            background-color: var(--texto-principal);
             color: white;
-            padding: 14px 32px;
+            padding: 16px 36px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: var(--transition-smooth);
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+            box-shadow: 0 10px 25px rgba(28, 25, 23, 0.15);
         }
 
         .btn-vip:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
-            filter: brightness(1.05);
+            background-color: var(--rosa-acao);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(225, 29, 72, 0.3);
         }
 
         /* RODAPÉ PREMIUM */
         footer.rodape {
             background-color: var(--bg-white);
             border-top: 1px solid var(--cinza-borda);
-            text-align: center;
-            padding: 48px 20px;
+            padding: 80px 40px 40px 40px;
             color: var(--texto-secundario);
-            font-size: 0.9rem;
         }
 
-        .rodape-content {
-            max-width: 800px;
+        .rodape-container {
+            max-width: 1500px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .rodape-col h3 {
+            font-size: 1.2rem;
+            color: var(--texto-principal);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .rodape-col p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .rodape-links {
+            list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            align-items: center;
+            gap: 12px;
         }
 
-        .rodape-insta {
-            font-weight: 600;
-            color: var(--rosa-escuro);
-            font-size: 1.05rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .rodape-insta a {
-            color: var(--rosa-escuro);
-            text-decoration: underline;
+        .rodape-links a {
+            color: var(--texto-secundario);
+            text-decoration: none;
+            font-size: 0.95rem;
             transition: var(--transition-smooth);
         }
 
-        .rodape-insta a:hover {
-            color: var(--rosa-principal);
+        .rodape-links a:hover {
+            color: var(--texto-principal);
+            padding-left: 4px;
         }
 
-        .rodape-aviso {
+        .rodape-bottom {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--cinza-borda);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
             font-size: 0.85rem;
-            color: var(--texto-secundario);
-            max-width: 650px;
-            line-height: 1.6;
         }
 
-        .rodape-copy {
-            font-size: 0.8rem;
-            opacity: 0.7;
+        .rodape-socials {
+            display: flex;
+            gap: 16px;
         }
 
-        /* RESPONSIVIDADE */
+        .rodape-socials a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bege-suave);
+            color: var(--texto-principal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .rodape-socials a:hover {
+            background: var(--rosa-acao);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVIDADE PARA APLICATIVO NO CELULAR */
+        @media (max-width: 1024px) {
+            header.topo { padding: 16px 20px; }
+            .header-container { flex-direction: column; gap: 16px; }
+            .search-wrapper { max-width: 100%; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .produtos { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+            .rodape-container { grid-template-columns: 1fr; gap: 40px; }
+        }
+
         @media (max-width: 768px) {
-            .titulo h1 {
-                font-size: 1.8rem;
-            }
-            .banner-slider {
-                height: 240px;
-                border-radius: 16px;
-            }
-            .produtos {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 16px;
-            }
-            .produto-img-container {
-                height: 160px;
-            }
-            .vip-section {
-                padding: 40px 20px;
-                margin: 0 16px 48px 16px;
-            }
+            main, .banner, .beneficios, .vip-section { padding-left: 16px; padding-right: 16px; }
+            .hero { height: 65vh; min-height: 480px; }
+            .hero-content h1 { font-size: 2.1rem; }
+            .banner-slider { height: 300px; border-radius: 20px; }
+            .categorias { grid-template-columns: repeat(2, 1fr); }
+            .produtos { grid-template-columns: 1fr; }
+            .produto-img-container { height: 320px; }
+            .vip-section { padding: 50px 20px; border-radius: 24px; }
+            .vip-section h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- BANNER -->
+<!-- TOPO / CABEÇALHO MODERNO -->
+<header class="topo">
+    <div class="header-container">
+        <a class="logo-container" href="/" aria-label="It Pink Club">
+            <span class="logo">It Pink<span>.</span></span>
+        </a>
+
+        <!-- BARRA DE PESQUISA ELEGANTE -->
+        <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                id="pesquisa"
+                type="search"
+                oninput="filtrarVitrine()"
+                placeholder="Busque por móveis, decoração, organização..."
+                autocomplete="off">
+        </div>
+
+        <div class="header-actions">
+            <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-vip-header">
+                <i class="fa-brands fa-whatsapp"></i> VIP Club
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- HERO SECTION (70-80vh COM SOBREPOSIÇÃO ESCURA E CONTEÚDO ENVOLVENTE) -->
+<section class="hero">
+    <img src="/assets/banner1.webp" class="hero-bg" alt="It Pink Club Home Decor">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="hero-tag">Curadoria Exclusiva</span>
+        <h1>Transforme seu quarto em um espaço Pinterest ✨</h1>
+        <p>Os melhores achadinhos para decoração, organização e lifestyle com a estética acolhedora que você ama.</p>
+        <div class="hero-buttons">
+            <a href="#vitrine-principal" class="btn-hero-primary">💕 Explorar Achadinhos</a>
+            <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary">✨ Entrar no VIP</a>
+        </div>
+    </div>
+</section>
+
+<!-- BANNER SECUNDÁRIO / SLIDER -->
 <section class="banner">
     <div class="banner-slider">
         <img src="assets/banner1.webp" class="slide active" alt="Banner 1">
@@ -571,116 +903,129 @@
     </div>
 </section>
 
-<!-- TOPO -->
-<header class="topo">
-    <a class="logo-container" href="/" aria-label="It Pink Club">
-        <i class="fa-solid fa-heart" style="color: var(--rosa-principal);"></i>
-        <span class="logo">It Pink Club</span>
-    </a>
+<main id="vitrine-principal">
 
-    <p>Achadinhos escolhidos com carinho para você.</p>
-
-    <!-- NAVEGAÇÃO / BUSCA E CATEGORIAS FIXAS AO ROLAR -->
-    <div class="sticky-header">
-        <label class="pesquisa-label" for="pesquisa">
-            Encontre seu achadinho
-        </label>
-
-        <div class="search-wrapper">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input
-                id="pesquisa"
-                type="search"
-                oninput="filtrarVitrine()"
-                placeholder="Pesquise um produto..."
-                autocomplete="off">
+    <!-- CATEGORIAS EM CARTÕES VISUAIS COM IMAGENS -->
+    <section class="categorias-section">
+        <div class="section-header">
+            <div>
+                <h2>Explore por Categoria</h2>
+                <p>Navegue pelas nossas curadorias especiais de estilo de vida.</p>
+            </div>
         </div>
 
         <nav class="categorias" id="categorias" aria-label="Categorias">
-            <button class="categoria ativa" onclick="mudarCategoria('todos', this)"><i class="fa-solid fa-sparkles"></i> ✨ Todos</button>
-            <button class="categoria" onclick="mudarCategoria('beleza', this)"><i class="fa-solid fa-wand-magic-sparkles"></i> 💄 Beleza</button>
-            <button class="categoria" onclick="mudarCategoria('casa', this)"><i class="fa-solid fa-house"></i> 🏠 Casa</button>
-            <button class="categoria" onclick="mudarCategoria('moda', this)"><i class="fa-solid fa-shirt"></i> 👗 Moda</button>
-            <button class="categoria" onclick="mudarCategoria('tecnologia', this)"><i class="fa-solid fa-mobile-screen"></i> 📱 Tecnologia</button>
-            <button class="categoria" onclick="mudarCategoria('papelaria', this)"><i class="fa-solid fa-palette"></i> 🎨 Papelaria</button>
-            <button class="categoria" onclick="mudarCategoria('pets', this)"><i class="fa-solid fa-paw"></i> 🐾 Pets</button>
+            <div class="categoria-card ativa" onclick="mudarCategoria('todos', this)">
+                <img src="/assets/banner1.webp" alt="Todos">
+                <span>✨ Todos</span>
+            </div>
+            <div class="categoria-card" onclick="mudarCategoria('beleza', this)">
+                <img src="/assets/banner2.webp" alt="Beleza">
+                <span>💄 Beleza</span>
+            </div>
+            <div class="categoria-card" onclick="mudarCategoria('casa', this)">
+                <img src="/assets/banner3.webp" alt="Casa">
+                <span>🏠 Casa & Decor</span>
+            </div>
+            <div class="categoria-card" onclick="mudarCategoria('moda', this)">
+                <img src="/assets/banner1.webp" alt="Moda">
+                <span>👗 Moda</span>
+            </div>
+            <div class="categoria-card" onclick="mudarCategoria('tecnologia', this)">
+                <img src="/assets/banner2.webp" alt="Tecnologia">
+                <span>📱 Tecnologia</span>
+            </div>
+            <div class="categoria-card" onclick="mudarCategoria('papelaria', this)">
+                <img src="/assets/banner3.webp" alt="Papelaria">
+                <span>🎨 Papelaria</span>
+            </div>
+            <div class="categoria-card" onclick="mudarCategoria('pets', this)">
+                <img src="/assets/banner1.webp" alt="Pets">
+                <span>🐾 Pets</span>
+            </div>
         </nav>
-    </div>
-</header>
+    </section>
 
-<main>
+    <section class="titulo">
+        <h1>Seleção da Semana</h1>
+        <p>Inspirado na estética Zara Home e Pinterest para ambientar o seu lar.</p>
+    </section>
 
-<section class="titulo">
-    <h1>💖 Achadinhos da Shopee | It Pink Club</h1>
-    <p>Selecionados especialmente para transformar o seu dia a dia.</p>
-</section>
+    <!-- VITRINE DE PRODUTOS -->
+    <section class="vitrine" aria-live="polite">
+        <p id="resultado" class="resultado" style="display: none;"></p>
 
-<section class="vitrine" aria-live="polite">
-    <p id="resultado" class="resultado" style="display: none;"></p>
-
-    <!-- Contêiner onde os produtos do Firestore vão aparecer -->
-    <div id="produtos" class="produtos"></div>
-</section>
+        <!-- Contêiner onde os produtos do Firestore aparecem -->
+        <div id="produtos" class="produtos"></div>
+    </section>
 
 </main>
 
+<!-- SEÇÃO DE BENEFÍCIOS -->
 <section class="beneficios">
     <article class="card-info">
-        <span>💖</span>
-        <h2>Escolha Manual</h2>
-        <p>Selecionamos apenas produtos que realmente encantam e valem a pena.</p>
+        <span>🕯️</span>
+        <h2>Curadoria Manual</h2>
+        <p>Selecionamos apenas peças sofisticadas que elevam a atmosfera e o design do seu espaço.</p>
     </article>
 
     <article class="card-info">
-        <span>⭐</span>
-        <h2>Atualizações Frequentes</h2>
-        <p>Novos achadinhos exclusivos adicionados constantemente para você.</p>
+        <span>🌿</span>
+        <h2>Estética Acolhedora</h2>
+        <p>Inspirado nas principais tendências de decoração e lifestyle do Pinterest para transformar sua rotina.</p>
     </article>
 
     <article class="card-info">
-        <span>🎀</span>
-        <h2>Curadoria It Pink</h2>
-        <p>Tudo seguindo a estética delicada, aconchegante e feminina do clube.</p>
+        <span>💌</span>
+        <h2>Achadinhos Exclusivos</h2>
+        <p>As melhores oportunidades e achados da Shopee reunidos em um só lugar com total transparência.</p>
     </article>
 </section>
 
 <!-- ÁREA VIP / NEWSLETTER -->
 <section class="vip-section">
-    <span>👑</span>
-    <h2>Entre para o Clube VIP</h2>
+    <span>✨</span>
+    <h2>Faça Parte do Clube VIP</h2>
     <p>
-        Receba as melhores promoções, cupons de frete grátis e achadinhos secretos da Shopee direto no seu WhatsApp!
+        Receba em primeira mão cupons secretos, ofertas relâmpago e lançamentos de decoração direto no seu WhatsApp.
     </p>
-
-    <div class="vip-buttons">
-        <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-vip">
-            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Entrar no Grupo VIP
-        </a>
-    </div>
+    <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-vip">
+        <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Entrar no Grupo VIP
+    </a>
 </section>
 
 <!-- RODAPÉ COMPLETO -->
 <footer class="rodape">
-    <div class="rodape-content">
-        <!-- Instagram -->
-        <p class="rodape-insta">
-            💖 Siga nosso perfil: 
-            <a href="https://instagram.com/itpinkclub" target="_blank" rel="noopener noreferrer">@itpinkclub</a>
-        </p>
-
-        <!-- Aviso de Afiliados e Transparência -->
-        <p class="rodape-aviso">
-            🔒 <strong>Aviso de transparência:</strong> Participamos de programas de afiliados. Ao comprar através dos nossos links, podemos receber comissões qualificadas. Você não paga nada a mais por isso e nos ajuda a manter a curadoria do It Pink Club sempre impecável!
-        </p>
-
-        <!-- Copyright -->
-        <p class="rodape-copy">
-            © 2026 It Pink Club. Todos os direitos reservados.
-        </p>
+    <div class="rodape-container">
+        <div class="rodape-col">
+            <h3>It Pink Club</h3>
+            <p>Curadoria de decoração, organização e lifestyle inspirada na estética aconchegante do Pinterest. Transformando ambientes e rotinas com delicadeza e bom gosto.</p>
+        </div>
+        <div class="rodape-col">
+            <h3>Navegação</h3>
+            <ul class="rodape-links">
+                <li><a href="#vitrine-principal" onclick="mudarCategoria('todos')">Início & Achadinhos</a></li>
+                <li><a href="#vitrine-principal" onclick="mudarCategoria('casa')">Casa & Decor</a></li>
+                <li><a href="#vitrine-principal" onclick="mudarCategoria('beleza')">Beleza & Skincare</a></li>
+                <li><a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank">Grupo VIP WhatsApp</a></li>
+            </ul>
+        </div>
+        <div class="rodape-col">
+            <h3>Transparência</h3>
+            <p>Participamos de programas de afiliados. Ao comprar através dos nossos links, recebemos comissões sem nenhum custo adicional para você.</p>
+        </div>
+    </div>
+    
+    <div class="rodape-bottom">
+        <p>© 2026 It Pink Club. Todos os direitos reservados.</p>
+        <div class="rodape-socials">
+            <a href="https://instagram.com/itpinkclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
     </div>
 </footer>
 
-<!-- FIREBASE & SCRIPT DA VITRINE -->
+<!-- FIREBASE & SCRIPT DA VITRINE (MANTENDO TODAS AS FUNCIONALIDADES) -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
@@ -701,7 +1046,7 @@
     let produtosGlobal = [];
     let categoriaSelecionada = 'todos';
 
-    // 1. Carrossel de Banners Automático
+    // Carrossel de Banners Automático
     let indiceAtual = 0;
     const slides = document.querySelectorAll('.banner-slider .slide');
 
@@ -713,10 +1058,10 @@
     }
 
     if (slides.length > 1) {
-        setInterval(alternarSlides, 4500); // Troca a cada 4.5 segundos
+        setInterval(alternarSlides, 5000);
     }
 
-    // 2. Sincronização em tempo real com o Firestore
+    // Sincronização em tempo real com o Firestore
     onSnapshot(collection(db, "produtos"), (snapshot) => {
         produtosGlobal = [];
         snapshot.forEach((doc) => {
@@ -725,10 +1070,18 @@
         filtrarVitrine();
     });
 
-    window.mudarCategoria = function(cat, btnElement) {
+    window.mudarCategoria = function(cat, cardElement) {
         categoriaSelecionada = cat;
-        document.querySelectorAll('.categoria').forEach(b => b.classList.remove('ativa'));
-        if(btnElement) btnElement.classList.add('ativa');
+        document.querySelectorAll('.categoria-card').forEach(c => c.classList.remove('ativa'));
+        if(cardElement) {
+            cardElement.classList.add('ativa');
+        } else {
+            // Caso chamado programaticamente
+            const cards = document.querySelectorAll('.categoria-card');
+            cards.forEach(c => {
+                if(c.getAttribute('onclick')?.includes(cat)) c.classList.add('ativa');
+            });
+        }
         filtrarVitrine();
     };
 
@@ -756,26 +1109,35 @@
         container.innerHTML = '';
 
         if (lista.length === 0) {
-            container.innerHTML = '<p style="color: var(--texto-secundario); grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-size: 1rem;">Nenhum achadinho encontrado com esses filtros.</p>';
+            container.innerHTML = '<p style="color: var(--texto-secundario); grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-size: 1.05rem;">Nenhum achadinho encontrado com esses filtros.</p>';
             return;
         }
 
-        lista.forEach(prod => {
+        lista.forEach((prod, index) => {
             const card = document.createElement('div');
             card.className = 'produto-card';
             
+            // Simula badges visuais estilo Pinterest em alguns produtos
+            const tagBadge = index % 3 === 0 ? '<span class="badge-tag alta">🔥 Em alta</span>' : '<span class="badge-tag">✨ Novo</span>';
+
             card.innerHTML = `
                 <div>
                     <div class="produto-img-container">
+                        <div class="produto-badges">
+                            ${tagBadge}
+                            <button class="btn-favoritar" aria-label="Favoritar" onclick="this.querySelector('i').classList.toggle('fa-solid'); this.querySelector('i').classList.toggle('fa-regular');">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </div>
                         <img src="${prod.imagem}" alt="${prod.titulo}" loading="lazy">
                     </div>
                     <div class="produto-conteudo">
-                        <span class="produto-categoria-tag">${prod.categoria}</span>
+                        <span class="produto-categoria-tag">${prod.categoria || 'Lifestyle'}</span>
                         <h3 class="produto-titulo">${prod.titulo}</h3>
                     </div>
                 </div>
-                <div style="padding: 0 20px 20px 20px;">
-                    <a href="${prod.link}" target="_blank" rel="noopener noreferrer" class="btn-acao">Ver Achadinho 💖</a>
+                <div style="padding: 0 24px 24px 24px;">
+                    <a href="${prod.link}" target="_blank" rel="noopener noreferrer" class="btn-acao">Ver Achadinho 🤍</a>
                 </div>
             `;
             container.appendChild(card);
