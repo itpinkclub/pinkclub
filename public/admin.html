@@ -8,23 +8,35 @@
     <style>
         body { font-family: 'Poppins', sans-serif; background: #fff5f8; color: #333; margin: 0; padding: 20px; }
         .container { max-width: 600px; margin: 0 auto; background: white; padding: 25px; border-radius: 1rem; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.1); }
-        h1 { color: #d63384; text-align: center; font-size: 1.5rem; margin-bottom: 20px; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        h1 { color: #d63384; font-size: 1.5rem; margin: 0; }
+        .btn-sair { background: #6b7280; width: auto; padding: 6px 12px; font-size: 0.8rem; border-radius: 6px; box-shadow: none; border: none; color: white; cursor: pointer; }
+        .btn-sair:hover { background: #4b5563; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: 600; color: #555; margin-bottom: 5px; font-size: 0.9rem; }
         input, select { width: 100%; padding: 10px; border: 1px solid #ffccd5; border-radius: 8px; font-size: 0.95rem; box-sizing: border-box; }
+        
+        /* Área de arrastar imagem */
+        .drop-zone { border: 2px dashed #f43f5e; padding: 20px; text-align: center; border-radius: 8px; background: #fff0f6; cursor: pointer; margin-bottom: 5px; transition: background 0.2s; }
+        .drop-zone.dragover { background: #ffe1ec; }
+        .drop-zone p { margin: 0; color: #db2777; font-size: 0.9rem; font-weight: 500; }
+
         button { background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2); }
         button:hover { opacity: 0.9; }
         .lista-produtos { margin-top: 30px; }
         h2 { color: #d63384; font-size: 1.2rem; margin-bottom: 15px; }
         .item-admin { display: flex; justify-content: space-between; align-items: center; background: #fff0f6; padding: 10px 15px; border-radius: 8px; margin-bottom: 10px; }
-        .btn-excluir { background: #ef4444; width: auto; padding: 6px 12px; font-size: 0.8rem; border-radius: 6px; box-shadow: none; }
+        .btn-excluir { background: #ef4444; width: auto; padding: 6px 12px; font-size: 0.8rem; border-radius: 6px; box-shadow: none; border: none; color: white; cursor: pointer; }
         .btn-excluir:hover { background: #dc2626; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>💖 Cadastrar Achadinho</h1>
+    <div class="header-top">
+        <h1>💖 Cadastrar Achadinho</h1>
+        <button type="button" class="btn-sair" onclick="fazerLogout()">Sair 🚪</button>
+    </div>
     
     <form id="form-produto">
         <div class="form-group">
@@ -45,8 +57,11 @@
         </div>
 
         <div class="form-group">
-            <label>Link da Imagem (URL ou Foto)</label>
-            <input type="text" id="imagem" required placeholder="Cole o link da foto ou arraste">
+            <label>Link da Imagem (URL ou Arraste a Foto)</label>
+            <div id="drop-zone" class="drop-zone">
+                <p>📁 Clique aqui ou arraste uma imagem para cá</p>
+            </div>
+            <input type="text" id="imagem" required placeholder="Cole o link ou a imagem convertida aqui">
         </div>
 
         <div class="form-group">
@@ -82,6 +97,47 @@
 
     const form = document.getElementById('form-produto');
     const containerAdmin = document.getElementById('container-admin');
+    const dropZone = document.getElementById('drop-zone');
+    const inputImagem = document.getElementById('imagem');
+
+    // Funcionalidade de arrastar/colar imagem
+    dropZone.addEventListener('click', () => inputImagem.focus());
+
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                inputImagem.value = event.target.result;
+                dropZone.innerHTML = `<p>✅ Imagem carregada com sucesso!</p>`;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    inputImagem.addEventListener('input', () => {
+        if(inputImagem.value.startsWith('data:image')) {
+            dropZone.innerHTML = `<p>✅ Imagem carregada com sucesso!</p>`;
+        }
+    });
+
+    // Função de Sair / Logout
+    window.fazerLogout = function() {
+        localStorage.removeItem('logado_pink');
+        alert('Você saiu do painel.');
+        window.location.href = 'index.html';
+    };
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -89,7 +145,7 @@
         const novoProduto = {
             titulo: document.getElementById('titulo').value,
             categoria: document.getElementById('categoria').value,
-            imagem: document.getElementById('imagem').value,
+            imagem: inputImagem.value,
             link: document.getElementById('link').value,
             criadoEm: new Date()
         };
@@ -98,6 +154,7 @@
             await addDoc(collection(db, "produtos"), novoProduto);
             alert('Achadinho cadastrado com sucesso na nuvem! 💖');
             form.reset();
+            dropZone.innerHTML = `<p>📁 Clique aqui ou arraste uma imagem para cá</p>`;
         } catch (error) {
             console.error("Erro ao cadastrar: ", error);
             alert('Erro ao cadastrar produto.');
