@@ -1,0 +1,99 @@
+[33m51d5683[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m fix: restaura carregamento seguro de produtos e identidade visual completa
+[33ma1204af[m feat: restaura estrutura completa original incluindo whatsapp, banners, categorias e vitrine
+[33m25b36f8[m fix: restaura ordem exata dos elementos topo, busca, menu, banner e vitrine
+[33m6cda4a6[m feat: restaura estrutura completa original com banners e rodape
+[33mea0469f[m fix: restaura 3 banners originais banner1 banner2 banner3 webp no index.html
+[33m25e608a[m fix: garante exibicao de banner de fallback ou do firebase
+[33m4cdb383[m fix: adiciona carregamento de banners e produtos no app.js
+[33me2a3eb2[m fix: alinha ids do index.html com app.js firebase
+[33m31f54a1[m fix: atualiza ids corretos categorias banner produtos index.html
+[33m6136dae[m fix: atualiza index.html completo com type module e estilo It Pink Club
+[33m6575a01[m feat: atualiza index.html completo com layout e estilo It Pink Club
+[33m6b3fc46[m fix: restaura estrutura e aplica css externo It Pink Club
+[33m64b5125[m feat: renovacao visual completa identidade It Pink Club
+[33md5adcc2[m feat: atualiza index.html completo com layout e estilo It Pink Club
+[33maebf8b6[m fix: envolve css em tag style no index.html
+[33m7aec74a[m fix: corrige encoding do package.json para formato JSON valido
+[33m4c37228[m style: atualiza identidade visual premium e rosa do It Pink Club
+[33m6bb5e88[m feat: aplica redesign visual completo mantendo identidade rosa sofisticada e Cozy
+[33mce64837[m feat: redesenha interface completa estilo Pinterest e Zara Home
+[33m21341f6[m feat: atualiza layout modernizado do It Pink Club
+[33mc3e7087[m Atualiza design visual moderno
+[33m8d0fc38[m Corrige filtro de categorias no index.html para exibir produtos corretamente
+[33ma1c6751[m Adiciona funcionalidade e botoes de edicao de produtos
+[33m7eaee1b[m Torna a descricao opcional e adiciona compactador automatico de imagem
+[33m97cac01[m Atualiza admin.html com redirecionamento correto para login.html no botao sair
+[33mc42be44[m Atualiza para painel admin profissional com abas, dashboard e tabela visual
+[33m92d65d6[m Restaura layout original do admin com drag-and-drop e botao de sair
+[33m4a25fdc[m Restaura o painel admin original com listagem limpa
+[33mb702d2d[m Restaura layout bonito do painel admin com Firebase
+[33mea753e4[m Integra Firebase Firestore para sincronizacao em tempo real no mobile e PC
+[33m442900d[m Atualiza index com carrossel automatico e vitrine integrada
+[33mebb3e78[m Atualiza index para exibir produtos cadastrados no painel admin
+[33m1bb3409[m Adiciona suporte para arrastar e soltar imagens do computador
+[33m56e48df[m Remove campo de preco do painel e dos cards
+[33m66e818a[m Atualiza admin com painel lateral em duas colunas
+[33m8411fd5[m Painel admin unificado com formulario de cadastro e exclusao
+[33m43badff[m Atualiza senha do painel admin
+[33m463f64f[m Adiciona codigo da pagina de login
+[33m33fea0c[m Adiciona login e correcao de exclusao no painel
+[33m4347462[m Adiciona funcao real de excluir e listar produtos
+[33md42896a[m Adiciona botao de sair no cabecalho do painel
+[33m6c9033a[m Atualiza painel admin completo com layout correto
+[33m4c78d14[m Restaura o painel administrativo original
+[33md07fe68[m Ajuste das categorias em duas linhas no mobile
+[33mcb596dc[m Corrigindo app.js dentro da pasta public
+[33mad55d96[m Forçando atualização de categorias
+[33mbac7ae8[m Atualizando index com sticky header e rodape
+[33mc387286[m Unificando categorias do site
+[33m51b2825[m Atualiza index.html com SEO, Area VIP e rodape completo
+[33m807b8de[m Atualiza index.html com SEO otimizado e rodape
+[33mc116533[m Corrige nome do banner1 para minusculo
+[33m6ab1ff7[m Atualiza banners na pasta assets e remove arquivos antigos
+[33m65283a6[m Novos banners
+[33m5e3c8fd[m Corrige JSON das categorias
+[33mb231dbc[m Altera categoria Tech para Tecnologia
+[33mc7eeacf[m Simplifica categorias principais
+[33mce056c8[m simplifica categorias
+[33m30a6665[m teste categorias
+[33m1a80702[m SEO final completo
+[33m4d4e8c5[m Adiciona robots.txt
+[33m62da3be[m Adiciona sitemap
+[33mf34ae75[m Adiciona verificação Google
+[33m76d4075[m Melhora SEO
+[33mcf861ef[m Adiciona favicon
+[33mf8e27da[m Corrige banner
+[33mae8a8d1[m corrige banner
+[33m8b48d2b[m corrige banner da pagina inicial
+[33mdbcef27[m adiciona banner da pagina inicial
+[33m1b272d1[m adiciona banner da pagina inicial
+[33mdf2be6a[m Create README.md with project overview and features
+[33m5d32773[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m Merge pull request #1 from itpinkclub/codex/reconstituir-projeto-it-pink-club
+[33ma835c7b[m[33m ([m[1;31morigin/codex/reconstituir-projeto-it-pink-club[m[33m)[m Protege identificadores na lista administrativa
+[33m9343c53[m Primeira versão
+[33mcfe6aa7[m corrige imagens e produtos
+[33m0cb51bf[m corrige imagens produtos
+[33mbf48668[m corrige imagens quebradas produtos
+[33m767a311[m corrige fallback imagens
+[33me4a74eb[m remove placeholder imagens
+[33m6a76bd8[m corrige carregamento index
+[33m5c68e8f[m Atualiza script produtos
+[33mfbbe5fa[m Corrige cadastro de imagens no admin
+[33m072e281[m Atualiza script completo produtos
+[33m63421f9[m Aplica estilo dos produtos
+[33m698d1fa[m Corrige carregamento dos produtos
+[33m19ba82d[m Corrige listaProdutos no index
+[33m213ee3b[m Corrige container de produtos
+[33m3a778e3[m Atualiza index com caminhos corretos
+[33mf699abc[m Corrige caminhos CSS JS Vercel
+[33m14cbc39[m Corrige caminho public Vercel
+[33m103d2b3[m Corrige index module Firebase
+[33m9c3b46c[m Atualiza loja para Firebase
+[33m03445c3[m Atualiza loja para carregar produtos do Firebase
+[33m04ae740[m Corrige imagens e formatacao dos produtos
+[33mae4c57b[m Atualiza upload Cloudinary
+[33md5aac80[m Corrige upload Cloudinary
+[33maf6bb62[m Corrige export do Firebase
+[33m045a3cb[m Integra upload Cloudinary no painel
+[33m4788197[m Adiciona upload de imagens no painel admin
+[33me73bf0c[m Primeira versão do It Pink Club
