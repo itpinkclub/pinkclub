@@ -6,6 +6,92 @@
     <title>Painel Administrativo - It Pink Club</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #ec4899;
+            --pink-light: #fff0f6;
+            --pink-border: #f6b8d6;
+            --shadow: 0 4px 12px rgba(236, 72, 153, 0.08);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fffdf9;
+            margin: 0;
+            color: #333;
+        }
+        /* Layout de duas colunas fixas */
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            min-height: 100vh;
+        }
+        @media (max-width: 900px) {
+            .admin-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Coluna Esquerda: Formulário Fixo */
+        .admin-sidebar {
+            background: white;
+            border-right: 1px solid #ffe3f0;
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        /* Coluna Direita: Vitrine */
+        .admin-content {
+            padding: 2rem;
+            box-sizing: border-box;
+            background: #fffbfe;
+        }
+        /* Cards menores (4 por linha) */
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        /* Botões de Categoria com ícones */
+        .cat-btn {
+            padding: 0.4rem 0.8rem;
+            border-radius: 9999px;
+            border: 1px solid var(--pink-border);
+            background: #fff;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .cat-btn:hover, .cat-btn.ativo {
+            background: var(--pink);
+            color: white;
+            border-color: var(--pink);
+        }
+        /* Toast de sucesso */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #10b981;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            z-index: 1000;
+            right: 30px;
+            bottom: 30px;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
 </head>
 <body>
     <script>
@@ -14,84 +100,88 @@
         }
     </script>
 
-    <header class="topo" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem;">
-        <div>
-            <a href="/" class="logo">💖 Painel Admin | It Pink Club</a>
-            <p style="margin: 0;">Gerencie todos os achadinhos</p>
-        </div>
-        <button onclick="fazerLogout()" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 0.5rem 1rem; border-radius: 9999px; cursor: pointer; font-weight: 500; font-size: 0.9rem;">
-            🚪 Sair
-        </button>
-    </header>
+    <div class="admin-layout">
+        <!-- COLUNA ESQUERDA: FORMULÁRIO FIXO -->
+        <aside class="admin-sidebar">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="color: var(--pink); font-size: 1.2rem; margin: 0;">💖 Painel Admin</h2>
+                <button onclick="fazerLogout()" style="background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; padding: 0.3rem 0.8rem; border-radius: 9999px; cursor: pointer; font-size: 0.8rem; font-weight: 500;">🚪 Sair</button>
+            </div>
 
-    <main class="vitrine" style="max-width: 900px; margin: 0 auto; padding: 2rem 1rem;">
-        <!-- Formulário de Cadastro Direto no Painel -->
-        <section style="background: white; padding: 2rem; border-radius: 1.5rem; border: 1px solid #ffe3f0; box-shadow: var(--shadow); margin-bottom: 2.5rem;">
-            <h2 style="color: var(--pink); margin-top: 0; text-align: center; margin-bottom: 1.5rem;">➕ Adicionar Novo Produto</h2>
-            
-            <form id="form-produto" onsubmit="salvarProduto(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+            <h3 style="font-size: 1rem; margin-bottom: 1rem; color: #444;">➕ Novo Produto</h3>
+
+            <form id="form-produto" onsubmit="salvarProduto(event)" style="display: flex; flex-direction: column; gap: 0.8rem;">
                 <div>
-                    <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem;">Título do Produto</label>
-                    <input type="text" id="titulo-prod" required placeholder="Ex: Organizador de Maquiagem" style="width: 100%; padding: 0.8rem; border: 1px solid #f6b8d6; border-radius: 1rem; outline-color: var(--pink); font: inherit; box-sizing: border-box;">
+                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Nome do Produto</label>
+                    <input type="text" id="titulo-prod" required placeholder="Ex: Organizador..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
                 </div>
 
                 <div>
-                    <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem;">Categoria</label>
-                    <select id="categoria-prod" required style="width: 100%; padding: 0.8rem; border: 1px solid #f6b8d6; border-radius: 1rem; outline-color: var(--pink); font: inherit; background: #fff; box-sizing: border-box;">
-                        <option value="skincare">Beleza & Autocuidado</option>
-                        <option value="casa">Casa & Decoração</option>
-                        <option value="moda">Moda</option>
-                        <option value="tecnologia">Tecnologia</option>
-                        <option value="papelaria">Papelaria</option>
-                        <option value="pets">Pets</option>
+                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Categoria</label>
+                    <select id="categoria-prod" required style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; background: white; box-sizing: border-box;">
+                        <option value="skincare">💄 Beleza & Autocuidado</option>
+                        <option value="casa">🏠 Casa & Decoração</option>
+                        <option value="moda">👗 Moda</option>
+                        <option value="tecnologia">📱 Tecnologia</option>
+                        <option value="papelaria">🎨 Papelaria</option>
+                        <option value="pets">🐾 Pets</option>
                     </select>
                 </div>
 
                 <div>
-                    <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem;">Link do Afiliado (Shopee/Outros)</label>
-                    <input type="url" id="link-prod" required placeholder="https://..." style="width: 100%; padding: 0.8rem; border: 1px solid #f6b8d6; border-radius: 1rem; outline-color: var(--pink); font: inherit; box-sizing: border-box;">
+                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Link do Afiliado</label>
+                    <input type="url" id="link-prod" required placeholder="https://..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
                 </div>
 
                 <div>
-                    <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem;">Link da Imagem</label>
-                    <input type="url" id="imagem-prod" required placeholder="https://..." style="width: 100%; padding: 0.8rem; border: 1px solid #f6b8d6; border-radius: 1rem; outline-color: var(--pink); font: inherit; box-sizing: border-box;">
+                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Link da Imagem (URL)</label>
+                    <input type="url" id="imagem-prod" required oninput="atualizarPreview()" placeholder="https://..." style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
+                </div>
+
+                <!-- Preview da Imagem -->
+                <div id="preview-container" style="background: var(--pink-light); height: 110px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px dashed var(--pink-border);">
+                    <span style="font-size: 0.8rem; color: var(--pink);">📷 Preview da Imagem</span>
                 </div>
 
                 <div>
-                    <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem;">Preço (Opcional)</label>
-                    <input type="text" id="preco-prod" placeholder="Ex: R$ 49,90" style="width: 100%; padding: 0.8rem; border: 1px solid #f6b8d6; border-radius: 1rem; outline-color: var(--pink); font: inherit; box-sizing: border-box;">
+                    <label style="font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 0.2rem;">Preço</label>
+                    <input type="text" id="preco-prod" placeholder="Ex: R$ 49,90" style="width: 100%; padding: 0.6rem; border: 1px solid var(--pink-border); border-radius: 0.6rem; font: inherit; font-size: 0.9rem; box-sizing: border-box;">
                 </div>
 
-                <button type="submit" style="background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 0.9rem; border-radius: 9999px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3); font-size: 1rem; margin-top: 1rem;">
-                    Cadastrar Produto
-                </button>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button type="submit" style="flex: 2; background: linear-gradient(135deg, #ec4899, #f43f5e); color: white; border: none; padding: 0.7rem; border-radius: 9999px; font-weight: 600; cursor: pointer; font-size: 0.9rem; box-shadow: var(--shadow);">💾 Cadastrar</button>
+                    <button type="button" onclick="limparFormulario()" style="flex: 1; background: #f3f4f6; border: 1px solid #d1d5db; color: #4b5563; padding: 0.7rem; border-radius: 9999px; font-weight: 600; cursor: pointer; font-size: 0.9rem;">🧹 Limpar</button>
+                </div>
             </form>
-        </section>
+        </aside>
 
-        <!-- Filtros e Pesquisa -->
-        <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-                <button onclick="filtrarAdmin('todos')" style="padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #f6b8d6; background: #fff; cursor: pointer; font-weight: 500;">✨ Todos</button>
-                <button onclick="filtrarAdmin('skincare')" style="padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #f6b8d6; background: #fff; cursor: pointer; font-weight: 500;">💄 Beleza</button>
-                <button onclick="filtrarAdmin('casa')" style="padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #f6b8d6; background: #fff; cursor: pointer; font-weight: 500;">🏠 Casa</button>
-                <button onclick="filtrarAdmin('moda')" style="padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #f6b8d6; background: #fff; cursor: pointer; font-weight: 500;">👗 Moda</button>
-                <button onclick="filtrarAdmin('tecnologia')" style="padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #f6b8d6; background: #fff; cursor: pointer; font-weight: 500;">📱 Tecnologia</button>
-                <button onclick="filtrarAdmin('papelaria')" style="padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #f6b8d6; background: #fff; cursor: pointer; font-weight: 500;">🎨 Papelaria</button>
-                <button onclick="filtrarAdmin('pets')" style="padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid #f6b8d6; background: #fff; cursor: pointer; font-weight: 500;">🐾 Pets</button>
+        <!-- COLUNA DIREITA: VITRINE E LISTAGEM -->
+        <main class="admin-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <h2 id="contador-produtos" style="color: var(--pink); font-size: 1.3rem; margin: 0;">📦 Produtos (0)</h2>
+                <input type="text" id="pesquisa-admin" oninput="pesquisarProdutos()" placeholder="🔍 Pesquisar produto..." style="padding: 0.6rem 1rem; border: 1px solid var(--pink-border); border-radius: 9999px; outline-color: var(--pink); font: inherit; font-size: 0.9rem; width: 250px; background: white;">
             </div>
 
-            <input type="text" id="pesquisa-admin" oninput="pesquisarProdutos()" placeholder="🔍 Pesquisar produto..." style="width: 100%; padding: 0.8rem 1rem; border: 1px solid #f6b8d6; border-radius: 1rem; outline-color: var(--pink); font: inherit; box-sizing: border-box;">
-        </div>
+            <!-- Filtros de Categoria com Ícones -->
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 2rem;">
+                <button class="cat-btn ativo" onclick="filtrarAdmin('todos', this)">✨ Todos</button>
+                <button class="cat-btn" onclick="filtrarAdmin('skincare', this)">💄 Beleza</button>
+                <button class="cat-btn" onclick="filtrarAdmin('casa', this)">🏠 Casa</button>
+                <button class="cat-btn" onclick="filtrarAdmin('moda', this)">👗 Moda</button>
+                <button class="cat-btn" onclick="filtrarAdmin('tecnologia', this)">📱 Tecnologia</button>
+                <button class="cat-btn" onclick="filtrarAdmin('papelaria', this)">🎨 Papelaria</button>
+                <button class="cat-btn" onclick="filtrarAdmin('pets', this)">🐾 Pets</button>
+            </div>
 
-        <hr style="border: none; border-top: 1px solid #ffe3f0; margin: 2rem 0;">
+            <!-- Lista de Cards Menores -->
+            <div id="lista-produtos-admin" class="grid-produtos">
+                <!-- Produtos entram aqui dinamicamente -->
+            </div>
+        </main>
+    </div>
 
-        <!-- Produtos Cadastrados -->
-        <h2 style="color: var(--pink); margin-bottom: 1.5rem; font-size: 1.4rem;">📦 Produtos Cadastrados</h2>
-
-        <div id="lista-produtos-admin" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
-            <!-- Os produtos cadastrados aparecerão aqui dinamicamente -->
-        </div>
-    </main>
+    <!-- Toast de Sucesso -->
+    <div id="toast">✅ Produto cadastrado com sucesso!</div>
 
     <script>
         let produtos = JSON.parse(localStorage.getItem('produtos_pink')) || [
@@ -99,32 +189,46 @@
             { id: 2, titulo: "Difusor de Aromas Efeito Chama", categoria: "casa", preco: "R$ 79,90", imagem: "" }
         ];
 
+        let categoriaAtual = 'todos';
+
         function renderizarProdutos(lista) {
             const container = document.getElementById('lista-produtos-admin');
             container.innerHTML = '';
 
+            document.getElementById('contador-produtos').innerText = `📦 Produtos (${produtos.length})`;
+
             if (lista.length === 0) {
-                container.innerHTML = '<p style="color: #666; grid-column: 1/-1; text-align: center;">Nenhum produto cadastrado.</p>';
+                container.innerHTML = '<p style="color: #666; grid-column: 1/-1; text-align: center; padding: 2rem;">Nenhum produto encontrado.</p>';
                 return;
             }
 
             lista.forEach((prod, index) => {
                 const card = document.createElement('div');
-                card.style.cssText = "background: white; border: 1px solid #ffe3f0; border-radius: 1.2rem; padding: 1.2rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 0.5rem;";
+                card.style.cssText = "background: white; border: 1px solid #ffe3f0; border-radius: 1rem; padding: 0.8rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 0.4rem;";
                 
                 card.innerHTML = `
-                    <div style="background: #fff0f6; height: 160px; border-radius: 0.8rem; display: flex; align-items: center; justify-content: center; color: var(--pink); font-weight: 600; overflow: hidden;">
+                    <div style="background: var(--pink-light); height: 120px; border-radius: 0.6rem; display: flex; align-items: center; justify-content: center; color: var(--pink); font-weight: 600; overflow: hidden;">
                         ${prod.imagem ? `<img src="${prod.imagem}" style="width:100%; height:100%; object-fit:cover;">` : '📷 Imagem'}
                     </div>
-                    <h3 style="font-size: 1.05rem; margin: 0.3rem 0; color: #333;">${prod.titulo}</h3>
-                    <span style="font-size: 0.85rem; color: #db2777; font-weight: 500;">Categoria: ${prod.categoria}</span>
-                    <strong style="color: #111; font-size: 1.1rem; margin-top: 0.2rem;">${prod.preco || ''}</strong>
-                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-                        <button onclick="excluirProduto(${index})" style="flex: 1; padding: 0.5rem; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; border-radius: 0.6rem; cursor: pointer; font-weight: 500;">🗑 Excluir</button>
+                    <h3 style="font-size: 0.9rem; margin: 0.2rem 0; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${prod.titulo}">${prod.titulo}</h3>
+                    <span style="font-size: 0.75rem; color: #db2777; font-weight: 500;">${prod.categoria}</span>
+                    <strong style="color: #111; font-size: 0.95rem;">${prod.preco || ''}</strong>
+                    <div style="display: flex; gap: 0.4rem; margin-top: 0.4rem;">
+                        <button onclick="excluirProduto(${index})" style="width: 100%; padding: 0.4rem; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; border-radius: 0.4rem; cursor: pointer; font-size: 0.8rem; font-weight: 500;">🗑 Excluir</button>
                     </div>
                 `;
                 container.appendChild(card);
             });
+        }
+
+        function atualizarPreview() {
+            const url = document.getElementById('imagem-prod').value;
+            const container = document.getElementById('preview-container');
+            if (url) {
+                container.innerHTML = `<img src="${url}" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.parentNode.innerHTML='<span style=\'font-size:0.8rem; color:red;\'>Link inválido</span>';">`;
+            } else {
+                container.innerHTML = `<span style="font-size: 0.8rem; color: var(--pink);">📷 Preview da Imagem</span>`;
+            }
         }
 
         function salvarProduto(event) {
@@ -141,34 +245,47 @@
             produtos.unshift(novoProduto);
             localStorage.setItem('produtos_pink', JSON.stringify(produtos));
             
-            // Limpa o formulário
+            limparFormulario();
+            filtrarAdmin(categoriaAtual);
+            mostrarToast();
+        }
+
+        function limparFormulario() {
             document.getElementById('form-produto').reset();
-            
-            renderizarProdutos(produtos);
-            alert("Produto cadastrado com sucesso!");
+            document.getElementById('preview-container').innerHTML = `<span style="font-size: 0.8rem; color: var(--pink);">📷 Preview da Imagem</span>`;
         }
 
         function excluirProduto(index) {
             if (confirm("Tem certeza que deseja excluir este produto?")) {
                 produtos.splice(index, 1);
                 localStorage.setItem('produtos_pink', JSON.stringify(produtos));
-                renderizarProdutos(produtos);
+                filtrarAdmin(categoriaAtual);
             }
         }
 
-        function filtrarAdmin(cat) {
-            if (cat === 'todos') {
-                renderizarProdutos(produtos);
-            } else {
-                const filtrados = produtos.filter(p => p.categoria === cat);
-                renderizarProdutos(filtrados);
+        function filtrarAdmin(cat, btnElement) {
+            categoriaAtual = cat;
+            if (btnElement) {
+                document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('ativo'));
+                btnElement.classList.add('ativo');
             }
+
+            let listaFiltrada = cat === 'todos' ? produtos : produtos.filter(p => p.categoria === cat);
+            const termo = document.getElementById('pesquisa-admin').value.toLowerCase();
+            if (termo) {
+                listaFiltrada = listaFiltrada.filter(p => p.titulo.toLowerCase().includes(termo));
+            }
+            renderizarProdutos(listaFiltrada);
         }
 
         function pesquisarProdutos() {
-            const termo = document.getElementById('pesquisa-admin').value.toLowerCase();
-            const filtrados = produtos.filter(p => p.titulo.toLowerCase().includes(termo));
-            renderizarProdutos(filtrados);
+            filtrarAdmin(categoriaAtual);
+        }
+
+        function mostrarToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
         }
 
         function fazerLogout() {
