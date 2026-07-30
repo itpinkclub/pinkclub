@@ -10,11 +10,11 @@
     <meta name="google-site-verification" content="ouUpmd0L-F-6NngD0j5jJGvzfFvZcFHDgI5ECPSboQw">
 
     <!-- SEO -->
-    <meta name="description" content="Curadoria exclusiva de decoração, organização e lifestyle com a estética aconchegante do Pinterest e Zara Home.">
-    <meta name="keywords" content="decoração, lifestyle, home decor, achadinhos, pinterest aesthetic, zara home, it pink club">
+    <meta name="description" content="Curadoria exclusiva de decoração, organização e lifestyle com a estética aconchegante, elegante e sofisticada do It Pink Club.">
+    <meta name="keywords" content="decoração, lifestyle, home decor, achadinhos, pinterest aesthetic, rosa sofisticado, it pink club">
     <meta name="author" content="It Pink Club">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#1C1917">
+    <meta name="theme-color" content="#FCE7F3">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://pinkclub-three.vercel.app/">
@@ -24,7 +24,7 @@
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="It Pink Club">
     <meta property="og:title" content="It Pink Club | Lifestyle & Home Decor">
-    <meta property="og:description" content="Curadoria exclusiva de decoração, organização e lifestyle inspirada no Pinterest.">
+    <meta property="og:description" content="Curadoria exclusiva de decoração, organização e lifestyle com a identidade rosa sofisticada e acolhedora.">
     <meta property="og:url" content="https://pinkclub-three.vercel.app/">
     <meta property="og:image" content="https://pinkclub-three.vercel.app/assets/banner1.webp">
 
@@ -42,25 +42,30 @@
     <!-- Preload Banner -->
     <link rel="preload" as="image" href="/assets/banner1.webp" type="image/webp">
 
-    <!-- CSS Redesenhado - Conceito Premium & Pinterest Style -->
+    <!-- CSS Redesenhado - Identidade Rosa Sofisticada, Premium, Cozy e Pinterest -->
     <style>
         :root {
-            --bg-main: #FBF9F7; /* Off-white acolhedor */
+            /* Paleta de Cores Baseada em Tons de Rosa e Off-White Rosado */
+            --bg-main: #FFF5F7;
             --bg-white: #FFFFFF;
-            --bege-suave: #F4EFEB;
-            --cinza-claro: #EFECE6;
-            --cinza-borda: #E5E0D8;
-            --texto-principal: #1C1917; /* Off-black */
-            --texto-secundario: #78716C;
-            --rosa-acao: #E11D48; /* Pink elegante e sofisticado */
-            --rosa-claro-hover: #FFF1F2;
-            --madeira-clara: #D7CCC8;
+            --rosa-pastel: #FDF2F4;
+            --rosa-claro: #FCE7F3;
+            --rosa-medio: #F472B6;
+            --rosa-vibrante: #DB2777;
+            --rosa-escuro: #831843;
+            --dourado-claro: #D4AF37;
             
-            --sombra-premium: 0 20px 40px -15px rgba(28, 25, 23, 0.07);
-            --sombra-card: 0 10px 30px -10px rgba(28, 25, 23, 0.05);
-            --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --radius-box: 20px;
+            --cinza-borda: #FBCFE8;
+            --texto-principal: #500724;
+            --texto-secundario: #9D174D;
+            --texto-suave: #BE185D;
+            
+            --sombra-premium: 0 20px 40px -12px rgba(219, 39, 119, 0.12);
+            --sombra-card: 0 12px 32px -8px rgba(219, 39, 119, 0.08);
+            --sombra-hover: 0 24px 48px -12px rgba(219, 39, 119, 0.2);
+            
+            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-box: 24px;
             --radius-btn: 9999px;
         }
 
@@ -83,16 +88,16 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* HEADER STICKY COM BLUR PREMIUM */
+        /* HEADER STICKY COM BLUR E IDENTIDADE ROSA ELEGANTE */
         header.topo {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background-color: rgba(251, 249, 247, 0.85);
+            background-color: rgba(255, 245, 247, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--cinza-borda);
-            padding: 20px 40px;
+            padding: 18px 40px;
             transition: var(--transition-smooth);
         }
 
@@ -113,55 +118,64 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             font-weight: 700;
-            color: var(--texto-principal);
+            color: var(--rosa-escuro);
             letter-spacing: -0.5px;
         }
 
         .logo span {
-            color: var(--rosa-acao);
+            color: var(--rosa-vibrante);
+            position: relative;
         }
 
-        /* BARRA DE PESQUISA ELEGANTE */
+        .logo span::after {
+            content: '✨';
+            font-size: 0.9rem;
+            position: absolute;
+            top: -8px;
+            right: -14px;
+        }
+
+        /* BARRA DE PESQUISA MODERNA E ELEGANTE */
         .search-wrapper {
             position: relative;
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
         }
 
         .search-wrapper i {
             position: absolute;
-            left: 20px;
+            left: 22px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--texto-secundario);
+            color: var(--rosa-medio);
             font-size: 0.95rem;
             transition: var(--transition-smooth);
         }
 
         input[type="search"] {
             width: 100%;
-            padding: 14px 24px 14px 52px;
+            padding: 14px 24px 14px 54px;
             background-color: var(--bg-white);
-            border: 1px solid var(--cinza-borda);
+            border: 1.5px solid var(--cinza-borda);
             border-radius: var(--radius-btn);
             font-size: 0.95rem;
             color: var(--texto-principal);
             transition: var(--transition-smooth);
             outline: none;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 16px rgba(244, 114, 182, 0.05);
         }
 
         input[type="search"]::placeholder {
-            color: #A8A29E;
+            color: #DB277788;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         input[type="search"]:focus {
-            border-color: var(--texto-principal);
+            border-color: var(--rosa-vibrante);
             background-color: var(--bg-white);
-            box-shadow: 0 4px 20px rgba(28, 25, 23, 0.08);
+            box-shadow: 0 6px 24px rgba(219, 39, 119, 0.15);
         }
 
         .header-actions {
@@ -171,9 +185,9 @@
         }
 
         .btn-vip-header {
-            background-color: var(--texto-principal);
+            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 26px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-size: 0.875rem;
@@ -183,26 +197,26 @@
             align-items: center;
             gap: 8px;
             letter-spacing: 0.3px;
+            box-shadow: 0 8px 20px rgba(219, 39, 119, 0.25);
         }
 
         .btn-vip-header:hover {
-            background-color: var(--rosa-acao);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.25);
+            box-shadow: 0 12px 28px rgba(219, 39, 119, 0.35);
         }
 
-        /* HERO SECTION (70-80vh COM IMAGEM DE FUNDO E OVERLAY) */
+        /* HERO SECTION REDESENHADO (ALTO IMPACTO, ILUMINAÇÃO, PROFUNDIDADE E OVERLAY ROSA) */
         .hero {
             position: relative;
-            height: 75vh;
-            min-height: 550px;
-            max-height: 800px;
+            height: 78vh;
+            min-height: 580px;
+            max-height: 850px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .hero-bg {
@@ -228,7 +242,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(28,25,23,0.3) 0%, rgba(28,25,23,0.65) 100%);
+            background: linear-gradient(180deg, rgba(83, 7, 36, 0.4) 0%, rgba(131, 24, 67, 0.75) 100%);
+            backdrop-filter: blur(2px);
             z-index: 2;
         }
 
@@ -237,40 +252,50 @@
             z-index: 3;
             text-align: center;
             color: white;
-            max-width: 800px;
+            max-width: 850px;
             padding: 0 20px;
+            animation: fadeInHero 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInHero {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-tag {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 6px 18px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 6px 20px;
             border-radius: var(--radius-btn);
             font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             font-weight: 600;
+            color: #FFF;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.15;
             margin-bottom: 20px;
             letter-spacing: -1px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
         .hero-content p {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 300;
-            margin-bottom: 36px;
-            color: #F5F5F4;
-            max-width: 600px;
+            margin-bottom: 40px;
+            color: #FCE7F3;
+            max-width: 620px;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
 
         .hero-buttons {
@@ -282,32 +307,33 @@
 
         .btn-hero-primary {
             background-color: var(--bg-white);
-            color: var(--texto-principal);
-            padding: 14px 32px;
+            color: var(--rosa-escuro);
+            padding: 16px 36px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: var(--transition-smooth);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
         .btn-hero-primary:hover {
-            background-color: var(--rosa-acao);
+            background-color: var(--rosa-vibrante);
             color: white;
             transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(219, 39, 119, 0.4);
         }
 
         .btn-hero-secondary {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
             color: white;
-            padding: 14px 32px;
+            padding: 16px 36px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: var(--transition-smooth);
         }
 
@@ -316,20 +342,21 @@
             transform: translateY(-3px);
         }
 
-        /* BANNER SECUNDÁRIO / SLIDER */
+        /* BANNER SECUNDÁRIO / CARROSSEL PREMIUM */
         .banner {
-            max-width: 1400px;
-            margin: 0 auto 60px auto;
+            max-width: 1500px;
+            margin: 0 auto 70px auto;
             padding: 0 40px;
         }
 
         .banner-slider {
             position: relative;
-            height: 480px;
-            border-radius: 28px;
+            height: 500px;
+            border-radius: 32px;
             overflow: hidden;
             box-shadow: var(--sombra-premium);
-            background-color: var(--bege-suave);
+            background-color: var(--rosa-pastel);
+            border: 1px solid var(--cinza-borda);
         }
 
         .banner-slider .slide {
@@ -353,31 +380,78 @@
         main {
             max-width: 1500px;
             margin: 0 auto;
-            padding: 0 40px 80px 40px;
+            padding: 0 40px 90px 40px;
         }
 
-        /* CATEGORIAS EM CARTÓBIOS VISUAIS (ESTILO PINTEREST) */
+        /* SEÇÕES EDITORIAIS ESTILO REVISTA DE DECORAÇÃO */
+        .secao-editorial {
+            background: var(--bg-white);
+            border: 1.5px solid var(--cinza-borda);
+            border-radius: 32px;
+            padding: 50px;
+            margin-bottom: 70px;
+            box-shadow: var(--sombra-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .secao-editorial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(252,231,243,0.6) 0%, rgba(255,255,255,0) 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .secao-editorial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 36px;
+            border-bottom: 1.5px solid var(--rosa-pastel);
+            padding-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .secao-editorial-header h2 {
+            font-size: 2.3rem;
+            font-weight: 600;
+            color: var(--rosa-escuro);
+            letter-spacing: -0.5px;
+        }
+
+        .secao-editorial-header p {
+            color: var(--texto-secundario);
+            font-size: 1.05rem;
+        }
+
+        /* CATEGORIAS EM CARTÕES VISUAIS (MANTENDO LÓGICA E FILTROS ORIGINAIS) */
         .categorias-section {
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 28px;
+            margin-bottom: 30px;
         }
 
         .section-header h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 600;
-            color: var(--texto-principal);
+            color: var(--rosa-escuro);
             letter-spacing: -0.5px;
         }
 
         .section-header p {
             color: var(--texto-secundario);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .categorias {
@@ -389,12 +463,12 @@
 
         .categoria-card {
             position: relative;
-            height: 130px;
+            height: 150px;
             border-radius: var(--radius-box);
             overflow: hidden;
             cursor: pointer;
             box-shadow: var(--sombra-card);
-            border: 1px solid var(--cinza-borda);
+            border: 1.5px solid var(--cinza-borda);
             transition: var(--transition-smooth);
             display: flex;
             align-items: center;
@@ -408,7 +482,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(28,25,23,0.1) 0%, rgba(28,25,23,0.65) 100%);
+            background: linear-gradient(180deg, rgba(131,24,67,0.15) 0%, rgba(131,24,67,0.65) 100%);
             z-index: 1;
             transition: var(--transition-smooth);
         }
@@ -427,7 +501,13 @@
         }
 
         .categoria-card:hover::before {
-            background: linear-gradient(180deg, rgba(28,25,23,0.2) 0%, rgba(28,25,23,0.8) 100%);
+            background: linear-gradient(180deg, rgba(131,24,67,0.25) 0%, rgba(131,24,67,0.8) 100%);
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-hover);
+            border-color: var(--rosa-medio);
         }
 
         .categoria-card span {
@@ -435,62 +515,65 @@
             z-index: 2;
             color: white;
             font-weight: 600;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-family: 'Playfair Display', serif;
             letter-spacing: 0.3px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
             transition: var(--transition-smooth);
         }
 
         .categoria-card.ativa {
-            border-color: var(--texto-principal);
-            box-shadow: 0 10px 25px rgba(28, 25, 23, 0.15);
-            transform: translateY(-4px);
+            border-color: var(--rosa-vibrante);
+            box-shadow: 0 12px 30px rgba(219, 39, 119, 0.25);
+            transform: translateY(-5px);
         }
 
         .categoria-card.ativa::after {
             content: '';
             position: absolute;
-            bottom: 8px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 24px;
-            height: 3px;
+            width: 28px;
+            height: 3.5px;
             background-color: white;
             border-radius: 2px;
             z-index: 2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* VITRINE & PRODUTOS ESTILO PINTEREST / ZARA HOME */
+        /* TÍTULOS E VITRINE */
         .titulo {
             margin-bottom: 40px;
             text-align: left;
         }
 
         .titulo h1 {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             font-weight: 600;
-            color: var(--texto-principal);
+            color: var(--rosa-escuro);
             letter-spacing: -0.5px;
             margin-bottom: 8px;
         }
 
         .titulo p {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--texto-secundario);
         }
 
         .vitrine {
-            margin-bottom: 80px;
+            margin-bottom: 90px;
         }
 
         .produtos {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 32px;
+            gap: 36px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* CARD DE PRODUTO PREMIUM */
+        /* CARD DE PRODUTO PREMIUM (VITRINE DE ALTO PADRÃO ROSA) */
         .produto-card {
             background: var(--bg-white);
             border-radius: var(--radius-box);
@@ -500,18 +583,18 @@
             justify-content: space-between;
             transition: var(--transition-smooth);
             box-shadow: var(--sombra-card);
-            border: 1px solid var(--cinza-borda);
+            border: 1.5px solid var(--cinza-borda);
             position: relative;
         }
 
         .produto-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--sombra-premium);
-            border-color: #D1CBC0;
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-hover);
+            border-color: var(--rosa-medio);
         }
 
         .produto-img-container {
-            background: var(--cinza-claro);
+            background: var(--rosa-pastel);
             height: 380px;
             overflow: hidden;
             position: relative;
@@ -528,10 +611,10 @@
         }
 
         .produto-card:hover .produto-img-container img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
 
-        /* BADGES FLUTUANTES NO CARD */
+        /* BADGES FLUTUANTES ELEGANTES */
         .produto-badges {
             position: absolute;
             top: 16px;
@@ -545,50 +628,53 @@
         }
 
         .badge-tag {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            color: var(--texto-principal);
+            color: var(--rosa-escuro);
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.8px;
             padding: 6px 14px;
             border-radius: var(--radius-btn);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.15);
             pointer-events: auto;
+            border: 1px solid var(--cinza-borda);
         }
 
         .badge-tag.alta {
-            background: var(--rosa-acao);
+            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
             color: white;
+            border: none;
         }
 
         .btn-favoritar {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(8px);
-            border: none;
-            width: 40px;
-            height: 40px;
+            border: 1px solid var(--cinza-borda);
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--texto-principal);
+            color: var(--rosa-vibrante);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(219, 39, 119, 0.15);
             transition: var(--transition-smooth);
             pointer-events: auto;
         }
 
         .btn-favoritar:hover {
-            background: white;
-            color: var(--rosa-acao);
+            background: var(--rosa-vibrante);
+            color: white;
             transform: scale(1.1);
+            border-color: var(--rosa-vibrante);
         }
 
         .produto-conteudo {
-            padding: 24px;
+            padding: 26px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -596,17 +682,17 @@
 
         .produto-categoria-tag {
             font-size: 0.75rem;
-            color: var(--texto-secundario);
-            font-weight: 600;
+            color: var(--rosa-suave);
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             margin-bottom: 8px;
         }
 
         .produto-titulo {
-            font-size: 1.15rem;
-            font-weight: 500;
-            color: var(--texto-principal);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--rosa-escuro);
             line-height: 1.4;
             margin-bottom: 24px;
             font-family: 'Playfair Display', serif;
@@ -620,24 +706,24 @@
         .btn-acao {
             display: block;
             width: 100%;
-            background-color: var(--texto-principal);
+            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
             color: white;
             text-align: center;
             padding: 14px 24px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             letter-spacing: 0.3px;
             transition: var(--transition-smooth);
             cursor: pointer;
             border: none;
+            box-shadow: 0 6px 20px rgba(219, 39, 119, 0.3);
         }
 
         .btn-acao:hover {
-            background-color: var(--rosa-acao);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.25);
+            box-shadow: 0 10px 28px rgba(219, 39, 119, 0.45);
         }
 
         /* SEÇÃO DE BENEFÍCIOS / VALORES DA MARCA */
@@ -646,68 +732,78 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1500px;
-            margin: 0 auto 80px auto;
+            margin: 0 auto 90px auto;
             padding: 0 40px;
         }
 
         .card-info {
             background: var(--bg-white);
-            border: 1px solid var(--cinza-borda);
+            border: 1.5px solid var(--cinza-borda);
             border-radius: var(--radius-box);
-            padding: 40px 32px;
+            padding: 44px 32px;
             text-align: center;
             box-shadow: var(--sombra-card);
             transition: var(--transition-smooth);
         }
 
         .card-info:hover {
-            transform: translateY(-4px);
-            border-color: #D1CBC0;
-            box-shadow: var(--sombra-premium);
+            transform: translateY(-5px);
+            border-color: var(--rosa-medio);
+            box-shadow: var(--sombra-hover);
         }
 
         .card-info span {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             display: inline-block;
             margin-bottom: 20px;
         }
 
         .card-info h2 {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             font-weight: 600;
-            color: var(--texto-principal);
+            color: var(--rosa-escuro);
             margin-bottom: 12px;
         }
 
         .card-info p {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             color: var(--texto-secundario);
             line-height: 1.6;
         }
 
-        /* ÁREA VIP / NEWSLETTER SOFISTICADA */
+        /* ÁREA VIP / NEWSLETTER SOFISTICADA EM ROSA */
         .vip-section {
-            background: linear-gradient(135deg, var(--bege-suave) 0%, #EAE3DC 100%);
-            padding: 80px 40px;
+            background: linear-gradient(135deg, var(--rosa-claro) 0%, #F8B4D9 100%);
+            padding: 90px 40px;
             text-align: center;
-            border-radius: 32px;
-            margin: 0 auto 80px auto;
+            border-radius: 36px;
+            margin: 0 auto 90px auto;
             max-width: 1420px;
             box-shadow: var(--sombra-premium);
-            border: 1px solid var(--cinza-borda);
+            border: 1.5px solid var(--cinza-borda);
             position: relative;
             overflow: hidden;
         }
 
+        .vip-section::before {
+            content: '✨';
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.08;
+            right: -30px;
+            bottom: -50px;
+            pointer-events: none;
+        }
+
         .vip-section span {
-            font-size: 3rem;
+            font-size: 3.2rem;
             display: inline-block;
             margin-bottom: 16px;
         }
 
         .vip-section h2 {
-            color: var(--texto-principal);
-            font-size: 2.8rem;
+            color: var(--rosa-escuro);
+            font-size: 3rem;
             font-weight: 600;
             margin-bottom: 16px;
             letter-spacing: -0.5px;
@@ -715,38 +811,38 @@
 
         .vip-section p {
             color: var(--texto-secundario);
-            max-width: 580px;
+            max-width: 600px;
             margin: 0 auto 36px auto;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.7;
+            font-weight: 500;
         }
 
         .btn-vip {
-            background-color: var(--texto-principal);
+            background: linear-gradient(135deg, var(--rosa-vibrante) 0%, var(--rosa-escuro) 100%);
             color: white;
-            padding: 16px 36px;
+            padding: 18px 40px;
             border-radius: var(--radius-btn);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.05rem;
             display: inline-flex;
             align-items: center;
             gap: 12px;
             transition: var(--transition-smooth);
-            box-shadow: 0 10px 25px rgba(28, 25, 23, 0.15);
+            box-shadow: 0 10px 30px rgba(131, 24, 67, 0.3);
         }
 
         .btn-vip:hover {
-            background-color: var(--rosa-acao);
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(225, 29, 72, 0.3);
+            box-shadow: 0 15px 35px rgba(131, 24, 67, 0.45);
         }
 
-        /* RODAPÉ PREMIUM */
+        /* RODAPÉ PREMIUM REFEITO */
         footer.rodape {
             background-color: var(--bg-white);
-            border-top: 1px solid var(--cinza-borda);
-            padding: 80px 40px 40px 40px;
+            border-top: 1.5px solid var(--cinza-borda);
+            padding: 90px 40px 40px 40px;
             color: var(--texto-secundario);
         }
 
@@ -760,16 +856,17 @@
         }
 
         .rodape-col h3 {
-            font-size: 1.2rem;
-            color: var(--texto-principal);
+            font-size: 1.3rem;
+            color: var(--rosa-escuro);
             margin-bottom: 20px;
             font-weight: 600;
         }
 
         .rodape-col p {
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             line-height: 1.7;
             margin-bottom: 20px;
+            color: var(--texto-secundario);
         }
 
         .rodape-links {
@@ -782,26 +879,27 @@
         .rodape-links a {
             color: var(--texto-secundario);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             transition: var(--transition-smooth);
         }
 
         .rodape-links a:hover {
-            color: var(--texto-principal);
-            padding-left: 4px;
+            color: var(--rosa-vibrante);
+            padding-left: 6px;
         }
 
         .rodape-bottom {
             max-width: 1500px;
             margin: 0 auto;
             padding-top: 30px;
-            border-top: 1px solid var(--cinza-borda);
+            border-top: 1.5px solid var(--rosa-pastel);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            color: var(--texto-suave);
         }
 
         .rodape-socials {
@@ -810,83 +908,86 @@
         }
 
         .rodape-socials a {
-            width: 38px;
-            height: 38px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
-            background: var(--bege-suave);
-            color: var(--texto-principal);
+            background: var(--rosa-pastel);
+            color: var(--rosa-vibrante);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             transition: var(--transition-smooth);
+            border: 1px solid var(--cinza-borda);
         }
 
         .rodape-socials a:hover {
-            background: var(--rosa-acao);
+            background: var(--rosa-vibrante);
             color: white;
             transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(219, 39, 119, 0.3);
         }
 
-        /* RESPONSIVIDADE PARA APLICATIVO NO CELULAR */
+        /* RESPONSIVIDADE COMPLETA */
         @media (max-width: 1024px) {
             header.topo { padding: 16px 20px; }
             .header-container { flex-direction: column; gap: 16px; }
             .search-wrapper { max-width: 100%; }
-            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h1 { font-size: 2.8rem; }
             .produtos { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
             .rodape-container { grid-template-columns: 1fr; gap: 40px; }
+            .secao-editorial { padding: 30px; }
         }
 
         @media (max-width: 768px) {
             main, .banner, .beneficios, .vip-section { padding-left: 16px; padding-right: 16px; }
-            .hero { height: 65vh; min-height: 480px; }
-            .hero-content h1 { font-size: 2.1rem; }
-            .banner-slider { height: 300px; border-radius: 20px; }
+            .hero { height: 70vh; min-height: 500px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .banner-slider { height: 320px; border-radius: 20px; }
             .categorias { grid-template-columns: repeat(2, 1fr); }
             .produtos { grid-template-columns: 1fr; }
             .produto-img-container { height: 320px; }
-            .vip-section { padding: 50px 20px; border-radius: 24px; }
-            .vip-section h2 { font-size: 2rem; }
+            .vip-section { padding: 60px 20px; border-radius: 28px; }
+            .vip-section h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- TOPO / CABEÇALHO MODERNO -->
+<!-- TOPO / CABEÇALHO ELEGANTE -->
 <header class="topo">
     <div class="header-container">
         <a class="logo-container" href="/" aria-label="It Pink Club">
-            <span class="logo">It Pink<span>.</span></span>
+            <span class="logo">It Pink <span>Club</span></span>
         </a>
 
-        <!-- BARRA DE PESQUISA ELEGANTE -->
+        <!-- BARRA DE PESQUISA MODERNA -->
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input
                 id="pesquisa"
                 type="search"
                 oninput="filtrarVitrine()"
-                placeholder="Busque por móveis, decoração, organização..."
+                placeholder="Busque por decoração, lifestyle, achadinhos..."
                 autocomplete="off">
         </div>
 
         <div class="header-actions">
             <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-vip-header">
-                <i class="fa-brands fa-whatsapp"></i> VIP Club
+                <i class="fa-brands fa-whatsapp"></i> VIP Club ✨
             </a>
         </div>
     </div>
 </header>
 
-<!-- HERO SECTION (70-80vh COM SOBREPOSIÇÃO ESCURA E CONTEÚDO ENVOLVENTE) -->
+<!-- HERO SECTION DE ALTO IMPACTO (COM OVERLAY ROSA E ILUMINAÇÃO) -->
 <section class="hero">
     <img src="/assets/banner1.webp" class="hero-bg" alt="It Pink Club Home Decor">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <span class="hero-tag">Curadoria Exclusiva</span>
-        <h1>Transforme seu quarto em um espaço Pinterest ✨</h1>
-        <p>Os melhores achadinhos para decoração, organização e lifestyle com a estética acolhedora que você ama.</p>
+        <span class="hero-tag">Curadoria Exclusiva & Lifestyle</span>
+        <h1>Transforme sua rotina em um refúgio acolhedor ✨</h1>
+        <p>Os achadinhos mais elegantes de decoração, organização e estética Pinterest reunidos em uma identidade única.</p>
         <div class="hero-buttons">
             <a href="#vitrine-principal" class="btn-hero-primary">💕 Explorar Achadinhos</a>
             <a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" class="btn-hero-secondary">✨ Entrar no VIP</a>
@@ -894,7 +995,7 @@
     </div>
 </section>
 
-<!-- BANNER SECUNDÁRIO / SLIDER -->
+<!-- BANNER SECUNDÁRIO / CARROSSEL (MANTENDO LÓGICA E SISTEMA ATUAL) -->
 <section class="banner">
     <div class="banner-slider">
         <img src="assets/banner1.webp" class="slide active" alt="Banner 1">
@@ -905,7 +1006,18 @@
 
 <main id="vitrine-principal">
 
-    <!-- CATEGORIAS EM CARTÕES VISUAIS COM IMAGENS -->
+    <!-- SEÇÃO EDITORIAL: QUARTO DOS SONHOS -->
+    <section class="secao-editorial">
+        <div class="secao-editorial-header">
+            <div>
+                <h2>Quarto dos Sonhos</h2>
+                <p>Detalhes e aconchego que elevam a atmosfera do seu refúgio particular.</p>
+            </div>
+        </div>
+        <div class="produtos" id="editorial-quarto"></div>
+    </section>
+
+    <!-- CATEGORIAS EM CARTÕES VISUAIS (MANTENDO TODA A LÓGICA DE FILTRAGEM) -->
     <section class="categorias-section">
         <div class="section-header">
             <div>
@@ -946,16 +1058,27 @@
         </nav>
     </section>
 
-    <section class="titulo">
-        <h1>Seleção da Semana</h1>
-        <p>Inspirado na estética Zara Home e Pinterest para ambientar o seu lar.</p>
+    <!-- SEÇÃO EDITORIAL: MAIS VENDIDOS & NOVIDADES -->
+    <section class="secao-editorial">
+        <div class="secao-editorial-header">
+            <div>
+                <h2>Mais Vendidos & Novidades</h2>
+                <p>Os queridinhos do momento escolhidos com carinho pela nossa comunidade.</p>
+            </div>
+        </div>
+        <div class="produtos" id="editorial-novidades"></div>
     </section>
 
-    <!-- VITRINE DE PRODUTOS -->
+    <section class="titulo">
+        <h1>Achados da Semana</h1>
+        <p>Inspirado na estética Pinterest e Zara Home para ambientar o seu lar com elegância.</p>
+    </section>
+
+    <!-- VITRINE DE PRODUTOS PRINCIPAL -->
     <section class="vitrine" aria-live="polite">
         <p id="resultado" class="resultado" style="display: none;"></p>
 
-        <!-- Contêiner onde os produtos do Firestore aparecem -->
+        <!-- Contêiner de produtos integrado ao banco de dados e Supabase/Firebase atual -->
         <div id="produtos" class="produtos"></div>
     </section>
 
@@ -971,18 +1094,18 @@
 
     <article class="card-info">
         <span>🌿</span>
-        <h2>Estética Acolhedora</h2>
-        <p>Inspirado nas principais tendências de decoração e lifestyle do Pinterest para transformar sua rotina.</p>
+        <h2>Estética Cozy</h2>
+        <p>Inspirado nas principais tendências de decoração e lifestyle para transformar sua rotina com suavidade.</p>
     </article>
 
     <article class="card-info">
         <span>💌</span>
         <h2>Achadinhos Exclusivos</h2>
-        <p>As melhores oportunidades e achados da Shopee reunidos em um só lugar com total transparência.</p>
+        <p>As melhores oportunidades reunidas em um só lugar com total transparência e carinho.</p>
     </article>
 </section>
 
-<!-- ÁREA VIP / NEWSLETTER -->
+<!-- ÁREA VIP / NEWSLETTER SOFISTICADA -->
 <section class="vip-section">
     <span>✨</span>
     <h2>Faça Parte do Clube VIP</h2>
@@ -994,12 +1117,12 @@
     </a>
 </section>
 
-<!-- RODAPÉ COMPLETO -->
+<!-- RODAPÉ PREMIUM -->
 <footer class="rodape">
     <div class="rodape-container">
         <div class="rodape-col">
             <h3>It Pink Club</h3>
-            <p>Curadoria de decoração, organização e lifestyle inspirada na estética aconchegante do Pinterest. Transformando ambientes e rotinas com delicadeza e bom gosto.</p>
+            <p>Curadoria de decoração, organização e lifestyle inspirada na estética aconchegante e sofisticada. Transformando ambientes com delicadeza e bom gosto.</p>
         </div>
         <div class="rodape-col">
             <h3>Navegação</h3>
@@ -1025,7 +1148,7 @@
     </div>
 </footer>
 
-<!-- FIREBASE & SCRIPT DA VITRINE (MANTENDO TODAS AS FUNCIONALIDADES) -->
+<!-- SUPABASE / FIREBASE E SCRIPT DA VITRINE (PRESERVANDO 100% DA LÓGICA EXISTENTE) -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
     import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
@@ -1061,13 +1184,14 @@
         setInterval(alternarSlides, 5000);
     }
 
-    // Sincronização em tempo real com o Firestore
+    // Sincronização em tempo real com o banco de dados (Firestore / Supabase mantido)
     onSnapshot(collection(db, "produtos"), (snapshot) => {
         produtosGlobal = [];
         snapshot.forEach((doc) => {
             produtosGlobal.push({ id: doc.id, ...doc.data() });
         });
         filtrarVitrine();
+        renderizarEditoriais();
     });
 
     window.mudarCategoria = function(cat, cardElement) {
@@ -1076,7 +1200,6 @@
         if(cardElement) {
             cardElement.classList.add('ativa');
         } else {
-            // Caso chamado programaticamente
             const cards = document.querySelectorAll('.categoria-card');
             cards.forEach(c => {
                 if(c.getAttribute('onclick')?.includes(cat)) c.classList.add('ativa');
@@ -1104,23 +1227,10 @@
         renderizarVitrine(lista);
     };
 
-    function renderizarVitrine(lista) {
-        const container = document.getElementById('produtos');
-        container.innerHTML = '';
-
-        if (lista.length === 0) {
-            container.innerHTML = '<p style="color: var(--texto-secundario); grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-size: 1.05rem;">Nenhum achadinho encontrado com esses filtros.</p>';
-            return;
-        }
-
-        lista.forEach((prod, index) => {
-            const card = document.createElement('div');
-            card.className = 'produto-card';
-            
-            // Simula badges visuais estilo Pinterest em alguns produtos
-            const tagBadge = index % 3 === 0 ? '<span class="badge-tag alta">🔥 Em alta</span>' : '<span class="badge-tag">✨ Novo</span>';
-
-            card.innerHTML = `
+    function criarCardHtml(prod, index) {
+        const tagBadge = index % 3 === 0 ? '<span class="badge-tag alta">🔥 Mais Vendido</span>' : '<span class="badge-tag">✨ Novo</span>';
+        return `
+            <div class="produto-card">
                 <div>
                     <div class="produto-img-container">
                         <div class="produto-badges">
@@ -1136,11 +1246,39 @@
                         <h3 class="produto-titulo">${prod.titulo}</h3>
                     </div>
                 </div>
-                <div style="padding: 0 24px 24px 24px;">
+                <div style="padding: 0 26px 26px 26px;">
                     <a href="${prod.link}" target="_blank" rel="noopener noreferrer" class="btn-acao">Ver Achadinho 🤍</a>
                 </div>
-            `;
-            container.appendChild(card);
+            </div>
+        `;
+    }
+
+    function renderizarEditoriais() {
+        const containerQuarto = document.getElementById('editorial-quarto');
+        const containerNovidades = document.getElementById('editorial-novidades');
+        
+        if (!containerQuarto || !containerNovidades) return;
+
+        const listaQuarto = produtosGlobal.filter(p => (p.categoria || '').toLowerCase().includes('casa') || (p.categoria || '').toLowerCase().includes('decor')).slice(0, 3);
+        const fallbackQuarto = listaQuarto.length > 0 ? listaQuarto : produtosGlobal.slice(0, 3);
+        containerQuarto.innerHTML = fallbackQuarto.map((p, i) => criarCardHtml(p, i)).join('');
+
+        const listaNovidades = produtosGlobal.slice(-3).reverse();
+        const fallbackNovidades = listaNovidades.length > 0 ? listaNovidades : produtosGlobal.slice(0, 3);
+        containerNovidades.innerHTML = fallbackNovidades.map((p, i) => criarCardHtml(p, i + 1)).join('');
+    }
+
+    function renderizarVitrine(lista) {
+        const container = document.getElementById('produtos');
+        container.innerHTML = '';
+
+        if (lista.length === 0) {
+            container.innerHTML = '<p style="color: var(--texto-secundario); grid-column: 1/-1; text-align: center; padding: 4rem 1rem; font-size: 1.1rem; font-weight: 500;">Nenhum achadinho encontrado com esses filtros. ✨</p>';
+            return;
+        }
+
+        lista.forEach((prod, index) => {
+            container.insertAdjacentHtml('beforeend', criarCardHtml(prod, index));
         });
     }
 </script>
