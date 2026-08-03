@@ -187,7 +187,7 @@ body {
     gap: 1.5rem
 }
 
-/* 🛍️ CARDS DE PRODUTO PREMIUM 🛍️ */
+/* 🛍️ CARDS DE PRODUTO PREMIUM (REFINADO CONSERVADOR) 🛍️ */
 .produto-card {
     position: relative;
     overflow: hidden;
@@ -209,7 +209,7 @@ body {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-    background: #ffe1ef;
+    background: #fff5f9;
     transition: transform 0.3s ease;
 }
 
@@ -218,7 +218,7 @@ body {
 }
 
 .produto-conteudo {
-    padding: 1.1rem 1.2rem 1.3rem
+    padding: 1.1rem 1.2rem 1.3rem;
 }
 
 .categoria-produto {
@@ -227,18 +227,22 @@ body {
     font-size: .78rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: .04em
+    letter-spacing: .04em;
 }
 
 .produto-card h2 {
     margin: .35rem 0 .55rem;
-    font-size: 1.05rem
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
 }
 
 .produto-card strong {
     display: block;
     font-size: 1.1rem;
     color: var(--text);
+    font-weight: 700;
 }
 
 .preco-consultar {
