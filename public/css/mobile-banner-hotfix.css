@@ -1,0 +1,2 @@
+/* Ajuste isolado: banners mobile sem tocar na vitrine */
+@media(max-width:650px){.banner,.banner-slider,.slide{border:0!important;outline:0!important;box-shadow:none!important}.banner-slider{width:100%!important;margin:0!important;border-radius:0!important;aspect-ratio:16/9!important;overflow:hidden!important;background:#fff7fb!important}.slide{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;border-radius:0!important;background:#fff7fb!important}}
