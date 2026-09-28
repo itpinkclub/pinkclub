@@ -1,65 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>It Pink Club | Sua comunidade exclusiva de achadinhos e boutique feminina</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root{--pink:#ff3f9b;--pink-dark:#dc257b;--pink-soft:#fff0f7;--text:#392a32;--muted:#76636d;--surface:#fff;--shadow:0 12px 30px rgba(196,49,119,.13)}
-        *{box-sizing:border-box} body{margin:0;font-family:Poppins,Arial,sans-serif;color:var(--text);background:var(--pink-soft)}
-        .banner{width:100%;background:var(--pink-soft);padding:1.5rem 0 0}.banner-slider{position:relative;width:min(95%,1500px);margin:0 auto;aspect-ratio:16/6;overflow:hidden;border-radius:28px;box-shadow:0 18px 45px rgba(255,63,155,.18),0 8px 18px rgba(0,0,0,.08);background:#ffe1ef}.banner-slider .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;visibility:hidden;transition:opacity .8s ease}.banner-slider .slide.active{opacity:1;visibility:visible}
-        .topo{position:relative;text-align:center;padding:2.4rem 1rem 1.35rem;background:linear-gradient(180deg,#fff0f7 0%,#fff 100%);overflow:hidden}.topo-inner{position:relative;z-index:2;max-width:1120px;margin:auto}.logo{display:inline-block;color:var(--pink);font-size:clamp(2rem,5vw,2.75rem);font-weight:700;text-decoration:none}.topo-subtitulo{color:var(--muted);margin:.35rem auto .75rem;font-size:clamp(.92rem,2vw,1.05rem)}.micro-beneficios{display:flex;justify-content:center;gap:.7rem 1.3rem;flex-wrap:wrap;color:#8d6579;font-size:.83rem;font-weight:500;margin-bottom:1.25rem}.topo-decor{position:absolute;top:50%;transform:translateY(-50%);z-index:1}.sacola{left:max(2.5%,calc((100% - 1260px)/2));width:118px;height:126px;border-radius:14px 14px 22px 22px;background:linear-gradient(145deg,#ff74b8,#ff3f9b);box-shadow:0 14px 30px rgba(220,37,123,.18);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;letter-spacing:.08em}.sacola:before{content:"";position:absolute;width:58px;height:35px;border:6px solid #ff9dcc;border-bottom:0;border-radius:40px 40px 0 0;top:-26px}.destaque-dia{right:max(2.5%,calc((100% - 1260px)/2));width:175px;padding:1rem;border-radius:20px;background:rgba(255,255,255,.82);border:1px solid #ffd2e6;box-shadow:0 12px 30px rgba(196,49,119,.11);backdrop-filter:blur(8px);text-align:left}.destaque-dia strong{display:block;color:var(--pink-dark);font-size:.9rem}.destaque-dia span{display:block;color:var(--muted);font-size:.72rem;margin-top:.25rem}
-        .pesquisa-wrap{position:relative;width:min(38rem,100%);margin:auto}.pesquisa-label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.pesquisa-icon{position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);pointer-events:none}#busca-produto{width:100%;padding:.95rem 1.25rem .95rem 3rem;border:1px solid #f6b8d6;border-radius:2rem;font:inherit;outline-color:var(--pink);box-shadow:0 6px 20px rgba(232,115,170,.15);background:#fff;transition:.2s}#busca-produto:focus{border-color:var(--pink);box-shadow:0 6px 24px rgba(255,63,155,.22)}
-        .sticky-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);padding:12px 0;box-shadow:0 4px 20px rgba(196,49,119,.08)}#filtros-categorias{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin:0 auto;max-width:1300px;padding-inline:1rem}.filtro-btn{border:1px solid #ffd0e5;background:#fff;color:var(--pink);font:600 .9rem Poppins,Arial,sans-serif;padding:.65rem 1.1rem;border-radius:2rem;cursor:pointer;transition:all .25s}.filtro-btn:hover,.filtro-btn.ativo{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 4px 12px rgba(255,63,155,.3);transform:translateY(-2px)}
-        .faixa-beneficios{max-width:1180px;margin:1.15rem auto 0;padding:0 1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}.mini-info{display:flex;align-items:center;justify-content:center;gap:.55rem;background:rgba(255,255,255,.75);border:1px solid #ffdce9;border-radius:16px;padding:.75rem .65rem;color:#765866;font-size:.76rem;font-weight:600;box-shadow:0 7px 18px rgba(196,49,119,.06)}.mini-info b{font-size:1.15rem}
-        .vitrine{max-width:1440px;margin:auto;padding:2rem clamp(1.25rem,5vw,5rem) 4rem}.titulo{text-align:center;margin-bottom:2rem}.titulo h1{margin:0;color:var(--pink);font-size:clamp(1.7rem,4vw,2.4rem)}.titulo p{color:var(--muted);margin:.4rem auto 0}#produtos-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.5rem}.card-produto{position:relative;overflow:hidden;background:var(--surface);border-radius:1.5rem;border:1px solid #ffe3f0;box-shadow:var(--shadow);transition:.25s}.card-produto:hover{transform:translateY(-6px);box-shadow:0 20px 35px rgba(196,49,119,.22)}.card-imagem{position:relative;width:100%;aspect-ratio:1;overflow:hidden;background:#ffe1ef}.card-imagem img{display:block;width:100%;height:100%;object-fit:cover}.card-conteudo{padding:1.1rem 1.2rem 1.3rem}.card-cat{margin:0;color:var(--pink-dark);font-size:.78rem;font-weight:600;text-transform:uppercase}.card-produto h3{margin:.35rem 0 .55rem;font-size:1.05rem}.btn-comprar{display:block;margin-top:1rem;padding:.75rem 1rem;border-radius:1.5rem;background:linear-gradient(135deg,#ff4fa0,#dc257b);color:#fff;font-size:.92rem;font-weight:700;text-align:center;text-decoration:none;box-shadow:0 4px 15px rgba(220,37,123,.35)}.badge-destaque{position:absolute;z-index:1;top:.8rem;left:.8rem;padding:.35rem .75rem;border-radius:1rem;background:#fff;border:1px solid #ffb3d9;color:var(--pink-dark);font-size:.72rem;font-weight:700;text-transform:uppercase}.vazio{grid-column:1/-1;text-align:center;color:var(--muted);padding:2.5rem}
-        .whatsapp-section{background:linear-gradient(135deg,#fff0f7,#ffe1ef);border-top:1px solid #ffd8ea;border-bottom:1px solid #ffd8ea;padding:3.5rem 1rem;text-align:center}.whatsapp-card{max-width:650px;margin:0 auto;background:#fff;padding:2.5rem;border-radius:2rem;box-shadow:0 15px 35px rgba(255,63,155,.15);border:1px solid #ffb3d9}.whatsapp-card h2{color:var(--pink);margin-top:0;font-size:1.6rem}.whatsapp-card p{color:var(--muted);margin-bottom:1.5rem;font-size:.95rem}.btn-whatsapp{display:inline-block;background:#25d366;color:#fff;padding:.9rem 2rem;border-radius:2rem;font-weight:700;text-decoration:none;box-shadow:0 4px 15px rgba(37,211,102,.3)}
-        .beneficios{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;padding:3rem clamp(1.25rem,5vw,5rem);background:#fff}.card-info{text-align:center;padding:1.5rem;border-radius:1.2rem;background:var(--pink-soft);border:1px solid #ffd8ea}.card-info span{font-size:1.7rem}.card-info h2{margin:.5rem 0;color:var(--pink);font-size:1rem}.card-info p{margin:0;color:var(--muted);font-size:.87rem}footer{text-align:center;padding:2.5rem;background:#ffe1ef;color:var(--pink-dark);font-size:.9rem;font-weight:500;border-top:1px solid #ffc2df}
-        @media(max-width:900px){.topo-decor{display:none}.faixa-beneficios{grid-template-columns:repeat(2,1fr)}}
-        @media(max-width:768px){.banner{padding-top:.7rem}.banner-slider{width:100%;border-radius:0;aspect-ratio:16/9}.topo{padding:1.7rem .9rem 1rem}.micro-beneficios{gap:.4rem .8rem}.faixa-beneficios{grid-template-columns:repeat(2,1fr);margin-top:.8rem}.mini-info{font-size:.68rem;padding:.65rem .4rem}.beneficios{grid-template-columns:1fr}#produtos-container{grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>💖 It Pink Club | Achadinhos da Shopee</title>
+    <meta name="google-site-verification" content="ouUpmd0L-F-6NngD0j5jJGvzfFvZcFHDgI5ECPSboQw">
+    <meta name="description" content="Os melhores achadinhos da Shopee. Moda feminina, beleza, skincare, decoração, casa, tecnologia e mimos escolhidos com carinho para você.">
+    <meta name="keywords" content="Shopee, achadinhos, ofertas Shopee, moda feminina, beleza, skincare, cabelos, decoração, casa, tecnologia, pets, papelaria, It Pink Club">
+    <meta name="author" content="It Pink Club">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ff4fa0">
+    <link rel="canonical" href="https://pinkclub-three.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="It Pink Club">
+    <meta property="og:title" content="💖 It Pink Club | Os achadinhos mais lindos da Shopee">
+    <meta property="og:description" content="Descubra os achadinhos mais lindos da Shopee com ofertas imperdíveis.">
+    <meta property="og:url" content="https://pinkclub-three.vercel.app/">
+    <meta property="og:image" content="https://pinkclub-three.vercel.app/assets/banner1.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="/assets/banner1.webp" type="image/webp">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <section class="banner">
-        <div class="banner-slider" id="bannerSlider">
-            <img src="/assets/banner1.webp" class="slide active" alt="Banner 1">
-            <img src="/assets/banner2.webp" class="slide" alt="Banner 2">
-            <img src="/assets/banner3.webp" class="slide" alt="Banner 3">
+<section class="banner">
+    <div class="banner-slider">
+        <img src="assets/banner1.webp" class="slide active" alt="Banner 1">
+        <img src="assets/banner2.webp" class="slide" alt="Banner 2">
+        <img src="assets/banner3.webp" class="slide" alt="Banner 3">
+    </div>
+</section>
+<header class="topo">
+    <div class="hero-decor hero-bag" aria-hidden="true">🛍️<small>IT PINK CLUB</small></div>
+    <div class="hero-center">
+        <a class="logo" href="/" aria-label="It Pink Club">💖 It Pink Club</a>
+        <p class="hero-subtitle">Os achadinhos mais fofos da internet em um só lugar.</p>
+        <div class="hero-highlights" aria-label="Destaques do clube">
+            <span>✨ Novidades todos os dias</span><span>🔥 Produtos em alta</span><span>💗 Selecionados para você</span>
         </div>
-    </section>
-
-    <header class="topo">
-        <div class="topo-decor sacola">IT PINK CLUB</div>
-        <div class="topo-decor destaque-dia"><strong>🛍️ Achadinhos do dia</strong><span>Seleção especial atualizada para você ✨</span></div>
-        <div class="topo-inner">
-            <a href="#" class="logo">It Pink Club 💖</a>
-            <p class="topo-subtitulo">Os achadinhos mais fofos da internet em um só lugar.</p>
-            <div class="micro-beneficios"><span>✨ Novidades todos os dias</span><span>🔥 Produtos em alta</span><span>💗 Selecionados para você</span></div>
-            <div class="pesquisa-wrap"><label class="pesquisa-label" for="busca-produto">Pesquisar produtos</label><span class="pesquisa-icon">🔎</span><input type="text" id="busca-produto" placeholder="Pesquise seu próximo achadinho..."></div>
+        <div class="sticky-header">
+            <label class="pesquisa-label" for="pesquisa">Encontre seu achadinho</label>
+            <input id="pesquisa" type="search" oninput="filtrarVitrine()" placeholder="🔍 Pesquise seu próximo achadinho..." autocomplete="off">
+            <nav class="categorias" id="categorias" aria-label="Categorias">
+                <button class="categoria ativa" onclick="mudarCategoria('todos', this)">✨ Todos</button>
+                <button class="categoria" onclick="mudarCategoria('beleza', this)">💄 Beleza</button>
+                <button class="categoria" onclick="mudarCategoria('casa', this)">🏠 Casa</button>
+                <button class="categoria" onclick="mudarCategoria('moda', this)">👗 Moda</button>
+                <button class="categoria" onclick="mudarCategoria('tecnologia', this)">📱 Tecnologia</button>
+                <button class="categoria" onclick="mudarCategoria('papelaria', this)">🎨 Papelaria</button>
+                <button class="categoria" onclick="mudarCategoria('pets', this)">🐾 Pets</button>
+            </nav>
         </div>
-        <div class="faixa-beneficios">
-            <div class="mini-info"><b>🚚</b><span>Produtos selecionados</span></div>
-            <div class="mini-info"><b>🛡️</b><span>Compras seguras</span></div>
-            <div class="mini-info"><b>🏷️</b><span>Ofertas atualizadas</span></div>
-            <div class="mini-info"><b>💗</b><span>Achadinhos que você ama</span></div>
-        </div>
-    </header>
-
-    <div class="sticky-header"><nav id="filtros-categorias"><!-- Preenchido via app.js --></nav></div>
-
-    <main class="vitrine">
-        <div class="titulo"><h1>Achadinhos Selecionados</h1><p>Os melhores achados da internet reunidos para você</p></div>
-        <div id="produtos-container"><!-- Produtos carregados do Firebase via app.js --></div>
-    </main>
-
-    <section class="whatsapp-section"><div class="whatsapp-card"><h2>Entre no nosso Grupo VIP do WhatsApp 💚</h2><p>Receba os melhores achadinhos em primeira mão, cupons secretos e promoções relâmpago direto no seu celular!</p><a href="https://chat.whatsapp.com/SEU_LINK_AQUI" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">Entrar no Grupo VIP 💬</a></div></section>
-
-    <section class="beneficios"><div class="card-info"><span>✨</span><h2>Achados Exclusivos</h2><p>Seleção diária com muito estilo e carinho.</p></div><div class="card-info"><span>💖</span><h2>Comunidade It Pink</h2><p>Faça parte do clube mais charmoso da web.</p></div><div class="card-info"><span>🛍️</span><h2>Praticidade</h2><p>Direto para as melhores lojas parceiras.</p></div></section>
-
-    <footer><p>It Pink Club © 2026 — Todos os direitos reservados. Feito com muito amor e rosa 💖</p></footer>
-
-    <script>document.addEventListener("DOMContentLoaded",()=>{const slides=document.querySelectorAll(".banner-slider .slide");if(slides.length>1){let atual=0;setInterval(()=>{slides[atual].classList.remove("active");atual=(atual+1)%slides.length;slides[atual].classList.add("active")},4000)}});</script>
-    <script type="module" src="js/app.js"></script>
-</body>
-</html>
+    </div>
+    <aside class="daily-card"><strong>🛒 Achadinhos do dia</strong><span>Seleção especial atualizada para você ✨</span></aside>
+</header>
+<section class="trust-strip" aria-label="Vantagens It Pink Club">
+    <span>🛍️ Produtos selecionados</span><span>🛡️ Compras seguras</span><span>🏷️ Ofertas atualizadas</span><span>💗 Achadinhos que você ama</span>
+</section>
+<main>
+<section class="titulo"><h1>💖 Achadinhos da Shopee | It Pink Club</h1><p>Selecionados especialmente para você.</p></section>
+<section class="vitrine" aria-live="polite"><p id="resultado" class="resultado" style="display:none"></p><div id="produtos" class="produtos" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem;padding:1rem 0"></div></section>
+</main>
+<section class="beneficios">
+<article class="card-info"><span>💖</span><h2>Escolha Manual</h2><p>Selecionamos apenas produtos que realmente chamam atenção.</p></article>
+<article class="card-info"><span>⭐</span><h2>Atualizações Frequentes</h2><p>Novos achadinhos adicionados constantemente.</p></article>
+<article class="card-info"><span>🎀</span><h2>Curadoria It Pink</h2><p>Tudo seguindo a estética delicada e feminina do clube.</p></article>
+</section>
+<section class="vip-section" style="background:linear-gradient(135deg,#fff0f6 0%,#ffd6e7 100%);padding:40px 20px;text-align:center;border-radius:20px;margin:40px auto;max-width:1000px;box-shadow:0 4px 15px rgba(255,79,160,.1)"><span style="font-size:2.5rem">👑</span><h2 style="color:#d63384;font-size:1.8rem;margin:10px 0">Entre para o Clube VIP</h2><p style="color:#555;max-width:500px;margin:0 auto 20px;font-size:.95rem">Receba as melhores promoções, cupons de frete grátis e achadinhos secretos da Shopee direto no seu WhatsApp!</p><a href="https://chat.whatsapp.com/K1h9Zrpk7qYLh9lrJV1R4j?mode=gi_t" target="_blank" rel="noopener noreferrer" style="background:#25d366;color:white;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:600">💬 Entrar no Grupo VIP</a></section>
+<footer class="rodape" style="background:#fff0f5;text-align:center;padding:35px 20px;font-size:.9rem;color:#666;margin-top:50px;border-top:1px solid #ffe1ec"><div style="max-width:800px;margin:auto"><p style="font-weight:600;color:#d63384">💖 Siga nosso perfil: <a href="https://instagram.com/itpinkclub" target="_blank" rel="noopener noreferrer" style="color:#d63384">@itpinkclub</a></p><p style="font-size:.8rem;color:#777">🔒 <strong>Aviso de transparência:</strong> Participamos de programas de afiliados. Ao comprar através dos nossos links, podemos receber comissões qualificadas. Você não paga nada a mais por isso.</p><p style="font-size:.75rem;opacity:.7">© 2026 It Pink Club. Todos os direitos reservados.</p></div></footer>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyD9ojNdDkM9M6iO16SW8k7wfWnnJbvHS40",authDomain:"itpinkclub-a786e.firebaseapp.com",projectId:"itpinkclub-a786e",storageBucket:"itpinkclub-a786e.firebasestorage.app",messagingSenderId:"716111814812",appId:"1:716111814812:web:06e1c76950d39021698d59",measurementId:"G-3XSF7CYT1D"};
+const app=initializeApp(firebaseConfig),db=getFirestore(app);let produtosGlobal=[],categoriaSelecionada='todos';let indiceAtual=0;const slides=document.querySelectorAll('.banner-slider .slide');function alternarSlides(){if(!slides.length)return;slides[indiceAtual].classList.remove('active');indiceAtual=(indiceAtual+1)%slides.length;slides[indiceAtual].classList.add('active')}if(slides.length>1)setInterval(alternarSlides,4000);
+onSnapshot(collection(db,"produtos"),(snapshot)=>{produtosGlobal=[];snapshot.forEach(doc=>produtosGlobal.push({id:doc.id,...doc.data()}));filtrarVitrine()});
+window.mudarCategoria=function(cat,btn){categoriaSelecionada=cat;document.querySelectorAll('.categoria').forEach(b=>b.classList.remove('ativa'));if(btn)btn.classList.add('ativa');filtrarVitrine()};
+window.filtrarVitrine=function(){const termo=document.getElementById('pesquisa').value.toLowerCase().trim();let lista=produtosGlobal;if(categoriaSelecionada!=='todos')lista=lista.filter(p=>(p.categoria||'').toLowerCase().trim()===categoriaSelecionada);if(termo)lista=lista.filter(p=>p.titulo&&p.titulo.toLowerCase().includes(termo));renderizarVitrine(lista)};
+function renderizarVitrine(lista){const container=document.getElementById('produtos');container.innerHTML='';if(!lista.length){container.innerHTML='<p style="color:#666;grid-column:1/-1;text-align:center;padding:3rem">Nenhum achadinho encontrado com esses filtros.</p>';return}lista.forEach(prod=>{const card=document.createElement('div');card.style.cssText='background:white;border:1px solid #ffe3f0;border-radius:1rem;padding:1rem;box-shadow:0 4px 12px rgba(236,72,153,.08);display:flex;flex-direction:column;justify-content:space-between;transition:transform .2s';card.innerHTML=`<div><div style="background:#fff0f6;height:180px;border-radius:.75rem;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:.8rem"><img src="${prod.imagem}" style="width:100%;height:100%;object-fit:cover" alt="${prod.titulo||'Produto'}"></div><span style="font-size:.75rem;color:#db2777;font-weight:600;text-transform:uppercase;background:#fff0f6;padding:.2rem .6rem;border-radius:9999px">${prod.categoria||''}</span><h3 style="font-size:.95rem;margin:.5rem 0 1rem;color:#333;line-height:1.4">${prod.titulo||''}</h3></div><a href="${prod.link||'#'}" target="_blank" rel="noopener noreferrer" style="background:#ff4fa0;color:white;text-align:center;padding:.7rem;border-radius:.75rem;text-decoration:none;font-weight:600;font-size:.85rem">Ver na Shopee 🛍️</a>`;container.appendChild(card)})}
+</script>
+</body></html>
